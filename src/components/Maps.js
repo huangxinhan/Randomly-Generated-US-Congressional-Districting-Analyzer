@@ -1,40 +1,48 @@
 import React, { useState, Component} from 'react'
 import ReactDOM from 'react-dom'
-import mapboxgl from 'mapbox-gl'
+import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
+import marylandPrecincts from "../geojson/md_2016_w_ushouse.geojson"
 
 
-mapboxgl.accessToken='pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHU3azhuOTBsOXcyb281eDg4eXpjMTMifQ.1zXi-fgg6Z9l8EK7OcyTKA'
+
 
 class Maps extends Component{
-    constructor(props) {
-        super(props)
-        this.state = {
-            lng: -96,
-            lat: 37.8,
-            zoom: 3
+    state = {
+        viewport: {
+          latitude: 39.8283,
+          longitude: -98.5795,
+          zoom: 4.25
         }
-    }
-
-    componentDidMount(){
-        const {lng, lat, zoom} = this.state
-        this.map = new mapboxgl.Map({
-            container: this.mapContainer,
-            style: 'mapbox://styles/mapbox/light-v10',
-            center: [lng, lat],
-            zoom: zoom
-        })
-    }
-
-    render() {
-        const { lng, lat, zoom } = this.state;
+      };
     
-        return (
+      render(){
+        return(
           <div>
-            <div ref={el => this.mapContainer = el}/>
+            <ReactMapboxGL
+              {...this.state.viewport}
+              style={{width: "100vw", height: "100vh"}}
+              mapStyle="mapbox://styles/mapbox/light-v9"
+              accessToken={'pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHV6ZW1mazA0YmMybnFvb3VxcXA0ejQifQ.t_Hw0W0XVxTZcbS4NsrFlw'}
+              onViewportChange={viewport => this.setState({ viewport })}
+            >
+            <Source
+              id="mdprecincts"
+              type="geojson"
+              data={marylandPrecincts}
+            />
+            <Layer
+              id="MarylandPrecincts"
+              type="fill"
+              source="mdprecincts"
+              paint={{
+                "fill-color": "#228b22",
+                "fill-opacity": 0.4
+              }}
+            />
+            </ReactMapboxGL>
           </div>
-        );
+        )
+      }
     }
-
-}
 
 export default Maps;
