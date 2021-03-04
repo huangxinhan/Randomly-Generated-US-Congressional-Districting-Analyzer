@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
 
-export default function App() {
-  const [viewport, setViewport] = useState({
-    latitude: 45.4211,
-    longitude: -75.6903,
-    width: "100vw",
-    height: "100vh",
-    zoom: 10
-  });
+class App extends React.Component {
+  state = {
+    viewport: {
+      latitude: 39.8283,
+      longitude: -98.5795,
+      zoom: 4.25
+    }
+  };
 
-  return (
-    <div>
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken={'pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHU3azhuOTBsOXcyb281eDg4eXpjMTMifQ.1zXi-fgg6Z9l8EK7OcyTKA'}
-        mapStyle="mapbox://styles/mapbox/light-v10"
-        onViewportChange={viewport => {
-          setViewport(viewport);
-        }}
-      >
-      </ReactMapGL>
-    </div>
-  );
+  render(){
+    return(
+      <div>
+        <ReactMapboxGL
+          {...this.state.viewport}
+          style={{width: "100vw", height: "100vh"}}
+          mapStyle="mapbox://styles/mapbox/light-v9"
+          accessToken={'pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHV6ZW1mazA0YmMybnFvb3VxcXA0ejQifQ.t_Hw0W0XVxTZcbS4NsrFlw'}
+          onViewportChange={viewport => this.setState({ viewport })}
+        ></ReactMapboxGL>
+      </div>
+    )
+  }
 }
+
+export default App
