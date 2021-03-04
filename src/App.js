@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
-import newyorkDistricts from "./geojson/New_York_Congressional_Districts.geojson"
+import marylandPrecincts from "./geojson/md_2016_w_ushouse.geojson"
 
 class App extends React.Component {
   state = {
@@ -23,15 +23,16 @@ class App extends React.Component {
           onViewportChange={viewport => this.setState({ viewport })}
         >
         <Source
-          id="nydistricts"
+          id="mdprecincts"
           type="geojson"
-          data={newyorkDistricts}
+          data={marylandPrecincts}
         />
         <Layer
-          id="NewYorkCongressionalDistricts"
+          id="MarylandPrecincts"
           type="fill"
-          source="nydistricts"
+          source="mdprecincts"
           paint={{
+            
             "fill-color": "#228b22",
             "fill-opacity": 0.4
           }}
