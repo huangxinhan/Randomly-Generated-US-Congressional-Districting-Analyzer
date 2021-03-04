@@ -22,7 +22,7 @@ class Maps extends Component{
               {...this.state.viewport}
               style={{width: "100vw", height: "100vh"}}
               mapStyle="mapbox://styles/mapbox/light-v9"
-              accessToken={'pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHV6ZW1mazA0YmMybnFvb3VxcXA0ejQifQ.t_Hw0W0XVxTZcbS4NsrFlw'}
+              accessToken={'pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA'}
               onViewportChange={viewport => this.setState({ viewport })}
             >
             <Source
