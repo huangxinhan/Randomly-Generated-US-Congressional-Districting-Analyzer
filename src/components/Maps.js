@@ -45,7 +45,7 @@ class Maps extends Component{
     var NYdistrictLayer = L.geoJson(nydistricts, {
       style: function(feature) {
         if (feature.properties){
-          return {color: 'blue', opacity:0.7}
+          return {color: 'black', fillColor: 'blue', opacity:0.5}
         }
       },
       onEachFeature: onEachStateFeature
@@ -67,7 +67,7 @@ class Maps extends Component{
     var NYprecinctLayer = L.geoJson(nyprecincts, {
       style: function(feature) {
         if (feature.properties){
-          return {color: getRandomColor(feature), opacity:0.7}
+          return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
         }
       },
       onEachFeature: onEachPrecinctFeature
