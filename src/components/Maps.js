@@ -43,6 +43,11 @@ class Maps extends Component{
   
     //initializes the map
     init(){
+
+      var container = L.DomUtil.get('map');
+      if(container != null){
+      container._leaflet_id = null;
+      }
       var map = L.map('map').setView([37.8, -96], 5)
       map.zoomControl.setPosition('topleft')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
