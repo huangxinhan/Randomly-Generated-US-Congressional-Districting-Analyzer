@@ -41,10 +41,11 @@ class Maps extends Component{
     map.zoomControl.setPosition('topleft')
     L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
 
+    //geojson for New York State Congressional Districtings
     L.geoJson(nydistricts, {
       style: function(feature) {
         if (feature.properties){
-          return {color: 'red', opacity:0.7}
+          return {color: 'blue', opacity:0.7}
         }
       },
       onEachFeature: onEachStateFeature
@@ -59,7 +60,35 @@ class Maps extends Component{
       })
     }
 
-    
+    //geojson for New York State precincts
+    L.geoJson(nyprecincts, {
+      style: function(feature) {
+        if (feature.properties){
+          return {color: getRandomColor(feature), opacity:0.7}
+        }
+      },
+      onEachFeature: onEachPrecinctFeature
+    }).addTo(map);
+
+    function onEachPrecinctFeature(feature, layer) {
+      layer.bindPopup(feature.properties.NAMELSAD10)
+      layer.on('mouseover', function(e) {
+        if (feature.properties){
+          this.openPopup();
+        }
+      })
+    }
+
+    function getRandomColor(feature){
+      var keyString = feature.properties.NAME10 + feature.properties.COUNTY_NAM;
+      var letters = "0123456789ABCDEF"
+      var color = "#"
+      for (var i = 0; i < 6; i++){
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color 
+    }
+
   }
 
     render(){
