@@ -4,6 +4,7 @@ import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
 import marylandPrecincts from "../geojson/md_2016_w_ushouse.json"
 import nyprecincts from "../geojson/ny_final.json"
 import nydistricts from "../geojson/ny_cd.json"
+import nystate from "../geojson/ny_state_bound.json"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
@@ -41,8 +42,7 @@ class Maps extends Component{
     map.zoomControl.setPosition('topleft')
     L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
 
-    //geojson for New York State Congressional Districtings
-    var NYdistrictLayer = L.geoJson(nydistricts, {
+    var NYStateLayer = L.geoJson(nystate, {
       style: function(feature) {
         if (feature.properties){
           return {color: 'black', fillColor: 'blue', opacity:0.5}
@@ -51,14 +51,40 @@ class Maps extends Component{
       onEachFeature: onEachStateFeature
     });
 
-    map.addLayer(NYdistrictLayer)
+    function onEachStateFeature(feature, layer){
+      layer.bindPopup(feature.properties.NAME)
+      layer.on('mouseover', function(e) {
+        if (this.feature){
+          this.openPopup();
+        }
+      })
+      layer.on('mouseout', function(e) {
+        this.closePopup();
+      })
+    }
 
-    function onEachStateFeature(feature, layer) {
+    //geojson for New York State Congressional Districtings
+    var NYdistrictLayer = L.geoJson(nydistricts, {
+      style: function(feature) {
+        if (feature.properties){
+          return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+        }
+      },
+      onEachFeature: onEachDistrictFeature
+    });
+
+    
+
+    function onEachDistrictFeature(feature, layer) {
       layer.bindPopup(feature.properties.NAMELSAD)
       layer.on('mouseover', function(e) {
         if (feature.properties){
           this.openPopup();
         }
+      }
+      )
+      layer.on('mouseout', function(e) {
+        this.closePopup();
       })
     }
 
@@ -73,7 +99,7 @@ class Maps extends Component{
       onEachFeature: onEachPrecinctFeature
     });
 
-    map.addLayer(NYprecinctLayer)
+    
 
     function onEachPrecinctFeature(feature, layer) {
       layer.bindPopup(feature.properties.NAMELSAD10)
@@ -81,6 +107,10 @@ class Maps extends Component{
         if (feature.properties){
           this.openPopup();
         }
+      })
+      
+      layer.on('mouseout', function(e) {
+        this.closePopup();
       })
 
       //adding and removing layer
@@ -90,6 +120,10 @@ class Maps extends Component{
       })
 
     }
+
+    map.addLayer(NYStateLayer)
+    map.addLayer(NYdistrictLayer)
+    map.addLayer(NYprecinctLayer)
     
     //Generates a random coloring for each district
     function getRandomColor(feature){
