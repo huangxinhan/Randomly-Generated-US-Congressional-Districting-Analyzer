@@ -150,7 +150,7 @@ class Maps extends Component{
 
     render(){
         return(
-          <div id="map" style={{ width: '100vw', height: '100vh'}}></div>
+          <div id="map" style={{ width: '70vw', height: '100vh'}}></div>
         )
       }
     }
