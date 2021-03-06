@@ -42,14 +42,16 @@ class Maps extends Component{
     L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
 
     //geojson for New York State Congressional Districtings
-    L.geoJson(nydistricts, {
+    var NYdistrictLayer = L.geoJson(nydistricts, {
       style: function(feature) {
         if (feature.properties){
           return {color: 'blue', opacity:0.7}
         }
       },
       onEachFeature: onEachStateFeature
-    }).addTo(map);
+    });
+
+    map.addLayer(NYdistrictLayer)
 
     function onEachStateFeature(feature, layer) {
       layer.bindPopup(feature.properties.NAMELSAD)
@@ -61,14 +63,17 @@ class Maps extends Component{
     }
 
     //geojson for New York State precincts
-    L.geoJson(nyprecincts, {
+    
+    var NYprecinctLayer = L.geoJson(nyprecincts, {
       style: function(feature) {
         if (feature.properties){
           return {color: getRandomColor(feature), opacity:0.7}
         }
       },
       onEachFeature: onEachPrecinctFeature
-    }).addTo(map);
+    });
+
+    map.addLayer(NYprecinctLayer)
 
     function onEachPrecinctFeature(feature, layer) {
       layer.bindPopup(feature.properties.NAMELSAD10)
@@ -77,15 +82,29 @@ class Maps extends Component{
           this.openPopup();
         }
       })
-    }
 
+      //adding and removing layer
+      layer.on('click', function(e) {
+        map.removeLayer(NYprecinctLayer)
+        alert('clicked and removed!')
+      })
+
+    }
+    
+    //Generates a random coloring for each district
     function getRandomColor(feature){
+      var precinct_color = new Map()
       var keyString = feature.properties.NAME10 + feature.properties.COUNTY_NAM;
+      if(precinct_color.has(keyString)){
+        return precinct_color.get(keyString)
+      }
+
       var letters = "0123456789ABCDEF"
       var color = "#"
       for (var i = 0; i < 6; i++){
         color += letters[Math.floor(Math.random() * 16)];
       }
+      precinct_color.set(keyString, color)
       return color 
     }
 
