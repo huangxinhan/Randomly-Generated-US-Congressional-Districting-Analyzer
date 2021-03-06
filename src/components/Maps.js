@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
 import marylandPrecincts from "../geojson/md_2016_w_ushouse.json"
 import nyprecincts from "../geojson/ny_final.json"
+import nydistricts from "../geojson/ny_cd.json"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
@@ -40,7 +41,7 @@ class Maps extends Component{
     map.zoomControl.setPosition('topleft')
     L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
 
-    L.geoJson(nyprecincts, {
+    L.geoJson(nydistricts, {
       style: function(feature) {
         if (feature.properties){
           return {color: 'red', opacity:0.7}
@@ -50,7 +51,7 @@ class Maps extends Component{
     }).addTo(map);
 
     function onEachStateFeature(feature, layer) {
-      layer.bindPopup(feature.properties.NAMELSAD10)
+      layer.bindPopup(feature.properties.NAMELSAD)
       layer.on('mouseover', function(e) {
         if (feature.properties){
           this.openPopup();
