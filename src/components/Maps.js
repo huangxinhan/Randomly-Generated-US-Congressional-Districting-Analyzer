@@ -50,8 +50,10 @@ class Maps extends Component{
     }).addTo(map);
 
     function onEachStateFeature(feature, layer) {
-      layer.on('click', function(e) {
+      layer.bindPopup(feature.properties.NAMELSAD10)
+      layer.on('mouseover', function(e) {
         if (feature.properties){
+          this.openPopup();
         }
       })
     }
