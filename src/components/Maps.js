@@ -334,9 +334,9 @@ class Maps extends Component{
 
 
                 <div>
-                <div className = {OptionPage}>
+                <div className = {OptionPage} style={{ textAlign:'left'}}>
                     Toggle
-                    <div className = "D1" style={{ textAlign:'left'}}> 
+                    <div className = "D1" > 
                     <div>
                     SHOW PRECINCTS                            
                     <div></div>
