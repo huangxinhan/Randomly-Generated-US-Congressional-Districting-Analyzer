@@ -2,7 +2,7 @@ import React, { useState, Component} from 'react'
 import ReactDOM from 'react-dom'
 import {Navbar, Nav, NavItem, Button, Glyphicon} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import "./component.css";
+import "./com.css";
 
 
 class Menu extends Component{

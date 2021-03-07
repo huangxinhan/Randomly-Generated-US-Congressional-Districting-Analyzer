@@ -8,6 +8,10 @@ import nystate from "../geojson/ny_state_bound.json"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import "./com.css";
 
 let config = {};
 config.params = {
@@ -25,6 +29,10 @@ config.tileLayer = {
   url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.pn',
 };
 
+function valuetext(value) {
+  return `${value}%`;
+}
+
 class Maps extends Component{
 
     state = {
@@ -36,6 +44,13 @@ class Maps extends Component{
       OptionPage: true,
       StatsPage: false,
       FilterPage: false,
+
+      // FITER page
+
+      MajorityMinority: 10,
+      Compactness: 0,
+      PopulationEquality:0,
+      Objective: [0,0],
     };
 
 
@@ -160,6 +175,38 @@ class Maps extends Component{
       }
     }
 
+    handleMajorChange = (event, newValue) => {
+
+      this.setState({MajorityMinority :  newValue });
+
+
+    };
+
+    handleComChange = (event , newValue) => {
+
+      this.setState({Compactness:  newValue });
+
+
+    };
+ 
+    handlePChange = (event , newValue) => {
+
+      
+
+      this.setState({PopulationEquality:  newValue});
+
+      
+
+
+    };
+
+    handleObjChange = (event , newValue) => {
+
+      this.setState({Objective: newValue});
+
+
+    };
+
     hidegeoJson(layer,state){
       state.removeLayer(layer)
       alert("layer removed test")
@@ -198,10 +245,29 @@ class Maps extends Component{
 
 
     render(){
+      let OptionPage  = "PageDisable";
+
+      if (this.state.OptionPage) {
+          OptionPage  = "OptAble"
+      };
+
+      let StatsPage  = "PageDisable";
+
+      if (this.state.StatsPage) {
+        StatsPage  = "SatAble"
+      };
+
+      let FilterPage  = "PageDisable";
+
+      if (this.state.FilterPage) {
+        FilterPage  = "FilAble"
+      };
         return(
-          
-          <div id="map" style={{ width: '100vw', height: '100vh'}}>
-            <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
+          <div>
+
+          <div id="map" style={{ width: '100vw', height: '100vh'}}> </div>
+
+          <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
                 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -226,27 +292,120 @@ class Maps extends Component{
 
 
                 <div>
-                <div className = "OptionPage" style={{visibility: this.state.OptionPage ? 'visible' : 'hidden' }}>
+                <div className = {OptionPage}>
                     Toggle
                     <div className = "D1" onClick={()=>this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)}> Hide Precints
                     </div>
                 </div>
-                <div className = "StatsPage"style={{visibility: this.state.StatsPage ? 'visible' : 'hidden' }}>
-                    stats
-                    <div className = "D1"> Display Stats
+                <div className = {StatsPage} >
+                    <div className = "D2"> Display Stats
                     </div>
                 </div>
-                <div className = "FilterPage"style={{visibility: this.state.FilterPage ? 'visible' : 'hidden' }}>
-                    filter
-                    <div className = "D1"> Display filter
+                <div className = {FilterPage} >
+                
+                   <div className = "S1"> 
+
+                   <Typography id="discrete-slider" gutterBottom>
+                    Majority Minority
+                    </Typography>
+                    <Slider 
+                      defaultValue={this.state.MajorityMinority}
+                      getAriaValueText={valuetext}
+                      aria-labelledby="discrete-slider"
+                      valueLabelDisplay="auto"
+                      step={10}
+                      marks
+                      min={10}
+                      max={110}
+                      onChange={this.handleMajorChange}
+                    />
+                  </div>
+
+                  <div className = "S1"> 
+
+                   <Typography id="discrete-slider" gutterBottom>
+                    Compactness
+                    </Typography>
+                    <Slider 
+                      defaultValue={this.state.Compactness}
+                      getAriaValueText={valuetext}
+                      aria-labelledby="discrete-slider"
+                      valueLabelDisplay="auto"
+                      step={1}
+                      marks
+                      min={0}
+                      max={10}
+                      onChange={this.handleComChange}
+                    />
+                  </div>
+
+                  <div className = "S1"> 
+
+                   <Typography id="discrete-slider" gutterBottom>
+                   Population Equality
+                    </Typography>
+                    <Slider 
+                      defaultValue={this.state.PopulationEquality}
+                      getAriaValueText={valuetext}
+                      aria-labelledby="range-slider"
+                      valueLabelDisplay="auto"
+                      step={1}
+                      marks
+                      min={0}
+                      max={10}
+                      onChange={this.handlePChange}
+                    />
+                  </div>
+
+                  <div className = "S1"> 
+
+                   <Typography id="discrete-slider" gutterBottom>
+                   Objective Function Score Range
+                    </Typography>
+                    <Slider 
+                      defaultValue={this.state.Objective}
+                      getAriaValueText={valuetext}
+                      aria-labelledby="range-slider"
+                      valueLabelDisplay="auto"
+                      step={1}
+                      marks
+                      min={0}
+                      max={20}
+                      onChange={this.handleObjChange}
+                    />
+                  </div>
+
+                  <hr  style={{
+                    color: '"#3719e4"',
+                    backgroundColor: '"#3719e4"',
+                    height: 3,
+                    borderColor : '"#3719e4"'
+                  }}/>
+
+                    <div className = "D3"> Fileter Summary
                     </div>
+                    <div className = "D4"> Majority Minority：   {Number (this.state.MajorityMinority)}
+                    </div>
+
+                    <div className = "D4"> Compactness：   {this.state.Compactness}
+                    </div>
+
+                    <div className = "D4"> Population Equality：   {this.state.PopulationEquality}
+                    </div>
+
+                    <div className = "D4"> Objective Function Score Range：   {this.state.Objective}
+                    </div>
+
+
                 </div>
                 
 
 
                 </div>
             </div>
+
           </div>
+            
       
         
         )

@@ -1,0 +1,106 @@
+.OptAble{
+    color: black;
+    font-size: 25px;
+    position: absolute;
+  
+   margin-top: 10%;
+
+    margin-left: 10%;
+  
+  }
+
+  .SatAble{
+    color: black;
+    font-size: 35px;
+    position: absolute;
+  
+   margin-top: 10%;
+
+    margin-left: 10%;
+  
+  }
+
+  .FilAble{
+    color: black;
+    font-size: 25px;
+    position: absolute;
+
+    width: 100%;
+  
+   margin-top: 10%;
+
+    margin-left: 10%;
+  
+  }
+
+  .PageDisable{
+    color: black;
+    font-size: 25px;
+    position: absolute;
+
+    visibility: hidden;
+  
+    right: 225px;
+  
+    top: 172px;
+  }
+
+  .D1 {
+    color:black;
+    font-size: 18px;
+     position: absolute;
+     margin-top: 10%;
+     margin-left: 10%;
+    text-align: left;
+    width: max-content;
+  }
+
+  .D2 {
+    color:black;
+    font-size: 25px;
+     position: relative;
+     margin-top: 10%;
+     margin-left: 50%;
+    text-align: left;
+    width: max-content;
+  }
+
+  .D3 {
+    color:black;
+    font-size: 23px;
+     position: absolute;
+    text-align: left;
+    width: max-content;
+  }
+
+  .D4 {
+    color:black;
+    font-size: 18px;
+     position: relative;
+    text-align: left;
+    width: max-content;
+    padding-top: 16%;
+    
+  }
+
+
+  .S1
+  {position: relative;
+    width: 80%;
+    padding: 3%;
+  }
+
+  .sumDisplay
+  {
+    padding-left: 20%;
+  }
+
+  .dividor
+  {
+      color: #3719e4;
+      background-color: rgb(55, 25, 228);
+      height: 4 px;
+
+      width: 80%;
+
+  }
