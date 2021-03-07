@@ -39,6 +39,7 @@ class Maps extends Component{
     state = {
       Map: null,
       maps: [],
+      maps_backup: [],
       tileLayer: null,
       geojsonLayer: null,
       geojson: null,
@@ -159,8 +160,8 @@ class Maps extends Component{
       NYdistrictLayer.hideCode = "NYDISTRICT"
       NYprecinctLayer.hideCode = "NYPRECINCT"
       map.addLayer(NYStateLayer)
-      map.addLayer(NYdistrictLayer)
-      map.addLayer(NYprecinctLayer)
+      //map.addLayer(NYdistrictLayer)
+      //map.addLayer(NYprecinctLayer)
       this.setState({maps: [NYStateLayer,NYdistrictLayer,NYprecinctLayer]})
       
       
@@ -220,18 +221,36 @@ class Maps extends Component{
     {
       this.setState({checkerA:  event.target.checked});
 
-      this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
+      //this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
+      if (this.state.checkerA === false){
+        this.showgeoJson(this.searchStateByHideCode("NYPRECINCT"), this.state.Map)
+      }
+      else if (this.state.checkerA === true){
+        this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
+      }
     }
 
     checkerBchange = (event) =>
     {
       this.setState({checkerB:  event.target.checked});
 
+      if (this.state.checkerB === false){
+        this.showgeoJson(this.searchStateByHideCode("NYDISTRICT"), this.state.Map)
+      }
+      else if (this.state.checkerB === true){
+        this.hidegeoJson(this.searchStateByHideCode("NYDISTRICT"), this.state.Map)
+      }
+
+    }
+
+    showgeoJson(layer,state){
+      state.addLayer(layer)
+      //alert("Precinct Data loaded!")
     }
 
     hidegeoJson(layer,state){
       state.removeLayer(layer)
-      alert("layer removed test")
+      //alert("Precinct Data unloaded!")
     }
 
     searchStateByHideCode(hideCode){
@@ -318,7 +337,7 @@ class Maps extends Component{
                     Toggle
                     <div className = "D1" > 
                     <div>
-                    Hide Precints               OFF
+                    SHOW PRECINCTS             OFF
                       <Switch
                         checked={this.state.checkedA}
                         onChange={this.checkerAchange}
@@ -333,7 +352,7 @@ class Maps extends Component{
 
                     <div className = "D1" > 
                     <div>
-                    Hide Districts               OFF
+                    Show Default Districting             OFF
                       <Switch
                         checked={this.state.checkedB}
                         onChange={this.checkerBchange}
