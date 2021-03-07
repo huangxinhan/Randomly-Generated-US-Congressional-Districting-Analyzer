@@ -336,8 +336,8 @@ class Maps extends Component{
                 <div className = {OptionPage}>
                     Toggle
                     <div className = "D1" > 
-                    <div>
-                    SHOW PRECINCTS             OFF
+                    <div className = "col-md-8">
+                    SHOW PRECINCTS                            OFF
                       <Switch
                         checked={this.state.checkedA}
                         onChange={this.checkerAchange}
@@ -351,7 +351,7 @@ class Maps extends Component{
                     </div>
 
                     <div className = "D1" > 
-                    <div>
+                    <div className = "col-md-8">
                     SHOW DEFAULT DISTRICTING          OFF
                       <Switch
                         checked={this.state.checkedB}
