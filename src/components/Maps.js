@@ -311,24 +311,15 @@ class Maps extends Component{
           <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
                 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <div class="nav-item col-md-4">
                         <a class="nav-link "href="#"onClick={() => this.hideComponent("OptionPage")}>OPTIONS</a>
-                        </li>
-                        <li class="nav-item">
+                        </div>
+                        <div class="nav-item col-md-4">
                         <a class="nav-link" href="#" onClick={() => this.hideComponent("StatsPage")}>STATS</a>
-                        </li>
-                        <li class="nav-item">
+                        </div>
+                        <div class="nav-item col-md-4">
                         <a class="nav-link" href="#"onClick={() => this.hideComponent("FilterPage")}>FILTER</a>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
+                        </div>
                 </nav>
 
 
@@ -336,7 +327,7 @@ class Maps extends Component{
                 <div className = {OptionPage}>
                     Toggle
                     <div className = "D1" > 
-                    <div className = "col-md-8">
+                    <div>
                     SHOW PRECINCTS                            OFF
                       <Switch
                         checked={this.state.checkedA}
@@ -351,7 +342,7 @@ class Maps extends Component{
                     </div>
 
                     <div className = "D1" > 
-                    <div className = "col-md-8">
+                    <div>
                     SHOW DEFAULT DISTRICTING          OFF
                       <Switch
                         checked={this.state.checkedB}
