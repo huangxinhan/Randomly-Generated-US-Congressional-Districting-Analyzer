@@ -61,10 +61,10 @@ class Maps extends Component{
     //initializes the map
     init(){
 
-      var container = L.DomUtil.get('map');
-      if(container != null){
-      container._leaflet_id = null;
-      }
+      var container = L.DomUtil.get('map');
+      if(container != null){
+      container._leaflet_id = null;
+      }
       var map = L.map('map').setView([37.8, -96], 5)
       this.setState({Map: map})
       map.zoomControl.setPosition('topleft')
