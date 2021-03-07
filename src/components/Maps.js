@@ -225,7 +225,7 @@ class Maps extends Component{
 
     checkerBchange = (event) =>
     {
-      this.setState({checkerBchange:  event.target.checked});
+      this.setState({checkerB:  event.target.checked});
 
     }
 
@@ -364,8 +364,8 @@ class Maps extends Component{
                       valueLabelDisplay="auto"
                       step={10}
                       marks
-                      min={10}
-                      max={110}
+                      min={0}
+                      max={100}
                       onChange={this.handleMajorChange}
                     />
                   </div>
@@ -431,7 +431,7 @@ class Maps extends Component{
                     borderColor : '"#3719e4"'
                   }}/>
 
-                    <div className = "D3"> Fileter Summary
+                    <div className = "D3"> Filter Summary
                     </div>
                     <div className = "D4"> Majority Minority：   {Number (this.state.MajorityMinority)}
                     </div>
