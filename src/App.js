@@ -8,14 +8,7 @@ export default function App() {
 
   return (
     <div>
-
-      <div>
-      <Menu/>
-      </div>
-      <div>
       <Maps/>
-      </div>
-    
     </div>
 
   );

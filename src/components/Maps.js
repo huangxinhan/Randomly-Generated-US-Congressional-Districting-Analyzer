@@ -26,16 +26,18 @@ config.tileLayer = {
 };
 
 class Maps extends Component{
-  constructor(props) {
-    super(props)
-    this.state = {
-      map: null,
+
+    state = {
+      Map: null,
+      maps: [],
       tileLayer: null,
       geojsonLayer: null,
       geojson: null,
+      OptionPage: true,
+      StatsPage: false,
+      FilterPage: false,
     };
-    this._mapNode = null;
-  }
+
 
     componentDidMount(){
       this.init();
@@ -49,6 +51,7 @@ class Maps extends Component{
       container._leaflet_id = null;
       }
       var map = L.map('map').setView([37.8, -96], 5)
+      this.setState({Map: map})
       map.zoomControl.setPosition('topleft')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
   
@@ -130,10 +133,14 @@ class Maps extends Component{
         })
   
       }
-  
+      NYStateLayer.hideCode = "NYSTATE";
+      NYdistrictLayer.hideCode = "NYDISTRICT"
+      NYprecinctLayer.hideCode = "NYPRECINCT"
       map.addLayer(NYStateLayer)
       map.addLayer(NYdistrictLayer)
       map.addLayer(NYprecinctLayer)
+      this.setState({maps: [NYStateLayer,NYdistrictLayer,NYprecinctLayer]})
+      
       
       //Generates a random coloring for each district
       function getRandomColor(feature){
@@ -153,9 +160,95 @@ class Maps extends Component{
       }
     }
 
+    hidegeoJson(layer,state){
+      state.removeLayer(layer)
+      alert("layer removed test")
+    }
+
+    searchStateByHideCode(hideCode){
+      for (var i = 0; i < this.state.maps.length; i++){
+        if (this.state.maps[i].hideCode === hideCode){
+          return this.state.maps[i]
+        }
+      }
+    }
+
+    hideComponent(name) {
+      console.log(name);
+      switch (name) {
+        case "OptionPage":
+          this.setState({ OptionPage: true });
+          this.setState({ StatsPage: false });
+          this.setState({ FilterPage: false });
+          break;
+        case "StatsPage":
+          this.setState({ StatsPage: true });
+          this.setState({ FilterPage: false });
+          this.setState({ OptionPage: false });
+          break;
+        case "FilterPage":
+          this.setState({ FilterPage: true });
+          this.setState({ StatsPage: false });
+          this.setState({ OptionPage: false });
+          break;
+        
+      }
+    }
+
+
+
     render(){
         return(
-          <div id="map" style={{ width: '70vw', height: '100vh'}}></div>
+          
+          <div id="map" style={{ width: '100vw', height: '100vh'}}>
+            <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
+                
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link "href="#"onClick={() => this.hideComponent("OptionPage")}>OPTIONS</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#" onClick={() => this.hideComponent("StatsPage")}>STATS</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#"onClick={() => this.hideComponent("FilterPage")}>FILTER</a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                </nav>
+
+
+                <div>
+                <div className = "OptionPage" style={{visibility: this.state.OptionPage ? 'visible' : 'hidden' }}>
+                    Toggle
+                    <div className = "D1" onClick={()=>this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)}> Hide Precints
+                    </div>
+                </div>
+                <div className = "StatsPage"style={{visibility: this.state.StatsPage ? 'visible' : 'hidden' }}>
+                    stats
+                    <div className = "D1"> Display Stats
+                    </div>
+                </div>
+                <div className = "FilterPage"style={{visibility: this.state.FilterPage ? 'visible' : 'hidden' }}>
+                    filter
+                    <div className = "D1"> Display filter
+                    </div>
+                </div>
+                
+
+
+                </div>
+            </div>
+          </div>
+      
+        
         )
       }
     }
