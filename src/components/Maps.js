@@ -352,7 +352,7 @@ class Maps extends Component{
 
                     <div className = "D1" > 
                     <div>
-                    Show Default Districting             OFF
+                    SHOW DEFAULT DISTRICTING          OFF
                       <Switch
                         checked={this.state.checkedB}
                         onChange={this.checkerBchange}
