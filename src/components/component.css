@@ -1,5 +1,5 @@
-.OptionPage {
-    color: #f1f1f1;
+.OptionPage .StatsPage .FilterPage {
+    color: black;
     font-size: 25px;
     position: absolute;
   
@@ -10,7 +10,7 @@
   }
 
   .D1 {
-    color: #f1f1f1;
+    color:black;
     font-size: 18px;
 
     text-align: center;

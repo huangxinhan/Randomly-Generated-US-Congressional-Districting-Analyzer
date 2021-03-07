@@ -28,6 +28,7 @@
   color: #61dafb;
 }
 
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -38,17 +39,20 @@
 }
 
 .sidenav {
-  height: 98%; /* Full-height: remove this if you want "auto" height */
+  height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 350px; /* Set the width of the sidebar */
   position: absolute; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
-  right: 0px;
-  background-color: #111; /* Black */
+  top: 0; /* Stay at the top */
+  right: 0;
+  background-color:000; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
+  border: 2px solid black !important;
 }
 
 /* The navigation menu links */
+
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -62,3 +66,8 @@
   color: #f1f1f1;
 }
 
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
