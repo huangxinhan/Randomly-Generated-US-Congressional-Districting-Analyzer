@@ -17,6 +17,9 @@ import Switch from '@material-ui/core/Switch';
 let config = {};
 config.params = {
   center: [39.8283,-98.5795],
+  centerNY: [43.2994,-74.2179],
+  centerMD: [],
+  centerPA: [],
   zoomControl: false,
   zoom: 4.25,
   maxZoom: 19,
@@ -40,6 +43,10 @@ class Maps extends Component{
       Map: null,
       maps: [],
       maps_backup: [],
+      center: [39.8283,-98.5795],
+      centerNY: [43.2994,-74.2179],
+      centerMD: [],
+      centerPA: [],
       tileLayer: null,
       geojsonLayer: null,
       geojson: null,
@@ -73,9 +80,9 @@ class Maps extends Component{
       if(container != null){
       container._leaflet_id = null;
       }
-      var map = L.map('map').setView([37.8, -96], 5)
+      var map = L.map('map').setView(this.state.centerNY, 7)
       this.setState({Map: map})
-      map.zoomControl.setPosition('topleft')
+      map.zoomControl.setPosition('bottomleft')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
   
       var NYStateLayer = L.geoJson(nystate, {
@@ -306,8 +313,11 @@ class Maps extends Component{
         return(
           <div>
 
-          <div id="map" style={{ width: '100vw', height: '100vh'}}> </div>
-
+          <div id="map" style={{ width: '100vw', height: '100vh'}}> 
+            <button class='btn btn-secondary btn-lg' 
+            style={{position: 'absolute', zIndex: 500}}
+            onClick={()=>{this.state.Map.flyTo(this.state.centerNY, 7)}}>Re-Center</button>
+          </div>
           <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
                 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
