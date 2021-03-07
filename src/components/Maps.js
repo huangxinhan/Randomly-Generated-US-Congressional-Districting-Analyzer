@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import "./com.css";
+import Switch from '@material-ui/core/Switch';
 
 let config = {};
 config.params = {
@@ -44,6 +45,12 @@ class Maps extends Component{
       OptionPage: true,
       StatsPage: false,
       FilterPage: false,
+
+      //Option page
+
+      checkerA: false,
+
+      checkerB: false,
 
       // FITER page
 
@@ -204,8 +211,23 @@ class Maps extends Component{
 
       this.setState({Objective: newValue});
 
+      
+
 
     };
+
+    checkerAchange = (event) =>
+    {
+      this.setState({checkerA:  event.target.checked});
+
+      this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
+    }
+
+    checkerBchange = (event) =>
+    {
+      this.setState({checkerBchange:  event.target.checked});
+
+    }
 
     hidegeoJson(layer,state){
       state.removeLayer(layer)
@@ -294,7 +316,34 @@ class Maps extends Component{
                 <div>
                 <div className = {OptionPage}>
                     Toggle
-                    <div className = "D1" onClick={()=>this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)}> Hide Precints
+                    <div className = "D1" > 
+                    <div>
+                    Hide Precints               OFF
+                      <Switch
+                        checked={this.state.checkedA}
+                        onChange={this.checkerAchange}
+                        color="primary"
+                        name="checkedA"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                      />
+                      ON
+                    </div>
+                    
+                    </div>
+
+                    <div className = "D1" > 
+                    <div>
+                    Hide Districts               OFF
+                      <Switch
+                        checked={this.state.checkedB}
+                        onChange={this.checkerBchange}
+                        color="primary"
+                        name="checkedB"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                      />
+                      ON
+                    </div>
+                    
                     </div>
                 </div>
                 <div className = {StatsPage} >
@@ -393,7 +442,7 @@ class Maps extends Component{
                     <div className = "D4"> Population Equality：   {this.state.PopulationEquality}
                     </div>
 
-                    <div className = "D4"> Objective Function Score Range：   {this.state.Objective}
+                    <div className = "D4"> Objective Function Score Range：   {this.state.Objective[0]} - {this.state.Objective[1]}
                     </div>
 
 

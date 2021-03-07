@@ -48,11 +48,12 @@
   .D1 {
     color:black;
     font-size: 18px;
-     position: absolute;
+     position: relative;
      margin-top: 10%;
      margin-left: 10%;
     text-align: left;
     width: max-content;
+    white-space: pre;
   }
 
   .D2 {
