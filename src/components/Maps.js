@@ -13,7 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import "./com.css";
 import Switch from '@material-ui/core/Switch';
-
+import Collapse from 'react-bootstrap/Collapse'
+import { Button } from 'react-bootstrap';
 let config = {};
 config.params = {
   center: [39.8283,-98.5795],
@@ -38,8 +39,9 @@ function valuetext(value) {
 }
 
 class Maps extends Component{
-
-    state = {
+  constructor(props) {
+    super(props)
+    this.state = {
       Map: null,
       maps: [],
       maps_backup: [],
@@ -53,20 +55,25 @@ class Maps extends Component{
       OptionPage: true,
       StatsPage: false,
       FilterPage: false,
+      
 
       //Option page
 
       checkerA: false,
 
       checkerB: false,
-
+      //STATS page
+      IsExpanded: false,
       // FITER page
 
       MajorityMinority: 10,
       Compactness: 0,
       PopulationEquality:0,
       Objective: [0,0],
-    };
+    }
+    this.toggleExpanded = this.toggleExpanded.bind(this);
+  }
+    
 
 
     componentDidMount(){
@@ -289,7 +296,9 @@ class Maps extends Component{
         
       }
     }
-
+    toggleExpanded() {
+      this.setState({ IsExpanded: !this.state.IsExpanded });
+    }
 
 
     render(){
@@ -372,6 +381,23 @@ class Maps extends Component{
                 </div>
                 <div className = {StatsPage} >
                     <div className = "D2"> Display Stats
+                    </div>
+                    <br></br>
+                    <div id='Expand' >
+                      
+                    <div                    
+                      onClick={this.toggleExpanded}
+                      aria-controls="example-collapse-text"
+                      aria-expanded={this.state.IsExpanded}
+                      >
+                      District 1
+                    </div>
+                    <Collapse in={this.state.IsExpanded}>
+                      <div id="example-collapse-text">
+                       District information
+                      </div>
+                    </Collapse>
+                    
                     </div>
                 </div>
                 <div className = {FilterPage} >
