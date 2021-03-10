@@ -37,7 +37,7 @@ class Maps extends Component{
       OptionPage: true,
       StatsPage: false,
       FilterPage: false,
-      activeStep: null,
+      activeStep: 0, //start at step 1, select state
       
 
       //Option page
@@ -281,12 +281,14 @@ class Maps extends Component{
       this.setState({ IsExpanded: !this.state.IsExpanded });
     }
 
-    nextStep(){
-     alert("next step")
-    }
 
-    previousStep(){
-      alert("previous step")
+    setActiveStep(prev_active_step, direction){
+      if (direction == "forward" && prev_active_step <= 4){
+        this.setState({activeStep: prev_active_step + 1})
+      }
+      if (direction == "backward" && prev_active_step >= 0){
+        this.setState({activeStep: prev_active_step - 1})
+      }
     }
 
 
@@ -345,8 +347,8 @@ class Maps extends Component{
                   </StepLabel>
                 </Step>
               </Stepper>
-              <Button variant="outlined" color="primary" onClick={() => this.previousStep()}> Previous Step</Button>
-              <Button variant="outlined" color="primary" onClick={() => this.nextStep()}>Next Step</Button>
+              <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
+              <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
             </div>
 
           </div>
