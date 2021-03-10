@@ -400,12 +400,18 @@ class Maps extends Component{
               <div className="filternav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
 
+                  <div>
+                    <h5>  &nbsp;&nbsp;&nbsp;Current State</h5>
+                    <h5>{this.state.current_state}</h5>
+                </div>
+
                   <button class='btn btn-secondary btn-lg' 
                     style={{position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501, left: '30px', top: "250px"}}
                     onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center
                   </button>
+                  
 
-                  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '0px'}}>
+                  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '20px'}}>
                     <div className = "D1" > 
                     <br/><br/><br/><br/><br/>
                     <div>
@@ -424,7 +430,7 @@ class Maps extends Component{
                     </div>
                     </div>
 
-                    <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '50px'}}>
+                    <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '70px'}}>
                     <div className = "D1" > 
                     <div>
                     Default Districtings
