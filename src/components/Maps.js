@@ -283,11 +283,26 @@ class Maps extends Component{
 
 
     setActiveStep(prev_active_step, direction){
-      if (direction == "forward" && prev_active_step <= 4){
+      if (direction == "forward" && prev_active_step < 4){
         this.setState({activeStep: prev_active_step + 1})
       }
-      if (direction == "backward" && prev_active_step >= 0){
+      if (direction == "backward" && prev_active_step > 0){
         this.setState({activeStep: prev_active_step - 1})
+      }
+    }
+
+    getStepContent(stepIndex){
+      switch(stepIndex) {
+        case 0:
+          return <div>Step 1</div>
+        case 1:
+          return <div>Step 2</div>
+        case 2:
+          return <div>Step 3</div>
+        case 3:
+          return <div>Step 4</div>
+        case 4:
+          return <div>Step 5</div>
       }
     }
 
@@ -347,6 +362,11 @@ class Maps extends Component{
                   </StepLabel>
                 </Step>
               </Stepper>
+
+              <h3>
+               {this.getStepContent(this.state.activeStep)}
+              </h3>
+
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
             </div>
