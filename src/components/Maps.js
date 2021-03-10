@@ -231,10 +231,10 @@ class Maps extends Component{
       this.setState({checkerA:  event.target.checked});
 
       //this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
-      if (this.state.checkerA === false){
+      if (this.state.checkerA === false && this.state.current_state_layer == "New York"){
         this.showgeoJson(this.searchStateByHideCode("NYPRECINCT"), this.state.Map)
       }
-      else if (this.state.checkerA === true){
+      else if (this.state.checkerA === true && this.state.current_state_layer == "New York"){
         this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
       }
     }
@@ -341,6 +341,7 @@ class Maps extends Component{
 
     };
 
+    //This method generates the different steps 
     getStepContent(stepIndex){
       switch(stepIndex) {
         case 0:
@@ -361,11 +362,97 @@ class Maps extends Component{
                         </NativeSelect>
                       <FormHelperText>Click to select a state</FormHelperText>
                     </FormControl>
-
-                  
                 </div>
         case 1:
-          return <div>Step 2</div>
+          return <div>
+                    <h3>Select a Job</h3>
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Job 1
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •26 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •100,139 Districtings
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Job 2 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •27 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •100,121 Districtings
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Job 3 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                </div>
         case 2:
           return <div>Step 3</div>
         case 3:
