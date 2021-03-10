@@ -24,6 +24,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Switch from '@material-ui/core/Switch';
 import { NativeSelect } from '@material-ui/core';
 
 
@@ -395,11 +396,56 @@ class Maps extends Component{
       };
         return(
           <div>
-
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
-              <button class='btn btn-secondary btn-lg' 
-              style={{position: 'absolute', zIndex: 500}}
-              onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center</button>
+              <div className="filternav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+
+                  <button class='btn btn-secondary btn-lg' 
+                    style={{position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501, left: '30px', top: "250px"}}
+                    onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center
+                  </button>
+
+                  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '0px'}}>
+                    <div className = "D1" > 
+                    <br/><br/><br/><br/><br/>
+                    <div>
+                    Show Precincts                        
+                    <div></div>
+                    OFF
+                      <Switch
+                        checked={this.state.checkedA}
+                        onChange={this.checkerAchange}
+                        color="primary"
+                        name="checkedA"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                      />
+                      ON
+                    </div>
+                    </div>
+                    </div>
+
+                    <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '50px'}}>
+                    <div className = "D1" > 
+                    <div>
+                    Default Districtings
+                    <div></div>
+                    OFF
+                      <Switch
+                        checked={this.state.checkedB}
+                        onChange={this.checkerBchange}
+                        color="primary"
+                        name="checkedB"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                      />
+                      ON
+                    </div>
+                    </div>
+                    </div>
+             
+
+                </nav>
+              </div>
+
             </div>
 
             <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
