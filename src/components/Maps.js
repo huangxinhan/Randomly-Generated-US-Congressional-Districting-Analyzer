@@ -281,6 +281,14 @@ class Maps extends Component{
       this.setState({ IsExpanded: !this.state.IsExpanded });
     }
 
+    nextStep(){
+     alert("next step")
+    }
+
+    previousStep(){
+      alert("previous step")
+    }
+
 
     render(){
       let OptionPage  = "PageDisable";
@@ -310,25 +318,35 @@ class Maps extends Component{
             </div>
 
             <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
-              <Stepper activeStep={this.state.activeStep}>
+              <Stepper activeStep={this.state.activeStep} alternativeLabel>
                 <Step>
                   <StepLabel>
-                    First
+                    Select State
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Second
+                    Select Job
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Third
+                    Set Constraints
+                  </StepLabel>
+                </Step>
+                <Step>
+                  <StepLabel>
+                    Set Measures 
+                  </StepLabel>
+                </Step>
+                <Step>
+                  <StepLabel>
+                    Select Districting
                   </StepLabel>
                 </Step>
               </Stepper>
-              <Button variant="outlined" color="primary">Next Step</Button>
-              <Button variant="outlined" color="primary"> Previous Step</Button>
+              <Button variant="outlined" color="primary" onClick={() => this.previousStep()}> Previous Step</Button>
+              <Button variant="outlined" color="primary" onClick={() => this.nextStep()}>Next Step</Button>
             </div>
 
           </div>
