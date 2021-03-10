@@ -234,11 +234,10 @@ class Maps extends Component{
     {
       this.setState({checkerA:  event.target.checked});
 
-      //this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
-      if (this.state.checkerA === false && this.state.current_state_layer == "New York"){
+      if (this.state.checkerA === false && this.state.current_state == "New York"){
         this.showgeoJson(this.searchStateByHideCode("NYPRECINCT"), this.state.Map)
       }
-      else if (this.state.checkerA === true && this.state.current_state_layer == "New York"){
+      else if (this.state.checkerA === true && this.state.current_state == "New York"){
         this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
       }
     }
@@ -247,10 +246,10 @@ class Maps extends Component{
     {
       this.setState({checkerB:  event.target.checked});
 
-      if (this.state.checkerB === false){
+      if (this.state.checkerB === false && this.state.current_state == "New York"){
         this.showgeoJson(this.searchStateByHideCode("NYDISTRICT"), this.state.Map)
       }
-      else if (this.state.checkerB === true){
+      else if (this.state.checkerB === true && this.state.current_state == "New York"){
         this.hidegeoJson(this.searchStateByHideCode("NYDISTRICT"), this.state.Map)
       }
 
