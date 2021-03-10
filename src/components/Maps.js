@@ -26,7 +26,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 import { NativeSelect } from '@material-ui/core';
+import Slider from '@material-ui/core/Slider';
 
+function valuetext(value) {
+  return `${value}%`;
+}
 
 class Maps extends Component{
   constructor(props) {
@@ -343,6 +347,24 @@ class Maps extends Component{
 
     //This method generates the different steps 
     getStepContent(stepIndex){
+      let OptionPage  = "PageDisable";
+
+      if (this.state.OptionPage) {
+          OptionPage  = "OptAble"
+      };
+
+      let StatsPage  = "PageDisable";
+
+      if (this.state.StatsPage) {
+        StatsPage  = "SatAble"
+      };
+
+      let FilterPage 
+
+      if (this.state.FilterPage) {
+        FilterPage  = "FilAble"
+      };
+
       switch(stepIndex) {
         case 0:
           return <div>
@@ -454,7 +476,102 @@ class Maps extends Component{
 
                 </div>
         case 2:
-          return <div>Step 3</div>
+          return           <div className = {FilterPage}>
+                
+          <div className = "S1"> 
+
+          <Typography id="discrete-slider" gutterBottom>
+           Majority Minority
+           </Typography>
+           <Slider 
+             defaultValue={this.state.MajorityMinority}
+             getAriaValueText={valuetext}
+             aria-labelledby="discrete-slider"
+             valueLabelDisplay="auto"
+             step={10}
+             marks
+             min={0}
+             max={100}
+             onChange={this.handleMajorChange}
+           />
+         </div>
+
+         <div className = "S1"> 
+
+          <Typography id="discrete-slider" gutterBottom>
+           Compactness
+           </Typography>
+           <Slider 
+             defaultValue={this.state.Compactness}
+             getAriaValueText={valuetext}
+             aria-labelledby="discrete-slider"
+             valueLabelDisplay="auto"
+             step={1}
+             marks
+             min={0}
+             max={10}
+             onChange={this.handleComChange}
+           />
+         </div>
+
+         <div className = "S1"> 
+
+          <Typography id="discrete-slider" gutterBottom>
+          Population Equality
+           </Typography>
+           <Slider 
+             defaultValue={this.state.PopulationEquality}
+             getAriaValueText={valuetext}
+             aria-labelledby="range-slider"
+             valueLabelDisplay="auto"
+             step={1}
+             marks
+             min={0}
+             max={10}
+             onChange={this.handlePChange}
+           />
+         </div>
+
+         <div className = "S1"> 
+
+          <Typography id="discrete-slider" gutterBottom>
+          Objective Function Score Range
+           </Typography>
+           <Slider 
+             defaultValue={this.state.Objective}
+             getAriaValueText={valuetext}
+             aria-labelledby="range-slider"
+             valueLabelDisplay="auto"
+             step={1}
+             marks
+             min={0}
+             max={20}
+             onChange={this.handleObjChange}
+           />
+         </div>
+
+         <hr  style={{
+           color: '"#3719e4"',
+           backgroundColor: '"#3719e4"',
+           height: 3,
+           borderColor : '"#3719e4"'
+         }}/>
+
+           <div className = "D3"> Filter Summary
+           </div>
+           <div className = "D4"> Majority Minority：   {Number (this.state.MajorityMinority)}
+           </div>
+
+           <div className = "D4"> Compactness：   {this.state.Compactness}
+           </div>
+
+           <div className = "D4"> Population Equality：   {this.state.PopulationEquality}
+           </div>
+
+           <div className = "D4"> Objective Function Score Range：   {this.state.Objective[0]} - {this.state.Objective[1]}
+           </div>
+       </div>
+
         case 3:
           return <div>Step 4</div>
         case 4:
