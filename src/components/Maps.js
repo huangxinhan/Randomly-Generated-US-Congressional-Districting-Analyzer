@@ -17,20 +17,27 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { NativeSelect } from '@material-ui/core';
 
 
 class Maps extends Component{
   constructor(props) {
     super(props)
     this.state = {
+      current_state: null,
       Map: null,
       maps: [],
       maps_backup: [],
-      center: [39.8283,-98.5795],
+      center: [38.0902,-83.7129],
+      zoom: 4.5,
       centerNY: [43.2994,-74.2179],
-      centerMD: [],
-      centerPA: [],
+      centerMD: [41.2033, -77.1945],
+      centerPA: [39.0458,-76.6413],
       tileLayer: null,
       geojsonLayer: null,
       geojson: null,
@@ -68,7 +75,7 @@ class Maps extends Component{
       if(container != null){
       container._leaflet_id = null;
       }
-      var map = L.map('map').setView(this.state.centerNY, 7)
+      var map = L.map('map').setView(this.state.center, this.state.zoom)
       this.setState({Map: map})
       map.zoomControl.setPosition('bottomleft')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
@@ -291,10 +298,57 @@ class Maps extends Component{
       }
     }
 
+    //this can also handle the zooming of the map and stuff 
+    handleChange = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({current_state: event.target.value})
+      if (value === "New York"){
+        this.setState({center: this.state.centerNY, zoom: 7}, 
+          () => {
+            this.state.Map.flyTo(this.state.center, this.state.zoom)
+          })
+      }
+      else if (value === "Pennsylvania"){
+        this.setState({center: this.state.centerMD, zoom: 7}, 
+          () => {
+            this.state.Map.flyTo(this.state.center, this.state.zoom)
+          })
+        this.state.Map.flyTo(this.state.center, this.state.zoom)
+      }
+      else if (value === "Maryland"){
+        this.setState({center: this.state.centerPA, zoom: 7}, 
+          () => {
+            this.state.Map.flyTo(this.state.center, this.state.zoom)
+          })
+        this.state.Map.flyTo(this.state.center, this.state.zoom)
+      }
+
+    };
+
     getStepContent(stepIndex){
       switch(stepIndex) {
         case 0:
-          return <div>Step 1</div>
+          return <div>
+                  <h3>Select a State</h3> 
+                    <FormControl className="Form1">
+                      <InputLabel htmlFor="state-native-helper">State</InputLabel>
+                        <NativeSelect
+                          value={this.state.current_state}
+                          onChange={this.handleChange}
+                          inputProps={{
+                          name: 'Click To Select A State',
+                          id: 'state-native-helper',}}>
+                          <option aria-label="None" value="" />
+                          <option value={"New York"}>New York</option>
+                          <option value={"Pennsylvania"}>Pennsylvania</option>
+                          <option value={"Maryland"}>Maryland</option>
+                        </NativeSelect>
+                      <FormHelperText>Click to select a state</FormHelperText>
+                    </FormControl>
+
+                  
+                </div>
         case 1:
           return <div>Step 2</div>
         case 2:
@@ -331,34 +385,34 @@ class Maps extends Component{
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
               <button class='btn btn-secondary btn-lg' 
               style={{position: 'absolute', zIndex: 500}}
-              onClick={()=>{this.state.Map.flyTo(this.state.centerNY, 7)}}>Re-Center</button>
+              onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center</button>
             </div>
 
             <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
               <Stepper activeStep={this.state.activeStep} alternativeLabel>
                 <Step>
                   <StepLabel>
-                    Select State
+                    State Selection
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Select Job
+                    Custom Job Selection
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Set Constraints
+                    Set Custom Constraints
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Set Measures 
+                    Set Custom Measures 
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Select Districting
+                    Analyze Districtings
                   </StepLabel>
                 </Step>
               </Stepper>
@@ -366,7 +420,6 @@ class Maps extends Component{
               <h3>
                {this.getStepContent(this.state.activeStep)}
               </h3>
-
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
             </div>
