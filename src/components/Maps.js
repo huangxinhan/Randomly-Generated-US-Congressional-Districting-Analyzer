@@ -8,35 +8,17 @@ import nystate from "../geojson/ny_state_bound.json"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
 import "./com.css";
-import Switch from '@material-ui/core/Switch';
-import Collapse from 'react-bootstrap/Collapse'
-import { Button } from 'react-bootstrap';
-let config = {};
-config.params = {
-  center: [39.8283,-98.5795],
-  centerNY: [43.2994,-74.2179],
-  centerMD: [],
-  centerPA: [],
-  zoomControl: false,
-  zoom: 4.25,
-  maxZoom: 19,
-  minZoom: 1,
-  scrollwheel: false,
-  legends: true,
-  infoControl: false,
-  attributionControl: true
-};
-config.tileLayer = {
-  url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.pn',
-};
 
-function valuetext(value) {
-  return `${value}%`;
-}
+//material-ui
+import { makeStyles } from '@material-ui/core/styles';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+
 
 class Maps extends Component{
   constructor(props) {
@@ -55,6 +37,7 @@ class Maps extends Component{
       OptionPage: true,
       StatsPage: false,
       FilterPage: false,
+      activeStep: null,
       
 
       //Option page
@@ -73,8 +56,6 @@ class Maps extends Component{
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
-    
-
 
     componentDidMount(){
       this.init();
@@ -322,185 +303,32 @@ class Maps extends Component{
         return(
           <div>
 
-          <div id="map" style={{ width: '100vw', height: '100vh'}}> 
-            <button class='btn btn-secondary btn-lg' 
-            style={{position: 'absolute', zIndex: 500}}
-            onClick={()=>{this.state.Map.flyTo(this.state.centerNY, 7)}}>Re-Center</button>
-          </div>
-          <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
-                
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="nav-item col-md-4">
-                        <a class="nav-link "href="#"onClick={() => this.hideComponent("OptionPage")}>OPTIONS</a>
-                        </div>
-                        <div class="nav-item col-md-4">
-                        <a class="nav-link" href="#" onClick={() => this.hideComponent("StatsPage")}>STATS</a>
-                        </div>
-                        <div class="nav-item col-md-4">
-                        <a class="nav-link" href="#"onClick={() => this.hideComponent("FilterPage")}>FILTER</a>
-                        </div>
-                </nav>
+            <div id="map" style={{ width: '100vw', height: '100vh'}}> 
+              <button class='btn btn-secondary btn-lg' 
+              style={{position: 'absolute', zIndex: 500}}
+              onClick={()=>{this.state.Map.flyTo(this.state.centerNY, 7)}}>Re-Center</button>
+            </div>
 
-
-                <div>
-                <div className = {OptionPage} style={{ textAlign:'left'}}>
-                    Toggle
-                    <div className = "D1" > 
-                    <div>
-                    SHOW PRECINCTS                            
-                    <div></div>
-                    OFF
-                      <Switch
-                        checked={this.state.checkedA}
-                        onChange={this.checkerAchange}
-                        color="primary"
-                        name="checkedA"
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                      />
-                      ON
-                    </div>
-                    
-                    </div>
-
-                    <div className = "D1" > 
-                    <div>
-                    SHOW DEFAULT DISTRICTING          
-                    <div></div>
-                    OFF
-                      <Switch
-                        checked={this.state.checkedB}
-                        onChange={this.checkerBchange}
-                        color="primary"
-                        name="checkedB"
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                      />
-                      ON
-                    </div>
-                    
-                    </div>
-                </div>
-                <div className = {StatsPage} >
-                    <div className = "D2"> Display Stats
-                    </div>
-                    <br></br>
-                    <div id='Expand' >
-                      
-                    <div                    
-                      onClick={this.toggleExpanded}
-                      aria-controls="example-collapse-text"
-                      aria-expanded={this.state.IsExpanded}
-                      >
-                      District 1
-                    </div>
-                    <Collapse in={this.state.IsExpanded}>
-                      <div id="example-collapse-text">
-                       District information
-                      </div>
-                    </Collapse>
-                    
-                    </div>
-                </div>
-                <div className = {FilterPage} >
-                
-                   <div className = "S1"> 
-
-                   <Typography id="discrete-slider" gutterBottom>
-                    Majority Minority
-                    </Typography>
-                    <Slider 
-                      defaultValue={this.state.MajorityMinority}
-                      getAriaValueText={valuetext}
-                      aria-labelledby="discrete-slider"
-                      valueLabelDisplay="auto"
-                      step={10}
-                      marks
-                      min={0}
-                      max={100}
-                      onChange={this.handleMajorChange}
-                    />
-                  </div>
-
-                  <div className = "S1"> 
-
-                   <Typography id="discrete-slider" gutterBottom>
-                    Compactness
-                    </Typography>
-                    <Slider 
-                      defaultValue={this.state.Compactness}
-                      getAriaValueText={valuetext}
-                      aria-labelledby="discrete-slider"
-                      valueLabelDisplay="auto"
-                      step={1}
-                      marks
-                      min={0}
-                      max={10}
-                      onChange={this.handleComChange}
-                    />
-                  </div>
-
-                  <div className = "S1"> 
-
-                   <Typography id="discrete-slider" gutterBottom>
-                   Population Equality
-                    </Typography>
-                    <Slider 
-                      defaultValue={this.state.PopulationEquality}
-                      getAriaValueText={valuetext}
-                      aria-labelledby="range-slider"
-                      valueLabelDisplay="auto"
-                      step={1}
-                      marks
-                      min={0}
-                      max={10}
-                      onChange={this.handlePChange}
-                    />
-                  </div>
-
-                  <div className = "S1"> 
-
-                   <Typography id="discrete-slider" gutterBottom>
-                   Objective Function Score Range
-                    </Typography>
-                    <Slider 
-                      defaultValue={this.state.Objective}
-                      getAriaValueText={valuetext}
-                      aria-labelledby="range-slider"
-                      valueLabelDisplay="auto"
-                      step={1}
-                      marks
-                      min={0}
-                      max={20}
-                      onChange={this.handleObjChange}
-                    />
-                  </div>
-
-                  <hr  style={{
-                    color: '"#3719e4"',
-                    backgroundColor: '"#3719e4"',
-                    height: 3,
-                    borderColor : '"#3719e4"'
-                  }}/>
-
-                    <div className = "D3"> Filter Summary
-                    </div>
-                    <div className = "D4"> Majority Minority：   {Number (this.state.MajorityMinority)}
-                    </div>
-
-                    <div className = "D4"> Compactness：   {this.state.Compactness}
-                    </div>
-
-                    <div className = "D4"> Population Equality：   {this.state.PopulationEquality}
-                    </div>
-
-                    <div className = "D4"> Objective Function Score Range：   {this.state.Objective[0]} - {this.state.Objective[1]}
-                    </div>
-
-
-                </div>
-                
-
-
-                </div>
+            <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 500}}>
+              <Stepper activeStep={this.state.activeStep}>
+                <Step>
+                  <StepLabel>
+                    First
+                  </StepLabel>
+                </Step>
+                <Step>
+                  <StepLabel>
+                    Second
+                  </StepLabel>
+                </Step>
+                <Step>
+                  <StepLabel>
+                    Third
+                  </StepLabel>
+                </Step>
+              </Stepper>
+              <Button variant="outlined" color="primary">Next Step</Button>
+              <Button variant="outlined" color="primary"> Previous Step</Button>
             </div>
 
           </div>
