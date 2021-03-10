@@ -5,6 +5,8 @@ import marylandPrecincts from "../geojson/md_2016_w_ushouse.json"
 import nyprecincts from "../geojson/ny_final.json"
 import nydistricts from "../geojson/ny_cd.json"
 import nystate from "../geojson/ny_state_bound.json"
+import pastate from "../geojson/pa_state_bound.json"
+import mdstate from "../geojson/md_state_bound.json"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
@@ -33,11 +35,12 @@ class Maps extends Component{
       Map: null,
       maps: [],
       maps_backup: [],
+      current_state_layer: null, //the current state layer
       center: [38.0902,-83.7129],
       zoom: 4.5,
       centerNY: [43.2994,-74.2179],
-      centerMD: [41.2033, -77.1945],
-      centerPA: [39.0458,-76.6413],
+      centerPA: [41.2033, -77.1945],
+      centerMD: [39.0458,-76.6413],
       tileLayer: null,
       geojsonLayer: null,
       geojson: null,
@@ -88,7 +91,26 @@ class Maps extends Component{
         },
         onEachFeature: onEachStateFeature
       });
+
+      var PAStateLayer = L.geoJson(pastate, {
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: 'blue', opacity: 0.5}
+          }
+        },
+        onEachFeature: onEachStateFeature
+      })
   
+      var MDStateLayer = L.geoJson(mdstate, {
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: 'blue', opacity: 0.5}
+          }
+        },
+        onEachFeature: onEachStateFeature
+      })
+
+
       function onEachStateFeature(feature, layer){
         layer.bindPopup(feature.properties.NAME)
         layer.on('mouseover', function(e) {
@@ -152,21 +174,23 @@ class Maps extends Component{
         })
   
         //adding and removing layer
-        layer.on('click', function(e) {
-          map.removeLayer(NYprecinctLayer)
-          alert('clicked and removed!')
-        })
+        //layer.on('click', function(e) {
+          //map.removeLayer(NYprecinctLayer)
+          //alert('clicked and removed!')
+        //})
   
       }
       NYStateLayer.hideCode = "NYSTATE";
       NYdistrictLayer.hideCode = "NYDISTRICT"
       NYprecinctLayer.hideCode = "NYPRECINCT"
-      map.addLayer(NYStateLayer)
-      //map.addLayer(NYdistrictLayer)
-      //map.addLayer(NYprecinctLayer)
-      this.setState({maps: [NYStateLayer,NYdistrictLayer,NYprecinctLayer]})
+      PAStateLayer.hideCode = "PASTATE"
+      MDStateLayer.hideCode = "MDSTATE"
+      //add them to the backup
+      //backup is set up like [nystate, nydistrict, nyprecinct, PAstate, PAdistrict, PAprecinct, MDstate, MDdistrict, Mdprecinct]. Load them using the respective index. 
+      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, null]})
+      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, null]})
       
-      
+
       //Generates a random coloring for each district
       function getRandomColor(feature){
         var precinct_color = new Map()
@@ -186,37 +210,19 @@ class Maps extends Component{
     }
 
     handleMajorChange = (event, newValue) => {
-
       this.setState({MajorityMinority :  newValue });
-
-
     };
 
     handleComChange = (event , newValue) => {
-
       this.setState({Compactness:  newValue });
-
-
     };
  
     handlePChange = (event , newValue) => {
-
-      
-
       this.setState({PopulationEquality:  newValue});
-
-      
-
-
     };
 
     handleObjChange = (event , newValue) => {
-
       this.setState({Objective: newValue});
-
-      
-
-
     };
 
     checkerAchange = (event) =>
@@ -247,12 +253,10 @@ class Maps extends Component{
 
     showgeoJson(layer,state){
       state.addLayer(layer)
-      //alert("Precinct Data loaded!")
     }
 
     hidegeoJson(layer,state){
       state.removeLayer(layer)
-      //alert("Precinct Data unloaded!")
     }
 
     searchStateByHideCode(hideCode){
@@ -303,23 +307,33 @@ class Maps extends Component{
       const name = event.target.name;
       const value = event.target.value;
       this.setState({current_state: event.target.value})
-      if (value === "New York"){
-        this.setState({center: this.state.centerNY, zoom: 7}, 
-          () => {
-            this.state.Map.flyTo(this.state.center, this.state.zoom)
-          })
+
+      if (this.state.current_state_layer){
+        this.state.Map.removeLayer(this.state.current_state_layer);
       }
+
+      if (value === "New York"){
+        this.setState({center: this.state.centerNY, zoom: 7, current_state_layer: this.state.maps_backup[0]}, 
+          () => {
+            this.state.Map.flyTo(this.state.center, this.state.zoom);
+            this.state.Map.addLayer(this.state.current_state_layer)
+          })  
+      }
+
       else if (value === "Pennsylvania"){
-        this.setState({center: this.state.centerMD, zoom: 7}, 
+        this.setState({center: this.state.centerPA, zoom: 7, current_state_layer: this.state.maps_backup[3]}, 
           () => {
             this.state.Map.flyTo(this.state.center, this.state.zoom)
+            this.state.Map.addLayer(this.state.current_state_layer)
           })
         this.state.Map.flyTo(this.state.center, this.state.zoom)
       }
+
       else if (value === "Maryland"){
-        this.setState({center: this.state.centerPA, zoom: 7}, 
+        this.setState({center: this.state.centerMD, zoom: 7, current_state_layer: this.state.maps_backup[6]}, 
           () => {
             this.state.Map.flyTo(this.state.center, this.state.zoom)
+            this.state.Map.addLayer(this.state.current_state_layer)
           })
         this.state.Map.flyTo(this.state.center, this.state.zoom)
       }
