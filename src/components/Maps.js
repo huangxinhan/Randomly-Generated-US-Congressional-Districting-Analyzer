@@ -590,20 +590,17 @@ class Maps extends Component{
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •26 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •100,139 Districtings
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
 
       </div>
     </div>
@@ -618,20 +615,17 @@ class Maps extends Component{
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •27 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •100,121 Districtings
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -645,20 +639,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -672,20 +663,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -699,20 +687,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -726,20 +711,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -753,20 +735,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -780,20 +759,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -807,20 +783,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
@@ -834,20 +807,17 @@ class Maps extends Component{
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
+      Deviation From Average: 80
         <br></br><br></br><br></br>
-        •28 Districtings 
+      Deviation From Enacted: 80
         <br></br><br></br><br></br>
-        •Additional Data 
+      Population Equality: 80
         <br></br><br></br><br></br>
-        •101,230 Districtings 
+      Political Fairness: 80
         <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+      Split Counties: 1
+        <br></br><br></br><br></br>
+      <button type="button" class="btn btn-info">Load Districting</button>
       </div>
     </div>
   </div>
