@@ -682,6 +682,7 @@ class Maps extends Component{
                 </div>
                 <br></br><br></br>
                 <div>Majority-Minority Districts
+                <br></br>
                 <FormControl className="Form1">
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
