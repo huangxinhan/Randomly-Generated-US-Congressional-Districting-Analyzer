@@ -69,7 +69,7 @@ class Maps extends Component{
       IsExpanded: false,
       // FITER page
 
-      MajorityMinority: 10,
+      MajorityMinority: 0,
       Compactness: 0,
       PopulationEquality:0,
       Objective: [0,0],
@@ -718,13 +718,139 @@ class Maps extends Component{
                 <br></br><br></br>
                 <div>Set Protected Incumbents
                   <br></br>
-                      <button style ={{fontSize:"15px"}}>
+                  <button style ={{fontSize:"15px"}} data-toggle="modal" data-target="#myModal">
                         Select Incumbents
                         
                       </button>
                 </div>
               </div>
 
+
+              <div class="modal" id="myModal">
+  <div class="modal-dialog" style={{top:"30%"}}>
+    <div class="modal-content">
+
+      
+      <div class="modal-header">
+        <h4 class="modal-title">Incumbent Protection</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      
+      <div class="modal-body">
+              <div class="form-check">
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Tammy Rowe(D1)
+              </label>
+
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Clifford Kim(D2)
+              </label>
+              
+              
+
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Owen Neal(D3)
+              </label>
+
+              <br></br>
+
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Mabel Logan(D4)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Nicole Mann(D5)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Sara Holloway(D6)
+              </label>
+
+              <br></br>
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Edward Carson(D7)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Doreen Lewis(D8)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Inez Jimenez(D9)
+              </label>
+
+              <br></br>       
+              
+          </div>
+      </div>
+
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Apply</button>
+      </div>
+
+    </div>
+  </div> 
+  </div> 
 
 
 
@@ -736,6 +862,7 @@ class Maps extends Component{
                 
           <div className = "S1"> Set Objective Functions Weight
 
+                            <h6>Districting Remaining:1394</h6>
           <Typography id="discrete-slider" gutterBottom>
           Political Fairness
            </Typography>
@@ -791,10 +918,27 @@ class Maps extends Component{
          <div className = "S1"> 
 
           <Typography id="discrete-slider" gutterBottom>
+          Population Equality
+           </Typography>
+           <Slider 
+             defaultValue={this.state.PopulationEquality}
+             getAriaValueText={valuetext}
+             aria-labelledby="range-slider"
+             valueLabelDisplay="auto"
+             step={0.1}
+             marks
+             min={0}
+             max={1}
+             onChange={this.handlePChange}
+           />
+         </div>
+         <div className = "S1"> 
+
+          <Typography id="discrete-slider" gutterBottom>
           Deviation from Enacted Plan
            </Typography>
            <Slider 
-             defaultValue={this.state.Objective}
+             defaultValue={this.state.PopulationEquality}
              getAriaValueText={valuetext}
              aria-labelledby="range-slider"
              valueLabelDisplay="auto"
@@ -802,17 +946,16 @@ class Maps extends Component{
              marks
              min={0}
              max={1}
-             onChange={this.handleObjChange}
+             onChange={this.handlePChange}
            />
          </div>
-
          <div className = "S1"> 
 
           <Typography id="discrete-slider" gutterBottom>
-          Split Counties: 
+          Split Counties
            </Typography>
            <Slider 
-             defaultValue={this.state.Objective}
+             defaultValue={this.state.PopulationEquality}
              getAriaValueText={valuetext}
              aria-labelledby="range-slider"
              valueLabelDisplay="auto"
@@ -820,17 +963,16 @@ class Maps extends Component{
              marks
              min={0}
              max={1}
-             onChange={this.handleObjChange}
+             onChange={this.handlePChange}
            />
          </div>
-
          <div className = "S1"> 
 
           <Typography id="discrete-slider" gutterBottom>
-          Deviation from average districting: 
+          Deviation from average districting
            </Typography>
            <Slider 
-             defaultValue={this.state.Objective}
+             defaultValue={this.state.PopulationEquality}
              getAriaValueText={valuetext}
              aria-labelledby="range-slider"
              valueLabelDisplay="auto"
@@ -838,7 +980,7 @@ class Maps extends Component{
              marks
              min={0}
              max={1}
-             onChange={this.handleObjChange}
+             onChange={this.handlePChange}
            />
          </div>
 
@@ -851,7 +993,7 @@ class Maps extends Component{
 
            <div className = "D3"> Filter Summary
            </div>
-           <div className = "D4"> Majority Minority：   {Number (this.state.MajorityMinority)}
+           <div className = "D4"> Political Fairness：   {Number (this.state.MajorityMinority)}
            </div>
 
            <div className = "D4"> Compactness：   {this.state.Compactness}
@@ -860,10 +1002,13 @@ class Maps extends Component{
            <div className = "D4"> Population Equality：   {this.state.PopulationEquality}
            </div>
 
-           <div className = "D4"> Objective Function Score Range：   {this.state.Objective[0]} - {this.state.Objective[1]}
+           <div className = "D4"> Deviation from Enacted Plan：   0
+           <div className = "D4"> Split Counties：   0
+           </div>
+           <div className = "D4">  Deviation from average districting：   0
            </div>
        </div>
-
+   </div>
         
         case 4:
 
