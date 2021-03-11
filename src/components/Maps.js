@@ -301,8 +301,11 @@ class Maps extends Component{
       if (direction == "forward" && prev_active_step < 4){
         this.setState({activeStep: prev_active_step + 1})
       }
-      if (direction == "backward" && prev_active_step > 0){
+      else if (direction == "backward" && prev_active_step > 0){
         this.setState({activeStep: prev_active_step - 1})
+      }
+      else if (direction == "reset"){
+        this.setState({activeStep: 0})
       }
     }
 
@@ -598,9 +601,11 @@ class Maps extends Component{
         <br></br><br></br><br></br>
       Political Fairness: 80
         <br></br><br></br><br></br>
-      Split Counties: 1
+      Split Counties: 0
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
 
       </div>
     </div>
@@ -623,9 +628,11 @@ class Maps extends Component{
         <br></br><br></br><br></br>
       Political Fairness: 80
         <br></br><br></br><br></br>
-      Split Counties: 1
+      Split Counties: 0
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -647,9 +654,11 @@ class Maps extends Component{
         <br></br><br></br><br></br>
       Political Fairness: 80
         <br></br><br></br><br></br>
-      Split Counties: 1
+      Split Counties: 0
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -671,9 +680,11 @@ class Maps extends Component{
         <br></br><br></br><br></br>
       Political Fairness: 80
         <br></br><br></br><br></br>
-      Split Counties: 1
+      Split Counties: 0
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -695,9 +706,11 @@ class Maps extends Component{
         <br></br><br></br><br></br>
       Political Fairness: 80
         <br></br><br></br><br></br>
-      Split Counties: 1
+      Split Counties: 0
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -722,6 +735,8 @@ class Maps extends Component{
       Split Counties: 1
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -746,6 +761,8 @@ class Maps extends Component{
       Split Counties: 1
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -770,6 +787,8 @@ class Maps extends Component{
       Split Counties: 1
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -794,6 +813,8 @@ class Maps extends Component{
       Split Counties: 1
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -818,6 +839,8 @@ class Maps extends Component{
       Split Counties: 1
         <br></br><br></br><br></br>
       <button type="button" class="btn btn-info">Load Districting</button>
+      <br></br><br></br><br></br>
+      <button type="button" class="btn btn-success">Show Detailed Data</button>
       </div>
     </div>
   </div>
@@ -939,6 +962,8 @@ class Maps extends Component{
               </h3>
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+              <br></br>
+              <button type="button" class="btn btn-danger" onClick={() => this.setActiveStep(this.state.activeStep, "reset")}>Reset</button>
             </div>
 
           </div>
