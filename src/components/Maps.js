@@ -7,6 +7,7 @@ import nydistricts from "../geojson/ny_cd.json"
 import nystate from "../geojson/ny_state_bound.json"
 import pastate from "../geojson/pa_state_bound.json"
 import mdstate from "../geojson/md_state_bound.json"
+import boxandwhisker from "../geojson/box_and_whisker.PNG"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
@@ -142,7 +143,7 @@ class Maps extends Component{
       
   
       function onEachDistrictFeature(feature, layer) {
-        layer.bindPopup(feature.properties.NAMELSAD)
+        layer.bindPopup( feature.properties.NAMELSAD + "     " +  " Population: 717,820, Incumbent: John Doe, Split Counties: 0, Democratic Voter percentage: 57.4%, Republic Voter Percentage: 32.6%")
         layer.on('mouseover', function(e) {
           if (feature.properties){
             this.openPopup();
@@ -634,9 +635,9 @@ class Maps extends Component{
                   <option value={"District 26"}>District 26</option>
                   <option value={"District 27"}>District 27</option>
                 </NativeSelect>
-          <FormHelperText>Click to select a state</FormHelperText>
+          <FormHelperText>Click to select a District</FormHelperText>
       </FormControl>
-
+  
       <table class="table">
   <thead>
     <tr>
@@ -655,7 +656,7 @@ class Maps extends Component{
     </tr>
     <tr>
       <th scope="row">Objective Function Score</th>
-      <td>0.9978</td>
+      <td>99.78</td>
     </tr>
     <tr>
       <th scope="row">Incumbents</th>
@@ -707,7 +708,8 @@ class Maps extends Component{
     </tr>
   </tbody>
 </table>
-
+      <h3>Minority Popularity Box and Whisker Plot</h3>
+      <img src={boxandwhisker} />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
