@@ -1411,6 +1411,13 @@ class Maps extends Component{
 
 
     render(){
+      let nextStepButton = <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+      if(this.state.activeStep == 4){
+        nextStepButton = null
+      }
+      else {
+        nextStepButton = <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+      }
       let OptionPage  = "PageDisable";
 
       if (this.state.OptionPage) {
@@ -1522,7 +1529,7 @@ class Maps extends Component{
               </h3>
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               ⠀⠀⠀⠀
-              <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+              {nextStepButton}
               ⠀⠀⠀⠀
               <button type="button" class="btn btn-danger" onClick={() => this.setActiveStep(this.state.activeStep, "reset")}>Reset</button>
             </div>
