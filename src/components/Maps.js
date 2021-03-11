@@ -58,6 +58,7 @@ class Maps extends Component{
       current_district: null,
       current_districting1: null,
       current_districting2: null,
+      category: null,
       
 
       //Option page
@@ -485,6 +486,12 @@ class Maps extends Component{
       const name = event.target.name;
       const value = event.target.value;
       this.setState({current_districting2: event.target.value})
+    }
+
+    categorySelect = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({category: event.target.value})
     }
 
     //This method generates the different steps 
@@ -1268,8 +1275,21 @@ class Maps extends Component{
   </div>
 </div>
 
-            <h3>Top 10 Districtings</h3>
-            <h3>By Objective Function Score</h3>
+<FormControl className="Form1">
+        <InputLabel htmlFor="state-native-helper">District</InputLabel>
+                <NativeSelect
+                  value={this.state.category}
+                  onChange={this.categorySelect}
+                  inputProps={{
+                  name: 'Click To Select a Districting to Compare',
+                  id: 'state-native-helper',}}>
+                  <option value={"1"}>Top 10 Districtings by Objective Function Score</option>
+                  <option value={"2"}>Top 10 Districtings by Majority Minority</option>
+                  <option value={"3"}>Top 10 Districtings by Closest to the Enacted Districting</option>
+                  <option value={"4"}>Top 10 Districting by Area Pair Deviations</option>
+                </NativeSelect>
+          <FormHelperText>Click to select a category</FormHelperText>
+      </FormControl>
             <div id="accordion">
   <div class="card">
     <div class="card-header" id="headingOne">
