@@ -554,7 +554,7 @@ class Maps extends Component{
       <div class="card-body" style ={{fontSize:"20px"}}>
       •New York 
         <br></br><br></br><br></br>
-        •26 Districtings 
+        •26 Districts
         <br></br><br></br><br></br>
         •Additional Data 
         <br></br><br></br><br></br>
@@ -582,7 +582,7 @@ class Maps extends Component{
       <div class="card-body" style ={{fontSize:"20px"}}>
       •New York 
         <br></br><br></br><br></br>
-        •27 Districtings 
+        •27 Districts
         <br></br><br></br><br></br>
         •Additional Data 
         <br></br><br></br><br></br>
@@ -609,7 +609,7 @@ class Maps extends Component{
       <div class="card-body" style ={{fontSize:"20px"}}>
       •New York 
         <br></br><br></br><br></br>
-        •28 Districtings 
+        •28 Districts
         <br></br><br></br><br></br>
         •Additional Data 
         <br></br><br></br><br></br>
