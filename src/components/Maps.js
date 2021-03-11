@@ -540,7 +540,7 @@ class Maps extends Component{
       </h5>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+    <div id="collapseOne" class="accordion body collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       •New York 
         <br></br><br></br><br></br>
@@ -1151,7 +1151,7 @@ class Maps extends Component{
       </h5>
     </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+    <div id="collapseOne" class="accordion body collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
