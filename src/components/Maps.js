@@ -8,6 +8,7 @@ import nystate from "../geojson/ny_state_bound.json"
 import pastate from "../geojson/pa_state_bound.json"
 import mdstate from "../geojson/md_state_bound.json"
 import boxandwhisker from "../geojson/box_and_whisker.PNG"
+import newyorkimage from "../geojson/NewYorkPng.PNG"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
@@ -871,7 +872,7 @@ class Maps extends Component{
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myExtraLargeModalLabel">District Data</h5>
+        <h5 class="modal-title" id="myExtraLargeModalLabel">Detailed Data Analysis</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1048,6 +1049,86 @@ class Maps extends Component{
                 </NativeSelect>
           <FormHelperText>Click to select a Districting To Compare</FormHelperText>
       </FormControl>
+      <br></br><br></br>
+      <img src={newyorkimage} />⠀⠀⠀⠀⠀⠀⠀⠀<img src={newyorkimage} />
+      <br></br><br></br>
+      <table class="table">
+
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>First Districting</td>
+      <td></td>
+      <td>Second Districting</td>
+      <td></td>
+      <td>Obj. Function Weights</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>Objective Function Score</td>
+      <td>99.73</td>
+      <td>Objective Function Score</td>
+      <td>92.63</td>
+      <td>Max Objective Function Score</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>Political Fairness</td>
+      <td>48</td>
+      <td>Political Fairness</td>
+      <td>32</td>
+      <td>Political Fairness Weight</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>Compactness</td>
+      <td>27</td>
+      <td>Compactness</td>
+      <td>17</td>
+      <td>Compactness Weight</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>Population Equality</td>
+      <td>23</td>
+      <td>Population Equality</td>
+      <td>12</td>
+      <td>Pop. Equality Weight</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>Enacted Deviation</td>
+      <td>63</td>
+      <td>Enacted Deviation</td>
+      <td>32</td>
+      <td>Enacted Dev. Weight</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>Split Counties</td>
+      <td>0</td>
+      <td>Split Counties</td>
+      <td>1</td>
+      <td>Split Counties Weight</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>Average Districting Deviation</td>
+      <td>52</td>
+      <td>Average Districting Deviation</td>
+      <td>32</td>
+      <td>Avg. Distr. Dev. Weight</td>
+      <td>0.1</td>
+    </tr>
+  </tbody>
+</table>
     </div>
 </div>
 
