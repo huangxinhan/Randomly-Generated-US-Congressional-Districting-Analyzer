@@ -55,6 +55,8 @@ class Maps extends Component{
       FilterPage: false,
       activeStep: 0, //start at step 1, select state
       current_district: null,
+      current_districting1: null,
+      current_districting2: null,
       
 
       //Option page
@@ -472,7 +474,17 @@ class Maps extends Component{
       this.setState({current_district: event.target.value})
     }
 
-    
+    districtingSelect1 = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({current_districting1: event.target.value})
+    }
+
+    districtingSelect2 = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({current_districting2: event.target.value})
+    }
 
     //This method generates the different steps 
     getStepContent(stepIndex){
@@ -992,12 +1004,55 @@ class Maps extends Component{
     <div role="tabpanel" class='tab-pane' id="boxandwhisker"> 
       <h3>Minority Popularity Box and Whisker Plot</h3>
       <img src={boxandwhisker} /></div>
-    <div role="tabpanel" class='tab-pane' id="comparedistrictings">data3</div>
+    <div role="tabpanel" class='tab-pane' id="comparedistrictings">
+    <FormControl className="Form1">
+        <InputLabel htmlFor="state-native-helper">District</InputLabel>
+                <NativeSelect
+                  value={this.state.current_district}
+                  onChange={this.districtingSelect}
+                  inputProps={{
+                  name: 'Click To Select a Districting to Compare',
+                  id: 'state-native-helper',}}>
+                  <option value={"Districting 1"}>District 1</option>
+                  <option value={"Districting 2"}>District 2</option>
+                  <option value={"Districting 3"}>District 3</option>
+                  <option value={"Districting 4"}>District 4</option>
+                  <option value={"Districting 5"}>District 5</option>
+                  <option value={"Districting 6"}>District 6</option>
+                  <option value={"Districting 7"}>District 7</option>
+                  <option value={"Districting 8"}>District 8</option>
+                  <option value={"Districting 9"}>District 9</option>
+                  <option value={"Districting 10"}>District 10</option>
+                </NativeSelect>
+          <FormHelperText>Click to select a Districting To Compare</FormHelperText>
+      </FormControl>
+      ⠀⠀⠀⠀⠀⠀⠀⠀
+      <FormControl className="Form1">
+        <InputLabel htmlFor="state-native-helper">District</InputLabel>
+                <NativeSelect
+                  value={this.state.current_district}
+                  onChange={this.districtingSelect}
+                  inputProps={{
+                  name: 'Click to select a Districting To Compare',
+                  id: 'state-native-helper',}}>
+                  <option value={"Districting 1"}>District 1</option>
+                  <option value={"Districting 2"}>District 2</option>
+                  <option value={"Districting 3"}>District 3</option>
+                  <option value={"Districting 4"}>District 4</option>
+                  <option value={"Districting 5"}>District 5</option>
+                  <option value={"Districting 6"}>District 6</option>
+                  <option value={"Districting 7"}>District 7</option>
+                  <option value={"Districting 8"}>District 8</option>
+                  <option value={"Districting 9"}>District 9</option>
+                  <option value={"Districting 10"}>District 10</option>
+                </NativeSelect>
+          <FormHelperText>Click to select a Districting To Compare</FormHelperText>
+      </FormControl>
+    </div>
 </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -1385,8 +1440,9 @@ class Maps extends Component{
                {this.getStepContent(this.state.activeStep)}
               </h3>
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
+              ⠀⠀⠀⠀
               <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
-              <br></br>
+              ⠀⠀⠀⠀
               <button type="button" class="btn btn-danger" onClick={() => this.setActiveStep(this.state.activeStep, "reset")}>Reset</button>
             </div>
 
