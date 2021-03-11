@@ -662,6 +662,7 @@ class Maps extends Component{
                             max={1}
                             onChange={this.handleChangeCompactnessTypeSliderValue}
                           />
+                          <h6>current value: {this.state.CompactnessTypeSliderValue}</h6>
                           </div>
                 </div>
                 <br></br><br></br>
@@ -698,6 +699,7 @@ class Maps extends Component{
                         max={100}
                         onChange={this.handleChangeConstrainTypeSliderValue}
                       />
+                      <h6>current value: {this.state.ConstrainTypeSliderValue}%</h6>
                       </div>
                 </div>
                 <br></br><br></br>
