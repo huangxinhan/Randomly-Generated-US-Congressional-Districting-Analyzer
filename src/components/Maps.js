@@ -1164,6 +1164,7 @@ class Maps extends Component{
                   inputProps={{
                   name: 'Click to select a Districting To Compare',
                   id: 'state-native-helper',}}>
+                  <option value={"Default Districting"}>Default Districting</option>
                   <option value={"Districting 1"}>Districting 1</option>
                   <option value={"Districting 2"}>Districting 2</option>
                   <option value={"Districting 3"}>Districting 3</option>
