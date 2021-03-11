@@ -918,23 +918,6 @@ class Maps extends Component{
          <div className = "S1"> 
 
           <Typography id="discrete-slider" gutterBottom>
-          Population Equality
-           </Typography>
-           <Slider 
-             defaultValue={this.state.PopulationEquality}
-             getAriaValueText={valuetext}
-             aria-labelledby="range-slider"
-             valueLabelDisplay="auto"
-             step={0.1}
-             marks
-             min={0}
-             max={1}
-             onChange={this.handlePChange}
-           />
-         </div>
-         <div className = "S1"> 
-
-          <Typography id="discrete-slider" gutterBottom>
           Deviation from Enacted Plan
            </Typography>
            <Slider 
@@ -1159,16 +1142,16 @@ class Maps extends Component{
                   inputProps={{
                   name: 'Click To Select a Districting to Compare',
                   id: 'state-native-helper',}}>
-                  <option value={"Districting 1"}>District 1</option>
-                  <option value={"Districting 2"}>District 2</option>
-                  <option value={"Districting 3"}>District 3</option>
-                  <option value={"Districting 4"}>District 4</option>
-                  <option value={"Districting 5"}>District 5</option>
-                  <option value={"Districting 6"}>District 6</option>
-                  <option value={"Districting 7"}>District 7</option>
-                  <option value={"Districting 8"}>District 8</option>
-                  <option value={"Districting 9"}>District 9</option>
-                  <option value={"Districting 10"}>District 10</option>
+                  <option value={"Districting 1"}>Districting 1</option>
+                  <option value={"Districting 2"}>Districting 2</option>
+                  <option value={"Districting 3"}>Districting 3</option>
+                  <option value={"Districting 4"}>Districting 4</option>
+                  <option value={"Districting 5"}>Districting 5</option>
+                  <option value={"Districting 6"}>Districting 6</option>
+                  <option value={"Districting 7"}>Districting 7</option>
+                  <option value={"Districting 8"}>Districting 8</option>
+                  <option value={"Districting 9"}>Districting 9</option>
+                  <option value={"Districting 10"}>Districting 10</option>
                 </NativeSelect>
           <FormHelperText>Click to select a Districting To Compare</FormHelperText>
       </FormControl>
@@ -1181,16 +1164,16 @@ class Maps extends Component{
                   inputProps={{
                   name: 'Click to select a Districting To Compare',
                   id: 'state-native-helper',}}>
-                  <option value={"Districting 1"}>District 1</option>
-                  <option value={"Districting 2"}>District 2</option>
-                  <option value={"Districting 3"}>District 3</option>
-                  <option value={"Districting 4"}>District 4</option>
-                  <option value={"Districting 5"}>District 5</option>
-                  <option value={"Districting 6"}>District 6</option>
-                  <option value={"Districting 7"}>District 7</option>
-                  <option value={"Districting 8"}>District 8</option>
-                  <option value={"Districting 9"}>District 9</option>
-                  <option value={"Districting 10"}>District 10</option>
+                  <option value={"Districting 1"}>Districting 1</option>
+                  <option value={"Districting 2"}>Districting 2</option>
+                  <option value={"Districting 3"}>Districting 3</option>
+                  <option value={"Districting 4"}>Districting 4</option>
+                  <option value={"Districting 5"}>Districting 5</option>
+                  <option value={"Districting 6"}>Districting 6</option>
+                  <option value={"Districting 7"}>Districting 7</option>
+                  <option value={"Districting 8"}>Districting 8</option>
+                  <option value={"Districting 9"}>Districting 9</option>
+                  <option value={"Districting 10"}>Districting 10</option>
                 </NativeSelect>
           <FormHelperText>Click to select a Districting To Compare</FormHelperText>
       </FormControl>
