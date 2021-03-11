@@ -88,12 +88,13 @@ class Maps extends Component{
       TotalPopulation:0,
       VotingAgePopulation:0,
       CitizenVotingAgePopulation:0,
+
       MajorityMinorityDistricts:0,
 
       //belows are used to update slider value based on different option selections.
 
       CompactnessTypeSliderValue:0,
-
+      ConstrainTypeSliderValue:0,
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
@@ -256,7 +257,7 @@ class Maps extends Component{
       this.setState({Objective: newValue});
     };
     
-
+    //page 3 optionbox and slider update functions
     handleCompactnessTypeChange = (event) => {
       this.setState({CompactnessType: event.target.value})
 
@@ -271,6 +272,9 @@ class Maps extends Component{
       else if(event.target.value==="Polsby-Popper"){
         this.setState({CompactnessTypeSliderValue: this.state.PolsbyPopper})
         console.log(this.state.CompactnessTypeSliderValue)
+      }
+      else{
+        this.setState({CompactnessTypeSliderValue:0})
       }
       
     }
@@ -289,6 +293,55 @@ class Maps extends Component{
         this.setState({PolsbyPopper: value})
         // console.log(this.state.PolsbyPopper)
       }
+      else{
+
+      }
+    }
+
+    handleConstrainTypeChange = (event) => {
+      this.setState({ConstrainType: event.target.value})
+
+      if(event.target.value === "total population"){
+        this.setState({ConstrainTypeSliderValue: this.state.TotalPopulation})
+        console.log(this.state.ConstrainTypeSliderValue)
+      }
+      else if(event.target.value === "voting age population (TVAP)"){
+        this.setState({ConstrainTypeSliderValue: this.state.VotingAgePopulation})
+        console.log(this.state.ConstrainTypeSliderValue)
+      }
+      else if(event.target.value==="citizen voting age population (CVAP)"){
+        this.setState({ConstrainTypeSliderValue: this.state.CitizenVotingAgePopulation})
+        console.log(this.state.ConstrainTypeSliderValue)
+      }
+      else{
+        this.setState({ConstrainTypeSliderValue: 0})
+      }
+      
+    }
+    handleChangeConstrainTypeSliderValue = (event,value)=>{
+      this.setState({ConstrainTypeSliderValue: value})
+
+      if(this.state.ConstrainType === "total population"){
+        this.setState({TotalPopulation: value })
+        console.log(this.state.TotalPopulation)
+        
+      }
+      else if(this.state.ConstrainType  === "voting age population (TVAP)"){
+        this.setState({VotingAgePopulation: value})
+        console.log(this.state.VotingAgePopulation)
+      }
+      else if(this.state.ConstrainType ==="citizen voting age population (CVAP)"){
+        this.setState({CitizenVotingAgePopulation: value})
+        console.log(this.state.CitizenVotingAgePopulation)
+      }
+      else{
+
+      }
+    }
+    
+    handleChangeMajorityMinorityDistricts = (event)=>{
+      this.setState({MajorityMinorityDistricts:event.target.value})
+      console.log(this.state.MajorityMinorityDistricts)
     }
 
 
@@ -597,8 +650,8 @@ class Maps extends Component{
                 <FormControl className="Form1">
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
-                          value={this.state.Constraints}
-                          onChange={this.handleChangeCompactness}
+                          value={this.state.ConstrainType}
+                          onChange={this.handleConstrainTypeChange}
                           inputProps={{
                           name: 'Click To Select population constrain type',
                           id: 'state-native-helper',}}>
@@ -614,7 +667,8 @@ class Maps extends Component{
                       
                       </Typography>
                       <Slider 
-                        defaultValue={this.state.MajorityMinority}
+                        defaultValue={0}
+                        value={this.state.ConstrainTypeSliderValue}
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"
@@ -622,7 +676,7 @@ class Maps extends Component{
                         marks
                         min={0}
                         max={100}
-                        onChange={this.handleMajorChange}
+                        onChange={this.handleChangeConstrainTypeSliderValue}
                       />
                       </div>
                 </div>
@@ -631,8 +685,8 @@ class Maps extends Component{
                 <FormControl className="Form1">
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
-                          value={this.state.MajorityMinority}
-                          onChange={this.handleChangeCompactness}
+                          value={this.state.MajorityMinorityDistricts}
+                          onChange={this.handleChangeMajorityMinorityDistricts}
                           inputProps={{
                           name: 'Click To Select Majority-Minority Districts',
                           id: 'state-native-helper',}}>
