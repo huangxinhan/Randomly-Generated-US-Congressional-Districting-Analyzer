@@ -65,6 +65,10 @@
   z-index: 500 !important;
 }
 
+.nav a{
+  font-size: 20px !important;
+  }
+
 .filternav {
   height: 35%; /* Full-height: remove this if you want "auto" height */
   width: 10%; /* Set the width of the sidebar */

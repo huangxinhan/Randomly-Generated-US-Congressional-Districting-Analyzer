@@ -864,7 +864,21 @@ class Maps extends Component{
         </button>
       </div>
       <div class="modal-body">
-      <FormControl className="Form1">
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="#districtdata" data-toggle="tab">District Data</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#boxandwhisker" data-toggle="tab">Show Box and Whisker Plot</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#comparedistrictings" data-toggle="tab">Compare Districtings</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+    <div role="tabpanel" class='tab-pane' id="districtdata">
+    <FormControl className="Form1">
         <InputLabel htmlFor="state-native-helper">District</InputLabel>
                 <NativeSelect
                   value={this.state.current_district}
@@ -973,8 +987,13 @@ class Maps extends Component{
     </tr>
   </tbody>
 </table>
+    </div>
+    <div role="tabpanel" class='tab-pane' id="boxandwhisker"> 
       <h3>Minority Popularity Box and Whisker Plot</h3>
-      <img src={boxandwhisker} />
+      <img src={boxandwhisker} /></div>
+    <div role="tabpanel" class='tab-pane' id="comparedistrictings">data3</div>
+</div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1067,14 +1086,14 @@ class Maps extends Component{
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingFour">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
         Districting 4 - Objective Function Score: 98.45
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
@@ -1093,14 +1112,14 @@ class Maps extends Component{
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingFive">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
         Districting 5 - Objective Function Score: 97.73
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
@@ -1119,14 +1138,14 @@ class Maps extends Component{
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingSix">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
         Districting 6 - Objective Function Score: 96.59
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
@@ -1145,14 +1164,14 @@ class Maps extends Component{
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingSeven">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
         Districting 7 - Objective Function Score: 94.34
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
@@ -1171,14 +1190,14 @@ class Maps extends Component{
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingEight">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
         Districting 8 - Objective Function Score: 93.84
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
@@ -1197,14 +1216,14 @@ class Maps extends Component{
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingNine">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
         Districting 9 - Objective Function Score: 92.24
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
@@ -1223,14 +1242,14 @@ class Maps extends Component{
     </div>
   </div>
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingTen">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
         Districting 10 - Objective Function Score: 90.21
         </button>
       </h5>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+    <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
       <div class="card-body" style ={{fontSize:"20px"}}>
       Deviation From Average: 80
         <br></br><br></br><br></br>
