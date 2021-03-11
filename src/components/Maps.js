@@ -417,7 +417,7 @@ class Maps extends Component{
 
 
     setActiveStep(prev_active_step, direction){
-      if (direction == "forward" && prev_active_step < 4){
+      if (direction == "forward" && prev_active_step < 5){
         this.setState({activeStep: prev_active_step + 1})
       }
       else if (direction == "backward" && prev_active_step > 0){
@@ -866,9 +866,9 @@ class Maps extends Component{
           </div>
 
 
-        case 3:
+        case 4:
           return           <div className = {FilterPage}>
-                <h5>Districting Remaining:1394</h5>
+                <h5>Districtings Remaining: 1,794</h5>
           <div className = "S1"> Set Objective Functions Weight
 
                             
@@ -1001,8 +1001,20 @@ class Maps extends Component{
            </div>
        </div>
    </div>
-        
-        case 4:
+        case 3:
+
+        return         <div>
+          <div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+        <h5>Filtered Out By Population Compactness: 27,301</h5>
+        <h5>Filtered Out By Majority-Minority: 50,230</h5>
+        <h5>Filtered Out By Population Constraint: 18,301</h5>
+        <h5>Districtings Remaining: 1,794</h5>
+      </div>
+
+
+        case 5:
 
           return <div>
 <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -1563,7 +1575,7 @@ class Maps extends Component{
 
     render(){
       let nextStepButton = <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
-      if(this.state.activeStep == 4){
+      if(this.state.activeStep == 5){
         nextStepButton = null
       }
       else {
@@ -1661,6 +1673,11 @@ class Maps extends Component{
                 <Step>
                   <StepLabel>
                     Set  Constraints
+                  </StepLabel>
+                </Step>
+                <Step>
+                <StepLabel>
+                    Constraint Result
                   </StepLabel>
                 </Step>
                 <Step>
