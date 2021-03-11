@@ -420,6 +420,9 @@ class Maps extends Component{
       if (direction == "forward" && prev_active_step < 5){
         this.setState({activeStep: prev_active_step + 1})
       }
+      else if (direction == "backward" && prev_active_step == 4){
+        this.setState({activeStep: 2})
+      }
       else if (direction == "backward" && prev_active_step > 0){
         this.setState({activeStep: prev_active_step - 1})
       }
