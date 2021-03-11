@@ -352,7 +352,6 @@ class Maps extends Component{
       const name = event.target.name;
       const value = event.target.value;
       this.setState({current_district: event.target.value})
-      
     }
 
     
@@ -593,7 +592,7 @@ class Maps extends Component{
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myExtraLargeModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="myExtraLargeModalLabel">District Data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -607,7 +606,6 @@ class Maps extends Component{
                   inputProps={{
                   name: 'Click To View Detailed Information About a District',
                   id: 'state-native-helper',}}>
-                  <option aria-label="None" value="" />
                   <option value={"District 1"}>District 1</option>
                   <option value={"District 2"}>District 2</option>
                   <option value={"District 3"}>District 3</option>
@@ -618,9 +616,98 @@ class Maps extends Component{
                   <option value={"District 8"}>District 8</option>
                   <option value={"District 9"}>District 9</option>
                   <option value={"District 10"}>District 10</option>
+                  <option value={"District 11"}>District 11</option>
+                  <option value={"District 12"}>District 12</option>
+                  <option value={"District 13"}>District 13</option>
+                  <option value={"District 14"}>District 14</option>
+                  <option value={"District 15"}>District 15</option>
+                  <option value={"District 16"}>District 16</option>
+                  <option value={"District 17"}>District 17</option>
+                  <option value={"District 18"}>District 18</option>
+                  <option value={"District 19"}>District 19</option>
+                  <option value={"District 20"}>District 20</option>
+                  <option value={"District 21"}>District 21</option>
+                  <option value={"District 22"}>District 22</option>
+                  <option value={"District 23"}>District 23</option>
+                  <option value={"District 24"}>District 24</option>
+                  <option value={"District 25"}>District 25</option>
+                  <option value={"District 26"}>District 26</option>
+                  <option value={"District 27"}>District 27</option>
                 </NativeSelect>
           <FormHelperText>Click to select a state</FormHelperText>
       </FormControl>
+
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Data Types</th>
+      <th scope="col">Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Total Population</th>
+      <td>783,827</td>
+    </tr>
+    <tr>
+      <th scope="row">Voting Population</th>
+      <td>104,381</td>
+    </tr>
+    <tr>
+      <th scope="row">Objective Function Score</th>
+      <td>0.9978</td>
+    </tr>
+    <tr>
+      <th scope="row">Incumbents</th>
+      <td>John Doe</td>
+    </tr>
+    <tr>
+      <th scope="row">Average Deviation</th>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th scope="row">Population Density</th>
+      <td>0.35</td>
+    </tr>
+    <tr>
+      <th scope="row">Population Equality</th>
+      <td>0.62</td>
+    </tr>
+    <tr>
+      <th scope="row">Political Fairness</th>
+      <td>0.48</td>
+    </tr>
+    <tr>
+      <th scope="row">Democratic Voter Percentage</th>
+      <td>56.4%</td>
+    </tr>
+    <tr>
+      <th scope="row">Republican Voter Percentage</th>
+      <td>43.6%</td>
+    </tr>
+    <tr>
+      <th scope="row">Total Minority Percentage</th>
+      <td>12.6%</td>
+    </tr>
+    <tr>
+      <th scope="row">Black Population Percentage</th>
+      <td>7.8%</td>
+    </tr>
+    <tr>
+      <th scope="row">Asian Population Percentage</th>
+      <td>1.3%</td>
+    </tr>
+    <tr>
+      <th scope="row">Hispanic or Latino Percentage</th>
+      <td>3.2%</td>
+    </tr>
+    <tr>
+      <th scope="row">American Indian or Alaska Native Percentage</th>
+      <td>0.3%</td>
+    </tr>
+  </tbody>
+</table>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
