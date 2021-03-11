@@ -1193,8 +1193,8 @@ class Maps extends Component{
   <tbody>
     <tr>
       <th scope="row"></th>
-      <td>First Districting</td>
       <td></td>
+      <td>First Districting</td>
       <td>Second Districting</td>
       <td></td>
       <td>Obj. Function Weights</td>
@@ -1204,7 +1204,7 @@ class Maps extends Component{
       <th scope="row"></th>
       <td>Objective Function Score</td>
       <td>99.73</td>
-      <td>Objective Function Score</td>
+
       <td>92.63</td>
       <td>Max Objective Function Score</td>
       <td>100</td>
@@ -1213,7 +1213,7 @@ class Maps extends Component{
       <th scope="row"></th>
       <td>Political Fairness</td>
       <td>48</td>
-      <td>Political Fairness</td>
+   
       <td>32</td>
       <td>Political Fairness Weight</td>
       <td>0.3</td>
@@ -1222,7 +1222,7 @@ class Maps extends Component{
       <th scope="row"></th>
       <td>Compactness</td>
       <td>27</td>
-      <td>Compactness</td>
+
       <td>17</td>
       <td>Compactness Weight</td>
       <td>0.1</td>
@@ -1231,7 +1231,7 @@ class Maps extends Component{
       <th scope="row"></th>
       <td>Population Equality</td>
       <td>23</td>
-      <td>Population Equality</td>
+
       <td>12</td>
       <td>Pop. Equality Weight</td>
       <td>0.2</td>
@@ -1240,7 +1240,7 @@ class Maps extends Component{
       <th scope="row"></th>
       <td>Enacted Deviation</td>
       <td>63</td>
-      <td>Enacted Deviation</td>
+
       <td>32</td>
       <td>Enacted Dev. Weight</td>
       <td>0.1</td>
@@ -1249,7 +1249,7 @@ class Maps extends Component{
       <th scope="row"></th>
       <td>Split Counties</td>
       <td>0</td>
-      <td>Split Counties</td>
+
       <td>1</td>
       <td>Split Counties Weight</td>
       <td>0.2</td>
@@ -1258,7 +1258,7 @@ class Maps extends Component{
       <th scope="row"></th>
       <td>Average Districting Deviation</td>
       <td>52</td>
-      <td>Average Districting Deviation</td>
+
       <td>32</td>
       <td>Avg. Distr. Dev. Weight</td>
       <td>0.1</td>
