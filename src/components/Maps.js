@@ -348,6 +348,10 @@ class Maps extends Component{
       }
 
     };
+    handleChangeCompactness=(event)=>{
+      const name = event.target.name;
+      const value = event.target.value;
+    };
 
     districtSelect = (event) => {
       const name = event.target.name;
@@ -488,22 +492,133 @@ class Maps extends Component{
 
                 </div>
         case 2:
+          return <div>
+            <h2 Set Constraints/>
+            <br></br>
+            <div className="S2" >
+                <div>Select Compactness
+                <br></br>
+                 <FormControl className="Form1">
+                      <InputLabel htmlFor="state-native-helper">Click</InputLabel>
+                        <NativeSelect
+                          value={this.state.current_state}
+                          onChange={this.handleChangeCompactness}
+                          inputProps={{
+                          name: 'Click To Select A Compactness type',
+                          id: 'state-native-helper',}}>
+                          <option aria-label="None" value="" />
+                          <option value={"graph compactness"}>graph compactness</option>
+                          <option value={"population fatness"}>population fatness</option>
+                          <option value={"Polsby-Popper"}>Polsby-Popper</option>
+                        </NativeSelect>
+                      <FormHelperText>Select compactness Type</FormHelperText>
+                    </FormControl>
+                    <div className = "S1"> 
+                    <Typography id="discrete-slider" gutterBottom>
+                          
+                          </Typography>
+                          <Slider 
+                            defaultValue={this.state.MajorityMinority}
+                            getAriaValueText={valuetext}
+                            aria-labelledby="discrete-slider"
+                            valueLabelDisplay="auto"
+                            step={0.1}
+                            marks
+                            min={0}
+                            max={1}
+                            onChange={this.handleMajorChange}
+                          />
+                          </div>
+                </div>
+                <br></br><br></br>
+                <div>Population Constraints 
+                <br></br>
+                <FormControl className="Form1">
+                      <InputLabel htmlFor="state-native-helper">Click</InputLabel>
+                        <NativeSelect
+                          value={this.state.current_state}
+                          onChange={this.handleChangeCompactness}
+                          inputProps={{
+                          name: 'Click To Select population constrain type',
+                          id: 'state-native-helper',}}>
+                          <option aria-label="None" value="" />
+                          <option value={"total population"}>total population</option>
+                          <option value={"voting age population (TVAP)"}>voting age population (TVAP)</option>
+                          <option value={"citizen voting age population (CVAP)"}>citizen voting age population (CVAP)</option>
+                        </NativeSelect>
+                      <FormHelperText>Select Population constrain Type</FormHelperText>
+                    </FormControl>
+                    <div className = "S1"> 
+                    <Typography id="discrete-slider" gutterBottom>
+                      
+                      </Typography>
+                      <Slider 
+                        defaultValue={this.state.MajorityMinority}
+                        getAriaValueText={valuetext}
+                        aria-labelledby="discrete-slider"
+                        valueLabelDisplay="auto"
+                        step={10}
+                        marks
+                        min={0}
+                        max={100}
+                        onChange={this.handleMajorChange}
+                      />
+                      </div>
+                </div>
+                <br></br><br></br>
+                <div>Majority-Minority Districts
+                <FormControl className="Form1">
+                      <InputLabel htmlFor="state-native-helper">Click</InputLabel>
+                        <NativeSelect
+                          value={this.state.current_state}
+                          onChange={this.handleChangeCompactness}
+                          inputProps={{
+                          name: 'Click To Select Majority-Minority Districts',
+                          id: 'state-native-helper',}}>
+                          <option aria-label="None" value="" />
+                          <option value={"0"}>0</option>
+                          <option value={"1"}>1</option>
+                          <option value={"2"}>2</option>
+                          <option value={"3"}>3</option>
+                           <option value={"4"}>4</option>
+                        </NativeSelect>
+                      <FormHelperText>Select Majority-Minority Districts</FormHelperText>
+                      
+                    </FormControl>
+                </div>
+                <br></br><br></br>
+                <div>Set Protected Incumbents
+                  <br></br>
+                      <button style ={{fontSize:"15px"}}>
+                        Select Incumbents
+                        
+                      </button>
+                </div>
+              </div>
+
+
+
+
+          </div>
+
+
+        case 3:
           return           <div className = {FilterPage}>
                 
-          <div className = "S1"> 
+          <div className = "S1"> Set Objective Functions Weight
 
           <Typography id="discrete-slider" gutterBottom>
-           Majority Minority
+          Political Fairness
            </Typography>
            <Slider 
              defaultValue={this.state.MajorityMinority}
              getAriaValueText={valuetext}
              aria-labelledby="discrete-slider"
              valueLabelDisplay="auto"
-             step={10}
+             step={0.1}
              marks
              min={0}
-             max={100}
+             max={1}
              onChange={this.handleMajorChange}
            />
          </div>
@@ -518,10 +633,10 @@ class Maps extends Component{
              getAriaValueText={valuetext}
              aria-labelledby="discrete-slider"
              valueLabelDisplay="auto"
-             step={1}
+             step={0.1}
              marks
              min={0}
-             max={10}
+             max={1}
              onChange={this.handleComChange}
            />
          </div>
@@ -536,10 +651,10 @@ class Maps extends Component{
              getAriaValueText={valuetext}
              aria-labelledby="range-slider"
              valueLabelDisplay="auto"
-             step={1}
+             step={0.1}
              marks
              min={0}
-             max={10}
+             max={1}
              onChange={this.handlePChange}
            />
          </div>
@@ -547,17 +662,53 @@ class Maps extends Component{
          <div className = "S1"> 
 
           <Typography id="discrete-slider" gutterBottom>
-          Objective Function Score Range
+          Deviation from Enacted Plan
            </Typography>
            <Slider 
              defaultValue={this.state.Objective}
              getAriaValueText={valuetext}
              aria-labelledby="range-slider"
              valueLabelDisplay="auto"
-             step={1}
+             step={0.1}
              marks
              min={0}
-             max={20}
+             max={1}
+             onChange={this.handleObjChange}
+           />
+         </div>
+
+         <div className = "S1"> 
+
+          <Typography id="discrete-slider" gutterBottom>
+          Split Counties: 
+           </Typography>
+           <Slider 
+             defaultValue={this.state.Objective}
+             getAriaValueText={valuetext}
+             aria-labelledby="range-slider"
+             valueLabelDisplay="auto"
+             step={0.1}
+             marks
+             min={0}
+             max={1}
+             onChange={this.handleObjChange}
+           />
+         </div>
+
+         <div className = "S1"> 
+
+          <Typography id="discrete-slider" gutterBottom>
+          Deviation from average districting: 
+           </Typography>
+           <Slider 
+             defaultValue={this.state.Objective}
+             getAriaValueText={valuetext}
+             aria-labelledby="range-slider"
+             valueLabelDisplay="auto"
+             step={0.1}
+             marks
+             min={0}
+             max={1}
              onChange={this.handleObjChange}
            />
          </div>
@@ -584,8 +735,7 @@ class Maps extends Component{
            </div>
        </div>
 
-        case 3:
-          return <div>Step 4</div>
+        
         case 4:
 
           return <div>
@@ -1076,17 +1226,17 @@ class Maps extends Component{
                 </Step>
                 <Step>
                   <StepLabel>
-                    Custom Job Selection
+                    Job Selection
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Set Custom Constraints
+                    Set  Constraints
                   </StepLabel>
                 </Step>
                 <Step>
                   <StepLabel>
-                    Set Custom Measures 
+                    Set Measures 
                   </StepLabel>
                 </Step>
                 <Step>
