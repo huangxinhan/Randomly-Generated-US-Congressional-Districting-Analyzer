@@ -868,10 +868,10 @@ class Maps extends Component{
 
         case 3:
           return           <div className = {FilterPage}>
-                
+                <h5>Districting Remaining:1394</h5>
           <div className = "S1"> Set Objective Functions Weight
 
-                            <h6>Districting Remaining:1394</h6>
+                            
           <Typography id="discrete-slider" gutterBottom>
           Political Fairness
            </Typography>
