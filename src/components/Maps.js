@@ -1009,7 +1009,7 @@ class Maps extends Component{
     <FormControl className="Form1">
         <InputLabel htmlFor="state-native-helper">District</InputLabel>
                 <NativeSelect
-                  value={this.state.current_district}
+                  value={this.state.current_districting1}
                   onChange={this.districtingSelect}
                   inputProps={{
                   name: 'Click To Select a Districting to Compare',
@@ -1031,7 +1031,7 @@ class Maps extends Component{
       <FormControl className="Form1">
         <InputLabel htmlFor="state-native-helper">District</InputLabel>
                 <NativeSelect
-                  value={this.state.current_district}
+                  value={this.state.current_districting2}
                   onChange={this.districtingSelect}
                   inputProps={{
                   name: 'Click to select a Districting To Compare',
