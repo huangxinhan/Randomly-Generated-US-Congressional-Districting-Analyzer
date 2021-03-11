@@ -53,6 +53,7 @@ class Maps extends Component{
       StatsPage: false,
       FilterPage: false,
       activeStep: 0, //start at step 1, select state
+      current_district: null,
       
 
       //Option page
@@ -347,9 +348,14 @@ class Maps extends Component{
 
     };
 
-    showDetailedData() {
+    districtSelect = (event) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({current_district: event.target.value})
       
     }
+
+    
 
     //This method generates the different steps 
     getStepContent(stepIndex){
@@ -593,7 +599,28 @@ class Maps extends Component{
         </button>
       </div>
       <div class="modal-body">
-        ...
+      <FormControl className="Form1">
+        <InputLabel htmlFor="state-native-helper">District</InputLabel>
+                <NativeSelect
+                  value={this.state.current_district}
+                  onChange={this.districtSelect}
+                  inputProps={{
+                  name: 'Click To View Detailed Information About a District',
+                  id: 'state-native-helper',}}>
+                  <option aria-label="None" value="" />
+                  <option value={"District 1"}>District 1</option>
+                  <option value={"District 2"}>District 2</option>
+                  <option value={"District 3"}>District 3</option>
+                  <option value={"District 4"}>District 4</option>
+                  <option value={"District 5"}>District 5</option>
+                  <option value={"District 6"}>District 6</option>
+                  <option value={"District 7"}>District 7</option>
+                  <option value={"District 8"}>District 8</option>
+                  <option value={"District 9"}>District 9</option>
+                  <option value={"District 10"}>District 10</option>
+                </NativeSelect>
+          <FormHelperText>Click to select a state</FormHelperText>
+      </FormControl>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
