@@ -391,7 +391,7 @@ class Maps extends Component{
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
           Job 1
         </button>
       </h5>
@@ -574,7 +574,285 @@ class Maps extends Component{
         case 3:
           return <div>Step 4</div>
         case 4:
-          return <div>Step 5</div>
+
+          return <div>
+            <h3>Top 10 Districtings</h3>
+            <h3>By Objective Function Score</h3>
+            <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Districting 1 - Objective Function Score: 99.78
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •26 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •100,139 Districtings
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Districting 2 - Objective Function Score: 99.59
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •27 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •100,121 Districtings
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 3 - Objective Function Score: 99.33
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 4 - Objective Function Score: 98.45
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 5 - Objective Function Score: 97.73
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 6 - Objective Function Score: 96.59
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 7 - Objective Function Score: 94.34
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 8 - Objective Function Score: 93.84
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 9 - Objective Function Score: 92.24
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Districting 10 - Objective Function Score: 90.21
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body" style ={{fontSize:"20px"}}>
+      •New York 
+        <br></br><br></br><br></br>
+        •28 Districtings 
+        <br></br><br></br><br></br>
+        •Additional Data 
+        <br></br><br></br><br></br>
+        •101,230 Districtings 
+        <br></br><br></br><br></br>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+          Select Job
+        </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
       }
     }
 
