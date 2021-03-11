@@ -70,6 +70,30 @@ class Maps extends Component{
       Compactness: 0,
       PopulationEquality:0,
       Objective: [0,0],
+
+
+      //Step3, slect options texts
+
+      CompactnessType:'',
+      ConstrainType:'',
+      //third one is not needed.↓
+
+      
+
+      // step3, corresponding slider values to options
+      GraphCompactness:0,
+      PopulationFatness:0,
+      PolsbyPopper:0,
+
+      TotalPopulation:0,
+      VotingAgePopulation:0,
+      CitizenVotingAgePopulation:0,
+      MajorityMinorityDistricts:0,
+
+      //belows are used to update slider value based on different option selections.
+
+      CompactnessTypeSliderValue:0,
+
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
@@ -231,6 +255,42 @@ class Maps extends Component{
     handleObjChange = (event , newValue) => {
       this.setState({Objective: newValue});
     };
+    
+
+    handleCompactnessTypeChange = (event) => {
+      this.setState({CompactnessType: event.target.value})
+
+      if(event.target.value === "graph compactness"){
+        this.setState({CompactnessTypeSliderValue: this.state.GraphCompactness})
+        console.log(this.state.CompactnessTypeSliderValue)
+      }
+      else if(event.target.value === "population fatness"){
+        this.setState({CompactnessTypeSliderValue: this.state.PopulationFatness})
+        console.log(this.state.CompactnessTypeSliderValue)
+      }
+      else if(event.target.value==="Polsby-Popper"){
+        this.setState({CompactnessTypeSliderValue: this.state.PolsbyPopper})
+        console.log(this.state.CompactnessTypeSliderValue)
+      }
+      
+    }
+    handleChangeCompactnessTypeSliderValue = (event,value)=>{
+      this.setState({CompactnessTypeSliderValue: value})
+
+      if(this.state.CompactnessType === "graph compactness"){
+        this.setState({GraphCompactness: value })
+        // console.log(this.state.GraphCompactness)
+      }
+      else if(this.state.CompactnessType  === "population fatness"){
+        this.setState({PopulationFatness: value})
+        // console.log(this.state.PopulationFatness)
+      }
+      else if(this.state.CompactnessType ==="Polsby-Popper"){
+        this.setState({PolsbyPopper: value})
+        // console.log(this.state.PolsbyPopper)
+      }
+    }
+
 
     checkerAchange = (event) =>
     {
@@ -501,8 +561,8 @@ class Maps extends Component{
                  <FormControl className="Form1">
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
-                          value={this.state.current_state}
-                          onChange={this.handleChangeCompactness}
+                          value={this.state.CompactnessType}
+                          onChange={this.handleCompactnessTypeChange}
                           inputProps={{
                           name: 'Click To Select A Compactness type',
                           id: 'state-native-helper',}}>
@@ -518,7 +578,8 @@ class Maps extends Component{
                           
                           </Typography>
                           <Slider 
-                            defaultValue={this.state.MajorityMinority}
+                            defaultValue={0}
+                            value={this.state.CompactnessTypeSliderValue}
                             getAriaValueText={valuetext}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
@@ -526,7 +587,7 @@ class Maps extends Component{
                             marks
                             min={0}
                             max={1}
-                            onChange={this.handleMajorChange}
+                            onChange={this.handleChangeCompactnessTypeSliderValue}
                           />
                           </div>
                 </div>
@@ -536,7 +597,7 @@ class Maps extends Component{
                 <FormControl className="Form1">
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
-                          value={this.state.current_state}
+                          value={this.state.Constraints}
                           onChange={this.handleChangeCompactness}
                           inputProps={{
                           name: 'Click To Select population constrain type',
@@ -570,7 +631,7 @@ class Maps extends Component{
                 <FormControl className="Form1">
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
-                          value={this.state.current_state}
+                          value={this.state.MajorityMinority}
                           onChange={this.handleChangeCompactness}
                           inputProps={{
                           name: 'Click To Select Majority-Minority Districts',
