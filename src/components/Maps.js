@@ -1604,7 +1604,8 @@ class Maps extends Component{
         return(
           <div>
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
-              <div className="filternav" style={{ position: 'absolute', textAlign: 'center', zIndex: 499}}>
+            </div>
+              <div className="filternav" style={{ position: 'absolute', textAlign: 'center', zIndex: 521}}>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
 
                   <div>
@@ -1658,8 +1659,6 @@ class Maps extends Component{
 
                 </nav>
               </div>
-
-            </div>
 
             <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 501}}>
               <Stepper activeStep={this.state.activeStep} alternativeLabel>
