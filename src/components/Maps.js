@@ -99,6 +99,21 @@ class Maps extends Component{
         {
           y: [0, 1, 1, 2, 3, 5],
           type: 'box'
+        },
+        {
+          y: [0, 6, 1, 2, 9, 5],
+          type: 'box'
+        },
+        {
+          y: [10, 6, 1, 12, 9, 5],
+          type: 'box'
+        },
+        {
+          y: [0, 6, 1, 12, 19, 15],
+          type: 'box'
+        },        {
+          y: [10, 16, 11, 12, 19, 5],
+          type: 'box'
         }
       ],
 
