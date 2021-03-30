@@ -1513,7 +1513,7 @@ class Maps extends Component{
     render(){
       let nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
       if(this.state.activeStep == 5){
-        nextStepButton = null
+        nextStepButton = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
       }
       else {
         nextStepButton = <Button variant="outlined" color="primary"  class="btn btn-primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
