@@ -1827,7 +1827,7 @@ class Maps extends Component{
                {this.getStepContent(this.state.activeStep)}
               </h3>
 
-              <div className="bottomButtons" style={{position: 'absolute', textAlign: 'center', margin: 0, left: '100px', top: "900px"}}>
+              <div className="bottomButtons" style={{position: 'absolute', textAlign: 'center', margin: 0, left: '100px', top: "915px"}}>
                 <Button variant="outlined" class="btn btn-primary" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               ⠀⠀⠀⠀
                 {nextStepButton}
