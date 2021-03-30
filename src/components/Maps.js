@@ -7,6 +7,7 @@ import nydistricts from "../geojson/ny_cd.json"
 import nystate from "../geojson/ny_state_bound.json"
 import pastate from "../geojson/pa_state_bound.json"
 import mdstate from "../geojson/md_state_bound.json"
+import mdprecincts from "../geojson/MD_precincts.json"
 import boxandwhisker from "../geojson/box_and_whisker.PNG"
 import newyorkimage from "../geojson/NewYorkPng.PNG"
 import mapboxgl from "mapbox-gl"
@@ -228,7 +229,15 @@ class Maps extends Component{
         },
         onEachFeature: onEachPrecinctFeature
       });
-  
+
+      var MDprecinctLayer = L.geoJson(mdprecincts, {
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+          }
+        },
+        onEachFeature: onEachPrecinctFeature
+      });
       
   
       function onEachPrecinctFeature(feature, layer) {
@@ -255,10 +264,11 @@ class Maps extends Component{
       NYprecinctLayer.hideCode = "NYPRECINCT"
       PAStateLayer.hideCode = "PASTATE"
       MDStateLayer.hideCode = "MDSTATE"
+      MDprecinctLayer.hideCode = "MDPRECINCT"
       //add them to the backup
       //backup is set up like [nystate, nydistrict, nyprecinct, PAstate, PAdistrict, PAprecinct, MDstate, MDdistrict, Mdprecinct]. Load them using the respective index. 
-      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, null]})
-      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, null]})
+      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, MDprecinctLayer]})
+      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, MDprecinctLayer]})
       
 
       //Generates a random coloring for each district
@@ -428,6 +438,13 @@ class Maps extends Component{
       else if (this.state.checkerA === true && this.state.current_state == "New York"){
         this.hidegeoJson(this.searchStateByHideCode("NYPRECINCT"),this.state.Map)
       }
+
+      if (this.state.checkerA === false && this.state.current_state == "Maryland"){
+        this.showgeoJson(this.searchStateByHideCode("MDPRECINCT"), this.state.Map)
+      }
+      else if (this.state.checkerA === true && this.state.current_state == "Maryland"){
+        this.hidegeoJson(this.searchStateByHideCode("MDPRECINCT"),this.state.Map)
+      }
     }
 
     checkerBchange = (event) =>
@@ -453,7 +470,7 @@ class Maps extends Component{
 
     searchStateByHideCode(hideCode){
       for (var i = 0; i < this.state.maps.length; i++){
-        if (this.state.maps[i].hideCode === hideCode){
+        if (this.state.maps[i] != null && this.state.maps[i].hideCode === hideCode){
           return this.state.maps[i]
         }
       }
