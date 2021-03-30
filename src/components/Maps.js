@@ -1443,14 +1443,16 @@ class Maps extends Component{
   </div>
 </div>
 
+<h3>Analyze Districtings</h3>
 <FormControl className="Form1">
-        <InputLabel htmlFor="state-native-helper">District</InputLabel>
+        <InputLabel htmlFor="state-native-helper">Select Districtings to Analyze</InputLabel>
                 <NativeSelect
                   value={this.state.category}
                   onChange={this.categorySelect}
                   inputProps={{
-                  name: 'Click To Select a Districting to Compare',
+                  name: 'Click To Select a Districting',
                   id: 'state-native-helper',}}>
+                    <option aria-label="None" value=""/>⠀⠀
                   <option value={"1"}>Top 10 Districtings by Objective Function Score</option>
                   <option value={"2"}>Top 10 Districtings by Majority Minority</option>
                   <option value={"3"}>Top 10 Districtings by Closest to the Enacted Districting</option>
