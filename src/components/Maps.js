@@ -5,8 +5,10 @@ import nyprecincts from "../geojson/ny_final.json"
 import nydistricts from "../geojson/ny_cd.json"
 import nystate from "../geojson/ny_state_bound.json"
 import pastate from "../geojson/pa_state_bound.json"
+import padistricts from "../geojson/PA_cd.json"
 import paprecincts from "../geojson/PA_precincts.json"
 import mdstate from "../geojson/md_state_bound.json"
+import mddistricts from "../geojson/Maryland_cd.json"
 import mdprecincts from "../geojson/MD_precincts.json"
 import newyorkimage from "../geojson/NewYorkPng.PNG"
 import mapboxgl from "mapbox-gl"
@@ -206,6 +208,26 @@ class Maps extends Component{
         },
         onEachFeature: onEachDistrictFeature
       });
+
+      var PAdistrictLayer = L.geoJson(padistricts, {
+        weight: 1,
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+          }
+        },
+        onEachFeature: onEachDistrictFeature
+      });
+
+      var MDdistrictLayer = L.geoJson(mddistricts, {
+        weight: 1,
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+          }
+        },
+        onEachFeature: onEachDistrictFeature
+      });
   
       
   
@@ -279,12 +301,14 @@ class Maps extends Component{
       NYprecinctLayer.hideCode = "NYPRECINCT"
       PAStateLayer.hideCode = "PASTATE"
       MDStateLayer.hideCode = "MDSTATE"
+      MDdistrictLayer.hideCode = "MDDISTRICT"
       MDprecinctLayer.hideCode = "MDPRECINCT"
       PAprecinctLayer.hideCode = "PAPRECINCT"
+      PAdistrictLayer.hideCode = "PADISTRICT"
       //add them to the backup
       //backup is set up like [nystate, nydistrict, nyprecinct, PAstate, PAdistrict, PAprecinct, MDstate, MDdistrict, Mdprecinct]. Load them using the respective index. 
-      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, PAprecinctLayer, MDStateLayer, null, MDprecinctLayer]})
-      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, PAprecinctLayer, MDStateLayer, null, MDprecinctLayer]})
+      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, PAdistrictLayer, PAprecinctLayer, MDStateLayer, MDdistrictLayer, MDprecinctLayer]})
+      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, PAdistrictLayer, PAprecinctLayer, MDStateLayer, MDdistrictLayer, MDprecinctLayer]})
       
 
       //Generates a random coloring for each district
@@ -479,6 +503,20 @@ class Maps extends Component{
       }
       else if (this.state.checkerB === true && this.state.current_state == "New York"){
         this.hidegeoJson(this.searchStateByHideCode("NYDISTRICT"), this.state.Map)
+      }
+
+      if (this.state.checkerB === false && this.state.current_state == "Pennsylvania"){
+        this.showgeoJson(this.searchStateByHideCode("PADISTRICT"), this.state.Map)
+      }
+      else if (this.state.checkerB === true && this.state.current_state == "Pennsylvania"){
+        this.hidegeoJson(this.searchStateByHideCode("PADISTRICT"), this.state.Map)
+      }
+
+      if (this.state.checkerB === false && this.state.current_state == "Maryland"){
+        this.showgeoJson(this.searchStateByHideCode("MDDISTRICT"), this.state.Map)
+      }
+      else if (this.state.checkerB === true && this.state.current_state == "Maryland"){
+        this.hidegeoJson(this.searchStateByHideCode("MDDISTRICT"), this.state.Map)
       }
 
     }
