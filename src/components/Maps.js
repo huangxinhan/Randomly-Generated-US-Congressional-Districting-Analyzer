@@ -588,7 +588,7 @@ class Maps extends Component{
           return <div>
                 <h3>Select a Job</h3>
                 
-                <div class="card text-white bg-secondary mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
+                <div class="card bg-light mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
                 <div class="card-body">
                 <h5 class="card-title">Job 1</h5>
                 <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
@@ -601,7 +601,7 @@ class Maps extends Component{
                 </div>
 
                 
-                <div class="card text-white bg-secondary mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
+                <div class="card bg-light mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
                 <div class="card-body">
                 <h5 class="card-title">Job 2</h5>
                 <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
@@ -614,7 +614,7 @@ class Maps extends Component{
                 </div>
 
                 
-                <div class="card text-white bg-secondary mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
+                <div class="card bg-light mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
                 <div class="card-body">
                 <h5 class="card-title">Job 3</h5>
                 <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
@@ -1406,6 +1406,7 @@ class Maps extends Component{
 </div>
 
 <h3>Analyze Districtings</h3>
+
 <FormControl className="Form1">
         <InputLabel htmlFor="state-native-helper">Select Districtings to Analyze</InputLabel>
                 <NativeSelect
@@ -1422,271 +1423,89 @@ class Maps extends Component{
                 </NativeSelect>
           <FormHelperText>Click to select a category</FormHelperText>
       </FormControl>
-            <div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Districting 1 - Objective Function Score: 99.78
-        </button>
-      </h5>
-    </div>
 
-    <div id="collapseOne" class="accordion body collapse" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 0
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 1 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
       </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Districting 2 - Objective Function Score: 99.59
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 0
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 2 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
       </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Districting 3 - Objective Function Score: 99.33
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 0
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 3 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 4 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 5 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 6 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 7 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 8 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 9 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
+      <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <p class="card-text">Districting 10 - Score: 99.72⠀
+                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                 </p>
+                </div>
+      </div>
 
       </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingFour">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-        Districting 4 - Objective Function Score: 98.45
-        </button>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 0
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingFive">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-        Districting 5 - Objective Function Score: 97.73
-        </button>
-      </h5>
-    </div>
-    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 0
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingSix">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-        Districting 6 - Objective Function Score: 96.59
-        </button>
-      </h5>
-    </div>
-    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 1
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingSeven">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-        Districting 7 - Objective Function Score: 94.34
-        </button>
-      </h5>
-    </div>
-    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 1
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingEight">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-        Districting 8 - Objective Function Score: 93.84
-        </button>
-      </h5>
-    </div>
-    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 1
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingNine">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-        Districting 9 - Objective Function Score: 92.24
-        </button>
-      </h5>
-    </div>
-    <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 1
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTen">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-        Districting 10 - Objective Function Score: 90.21
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      Deviation From Average: 80
-        <br></br><br></br><br></br>
-      Deviation From Enacted: 80
-        <br></br><br></br><br></br>
-      Population Equality: 80
-        <br></br><br></br><br></br>
-      Political Fairness: 80
-        <br></br><br></br><br></br>
-      Split Counties: 1
-        <br></br><br></br><br></br>
-      <button type="button" class="btn btn-info">Load Districting</button>
-      <br></br><br></br><br></br>
-      <button type="button" class="btn btn-success">Show Detailed Data</button>
-      </div>
-    </div>
-  </div>
-</div>
-          </div>
       }
     }
 
