@@ -1736,7 +1736,7 @@ class Maps extends Component{
 
 <div>
   <h5>  &nbsp;&nbsp;&nbsp;Current State</h5>
-  <h5>{this.state.current_state}</h5>
+  <h5>⠀{this.state.current_state}</h5>
 </div>
 
 <button class='btn btn-secondary btn-lg' 
