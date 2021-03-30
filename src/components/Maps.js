@@ -82,6 +82,10 @@ class Maps extends Component{
       DeviationFromAverage:0,
       Objective: [0,0],
 
+      //Checkers for job selection
+      job1Checked: false,
+      job2Checked: false,
+      job3Checked: false,
 
       //Step3, slect options texts
 
@@ -250,6 +254,11 @@ class Maps extends Component{
         }
         precinct_color.set(keyString, color)
         return color 
+      }
+    }
+
+    selectJob = (newValue) => {
+      if (document.getElementById("flexCheckDefault 1").checked){
       }
     }
 
@@ -584,7 +593,7 @@ class Maps extends Component{
                 <h5 class="card-title">Job 1</h5>
                 <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
                 <p class="card-text">•Additional Parameters</p>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 1" onClick={this.selectJob}/>
                   <label class="form-check-label" for="flexCheckDefault">
                     Select Job
                   </label>
@@ -597,7 +606,7 @@ class Maps extends Component{
                 <h5 class="card-title">Job 2</h5>
                 <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
                 <p class="card-text">•Additional Parameters</p>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 2"/>
                   <label class="form-check-label" for="flexCheckDefault">
                     Select Job
                   </label>
@@ -610,7 +619,7 @@ class Maps extends Component{
                 <h5 class="card-title">Job 3</h5>
                 <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
                 <p class="card-text">•Additional Parameters</p>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 3"/>
                   <label class="form-check-label" for="flexCheckDefault">
                     Select Job
                   </label>
@@ -1711,60 +1720,74 @@ class Maps extends Component{
           <div>
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
-              <div className="filternav" style={{ position: 'absolute', textAlign: 'center', zIndex: 501}}>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+            <div id="accordion" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 521, left: '15px', top: "15px"}}>
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Expand Map Filter
+        </button>
+      </h5>
+    </div>
 
-                  <div>
-                    <h5>  &nbsp;&nbsp;&nbsp;Current State</h5>
-                    <h5>{this.state.current_state}</h5>
-                </div>
+    <div id="collapseOne" class="accordion body collapse" aria-labelledby="headingOne" data-parent="#accordion">
+    <div className="filternav" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" >
 
-                  <button class='btn btn-secondary btn-lg' 
-                    style={{position: 'absolute', textAlign: 'center', margin: 0, zIndex: 499, left: '30px', top: "250px"}}
-                    onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center
-                  </button>
-                  
+<div>
+  <h5>  &nbsp;&nbsp;&nbsp;Current State</h5>
+  <h5>{this.state.current_state}</h5>
+</div>
 
-                  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '20px'}}>
-                    <div className = "D1" > 
-                    <br/><br/><br/><br/><br/>
-                    <div>
-                    Show Precincts                        
-                    <div></div>
-                    OFF
-                      <Switch
-                        checked={this.state.checkedA}
-                        onChange={this.checkerAchange}
-                        color="primary"
-                        name="checkedA"
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                      />
-                      ON
-                    </div>
-                    </div>
-                    </div>
+<button class='btn btn-secondary btn-lg' 
+  style={{position: 'absolute', textAlign: 'center', margin: 0, left: '30px', top: "250px"}}
+  onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center
+</button>
 
-                    <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '70px'}}>
-                    <div className = "D1" > 
-                    <div>
-                    Default Districtings
-                    <div></div>
-                    OFF
-                      <Switch
-                        checked={this.state.checkedB}
-                        onChange={this.checkerBchange}
-                        color="primary"
-                        name="checkedB"
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                      />
-                      ON
-                    </div>
-                    </div>
-                    </div>
-             
 
-                </nav>
-              </div>
+<div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '20px'}}>
+  <div className = "D1" > 
+  <br/><br/><br/><br/><br/>
+  <div>
+  Show Precincts                        
+  <div></div>
+  OFF
+    <Switch
+      checked={this.state.checkedA}
+      onChange={this.checkerAchange}
+      color="primary"
+      name="checkedA"
+      inputProps={{ 'aria-label': 'primary checkbox' }}
+    />
+    ON
+  </div>
+  </div>
+  </div>
+
+  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '70px'}}>
+  <div className = "D1" > 
+  <div>
+  Default Districtings
+  <div></div>
+  OFF
+    <Switch
+      checked={this.state.checkedB}
+      onChange={this.checkerBchange}
+      color="primary"
+      name="checkedB"
+      inputProps={{ 'aria-label': 'primary checkbox' }}
+    />
+    ON
+  </div>
+  </div>
+  </div>
+
+
+</nav>
+</div>
+    </div>
+  </div>
+  </div>
 
             <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 501}}>
               <Stepper activeStep={this.state.activeStep} alternativeLabel>

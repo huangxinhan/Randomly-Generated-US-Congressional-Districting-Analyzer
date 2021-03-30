@@ -71,15 +71,11 @@
   }
 
 .filternav {
-  height: 35%; /* Full-height: remove this if you want "auto" height */
-  width: 10%; /* Set the width of the sidebar */
-  position: absolute; /* Fixed Sidebar (stay in place on scroll) */
-  top: 0; /* Stay at the top */
-  left: 0;
+  height: 350px;
   background-color:#ffffff; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
-  border: 1px solid black !important;
+
 }
 
 /* The navigation menu links */
