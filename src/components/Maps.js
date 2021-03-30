@@ -1,14 +1,13 @@
 import React, { useState, Component} from 'react'
 import ReactDOM from 'react-dom'
 import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
-import marylandPrecincts from "../geojson/md_2016_w_ushouse.json"
 import nyprecincts from "../geojson/ny_final.json"
 import nydistricts from "../geojson/ny_cd.json"
 import nystate from "../geojson/ny_state_bound.json"
 import pastate from "../geojson/pa_state_bound.json"
+import paprecincts from "../geojson/PA_precincts.json"
 import mdstate from "../geojson/md_state_bound.json"
 import mdprecincts from "../geojson/MD_precincts.json"
-import boxandwhisker from "../geojson/box_and_whisker.PNG"
 import newyorkimage from "../geojson/NewYorkPng.PNG"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
@@ -155,15 +154,17 @@ class Maps extends Component{
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
   
       var NYStateLayer = L.geoJson(nystate, {
+        weight: 1,
         style: function(feature) {
           if (feature.properties){
             return {color: 'black', fillColor: 'blue', opacity:0.5}
           }
-        },
+        }, 
         onEachFeature: onEachStateFeature
       });
 
       var PAStateLayer = L.geoJson(pastate, {
+        weight: 1,
         style: function(feature) {
           if (feature.properties){
             return {color: 'black', fillColor: 'blue', opacity: 0.5}
@@ -173,6 +174,7 @@ class Maps extends Component{
       })
   
       var MDStateLayer = L.geoJson(mdstate, {
+        weight: 1,
         style: function(feature) {
           if (feature.properties){
             return {color: 'black', fillColor: 'blue', opacity: 0.5}
@@ -196,6 +198,7 @@ class Maps extends Component{
   
       //geojson for New York State Congressional Districtings
       var NYdistrictLayer = L.geoJson(nydistricts, {
+        weight: 1,
         style: function(feature) {
           if (feature.properties){
             return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
@@ -222,6 +225,7 @@ class Maps extends Component{
       //geojson for New York State precincts
       
       var NYprecinctLayer = L.geoJson(nyprecincts, {
+        weight: 1,
         style: function(feature) {
           if (feature.properties){
             return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
@@ -231,6 +235,17 @@ class Maps extends Component{
       });
 
       var MDprecinctLayer = L.geoJson(mdprecincts, {
+        weight: 1,
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+          }
+        },
+        onEachFeature: onEachPrecinctFeature
+      });
+
+      var PAprecinctLayer = L.geoJson(paprecincts, {
+        weight: 1,
         style: function(feature) {
           if (feature.properties){
             return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
@@ -265,10 +280,11 @@ class Maps extends Component{
       PAStateLayer.hideCode = "PASTATE"
       MDStateLayer.hideCode = "MDSTATE"
       MDprecinctLayer.hideCode = "MDPRECINCT"
+      PAprecinctLayer.hideCode = "PAPRECINCT"
       //add them to the backup
       //backup is set up like [nystate, nydistrict, nyprecinct, PAstate, PAdistrict, PAprecinct, MDstate, MDdistrict, Mdprecinct]. Load them using the respective index. 
-      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, MDprecinctLayer]})
-      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, null, MDStateLayer, null, MDprecinctLayer]})
+      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, PAprecinctLayer, MDStateLayer, null, MDprecinctLayer]})
+      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, null, PAprecinctLayer, MDStateLayer, null, MDprecinctLayer]})
       
 
       //Generates a random coloring for each district
@@ -444,6 +460,13 @@ class Maps extends Component{
       }
       else if (this.state.checkerA === true && this.state.current_state == "Maryland"){
         this.hidegeoJson(this.searchStateByHideCode("MDPRECINCT"),this.state.Map)
+      }
+
+      if (this.state.checkerA === false && this.state.current_state == "Pennsylvania"){
+        this.showgeoJson(this.searchStateByHideCode("PAPRECINCT"), this.state.Map)
+      }
+      else if (this.state.checkerA === true && this.state.current_state == "Pennsylvania"){
+        this.hidegeoJson(this.searchStateByHideCode("PAPRECINCT"),this.state.Map)
       }
     }
 
