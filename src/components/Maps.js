@@ -629,12 +629,11 @@ class Maps extends Component{
                 </div>
         case 2:
           return <div>
-            <h2 Set Constraints/>
-            <br></br>
-            <div className="S2" style={{ position: 'absolute', textAlign: 'left'}} >
-                <div>Select Compactness
+            <h2>Set Constraints</h2>
+            <div className="S2" style={{ textAlign: 'left'}} >
+                <div>⠀⠀⠀⠀Select Compactness
                 <br></br>
-                 <FormControl className="Form1">
+                 <FormControl className="Form1" style={{left: "55px"}}>
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
                           value={this.state.CompactnessType}
@@ -642,14 +641,14 @@ class Maps extends Component{
                           inputProps={{
                           name: 'Click To Select A Compactness type',
                           id: 'state-native-helper',}}>
-                          <option aria-label="None" value="" />
+                          <option aria-label="None" value="">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</option>
                           <option value={"graph compactness"}>graph compactness</option>
                           <option value={"population fatness"}>population fatness</option>
                           <option value={"Polsby-Popper"}>Polsby-Popper</option>
                         </NativeSelect>
                       <FormHelperText>Select compactness Type</FormHelperText>
                     </FormControl>
-                    <div className = "S1"> 
+                    <div className = "S1" style={{left: "40px"}}> 
                     <Typography id="discrete-slider" gutterBottom>
                           
                           </Typography>
@@ -669,9 +668,9 @@ class Maps extends Component{
                           </div>
                 </div>
                 <br></br><br></br>
-                <div>Population Constraints 
+                <div>⠀⠀⠀⠀Population Constraints 
                 <br></br>
-                <FormControl className="Form1">
+                <FormControl className="Form1" style={{left: "55px"}}>
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
                           value={this.state.ConstrainType}
@@ -679,14 +678,14 @@ class Maps extends Component{
                           inputProps={{
                           name: 'Click To Select population constrain type',
                           id: 'state-native-helper',}}>
-                          <option aria-label="None" value="" />
+                          <option aria-label="None" value="">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</option>
                           <option value={"total population"}>total population</option>
                           <option value={"voting age population (TVAP)"}>voting age population (TVAP)</option>
                           <option value={"citizen voting age population (CVAP)"}>citizen voting age population (CVAP)</option>
                         </NativeSelect>
                       <FormHelperText>Select Population constrain Type</FormHelperText>
                     </FormControl>
-                    <div className = "S1"> 
+                    <div className = "S1" style={{left: "40px"}}> 
                     <Typography id="discrete-slider" gutterBottom>
                       
                       </Typography>
@@ -706,9 +705,9 @@ class Maps extends Component{
                       </div>
                 </div>
                 <br></br><br></br>
-                <div>Majority-Minority Districts
+                <div>⠀⠀⠀⠀Majority-Minority Districts
                 <br></br>
-                <FormControl className="Form1">
+                <FormControl className="Form1" style={{left: "55px"}}>
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
                           value={this.state.MajorityMinorityDistricts}
@@ -716,7 +715,7 @@ class Maps extends Component{
                           inputProps={{
                           name: 'Click To Select Majority-Minority Districts',
                           id: 'state-native-helper',}}>
-                          <option aria-label="None" value="" />
+                          <option aria-label="None" value="">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</option>
                           <option value={"0"}>0</option>
                           <option value={"1"}>1</option>
                           <option value={"2"}>2</option>
@@ -728,9 +727,9 @@ class Maps extends Component{
                     </FormControl>
                 </div>
                 <br></br><br></br>
-                <div>Set Protected Incumbents
+                <div>⠀⠀⠀⠀Set Protected Incumbents
                   <br></br>
-                  <button style ={{fontSize:"15px"}} data-toggle="modal" data-target="#myModal">
+                  <button style ={{position:"absolute", fontSize:"15px", left:"55px"}} data-toggle="modal" data-target="#myModal">
                         Select Incumbents
                         
                       </button>
@@ -857,7 +856,7 @@ class Maps extends Component{
 
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Apply</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Apply</button>
       </div>
 
     </div>
@@ -1605,7 +1604,7 @@ class Maps extends Component{
           <div>
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
-              <div className="filternav" style={{ position: 'absolute', textAlign: 'center', zIndex: 521}}>
+              <div className="filternav" style={{ position: 'absolute', textAlign: 'center', zIndex: 501}}>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
 
                   <div>
