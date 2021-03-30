@@ -13,6 +13,7 @@ import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
 import "./com.css";
+import Plot from 'react-plotly.js';
 
 //material-ui
 import { makeStyles } from '@material-ui/core/styles';
@@ -93,7 +94,13 @@ class Maps extends Component{
       ConstrainType:'',
       //third one is not needed.↓
 
-      
+      //Box and Whisker data
+      BoxAndWhiskerData : [
+        {
+          y: [0, 1, 1, 2, 3, 5],
+          type: 'box'
+        }
+      ],
 
       // step3, corresponding slider values to options
       GraphCompactness:0,
@@ -1267,9 +1274,15 @@ class Maps extends Component{
   </tbody>
 </table>
     </div>
+
     <div role="tabpanel" class='tab-pane' id="boxandwhisker"> 
       <h3>Minority Popularity Box and Whisker Plot</h3>
-      <img src={boxandwhisker} /></div>
+      <Plot
+        data = {this.state.BoxAndWhiskerData}
+      />
+      </div>
+
+
     <div role="tabpanel" class='tab-pane' id="comparedistrictings">
     <FormControl className="Form1">
         <InputLabel htmlFor="state-native-helper">District</InputLabel>
