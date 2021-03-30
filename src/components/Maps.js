@@ -784,7 +784,7 @@ class Maps extends Component{
                 <br></br>
                 <div>⠀⠀⠀⠀Set Protected Incumbents
                   <br></br>
-                  <button style ={{position:"absolute", fontSize:"15px", left:"55px"}} data-toggle="modal" data-target="#myModal">
+                  <button style ={{position:"absolute", fontSize:"15px", left:"53px"}} data-toggle="modal" data-target="#myModal">
                         Select Incumbents
                         
                       </button>
