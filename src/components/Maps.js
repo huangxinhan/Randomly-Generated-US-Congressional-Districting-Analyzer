@@ -1167,6 +1167,9 @@ class Maps extends Component{
       <div class="modal-body">
 <ul class="nav nav-tabs">
   <li class="nav-item">
+    <a class="nav-link" href="#districtingdata" data-toggle="tab">Districting Data</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="#districtdata" data-toggle="tab">District Data</a>
   </li>
   <li class="nav-item">
@@ -1177,7 +1180,75 @@ class Maps extends Component{
   </li>
 </ul>
 
+
+
 <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="districtingdata" style={{fontSize: "20px"}}>
+        <div><br></br></div>
+       Objective Function Score: 99.73
+       <div><br></br></div>
+
+<table class="table table-striped">
+<thead>
+    <tr>
+      <th scope="col">Objective Function Attributes</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+
+<tbody>
+  <tr>
+    <th scope="row">Population Equality</th>
+    <td>0.3</td>
+    <td>0.2</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Split Counties</th>
+    <td>0.4</td>
+    <td>0.2</td>
+  </tr>
+  <tr>
+    <th scope="row">Deviation From Average Districting</th>
+    <td>0.4</td>
+    <td>0.3</td>
+  </tr>
+  <tr>
+    <th scope="row">Deviation From Enacted Districting(Area)</th>
+    <td>0.5</td>
+    <td>0.3</td>
+  </tr>
+  <tr>
+    <th scope="row">Deviation From Enacted Districting(Population)</th>
+    <td>0.2</td>
+    <td>0.4</td>
+  </tr>
+  <tr>
+    <th scope="row">Compactness(Polsby-Popper)</th>
+    <td>0.3</td>
+    <td>0.1</td>
+  </tr>
+  <tr>
+    <th scope="row">Compactness(Population Fatness)</th>
+    <td>0.8</td>
+    <td>0.1</td>
+  </tr>
+  <tr>
+    <th scope="row">Compactness(Graph)</th>
+    <td>0.6</td>
+    <td>0.5</td>
+  </tr>
+  <tr>
+    <th scope="row">Political Fairness</th>
+    <td>0.2</td>
+    <td>0.6</td>
+  </tr>
+</tbody>
+</table>
+    </div>
+
+
     <div role="tabpanel" class='tab-pane' id="districtdata">
     <FormControl className="Form1">
         <InputLabel htmlFor="state-native-helper">District</InputLabel>
@@ -1218,7 +1289,7 @@ class Maps extends Component{
           <FormHelperText>Click to select a District</FormHelperText>
       </FormControl>
   
-      <table class="table">
+      <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Data Types</th>
@@ -1346,7 +1417,7 @@ class Maps extends Component{
       <br></br><br></br>
       <img src={newyorkimage} />⠀⠀⠀⠀⠀⠀⠀⠀<img src={newyorkimage} />
       <br></br><br></br>
-      <table class="table">
+      <table class="table table-striped">
 
   <tbody>
     <tr>
