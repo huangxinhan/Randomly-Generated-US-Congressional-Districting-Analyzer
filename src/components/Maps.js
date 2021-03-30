@@ -577,93 +577,46 @@ class Maps extends Component{
                 </div>
         case 1:
           return <div>
-                    <h3>Select a Job</h3>
-<div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Job 1
-        </button>
-      </h5>
-    </div>
+                <h3>Select a Job</h3>
+                
+                <div class="card text-white bg-secondary mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
+                <div class="card-body">
+                <h5 class="card-title">Job 1</h5>
+                <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
+                <p class="card-text">•Additional Parameters</p>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Select Job
+                  </label>
+                </div>
+                </div>
 
-    <div id="collapseOne" class="accordion body collapse" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
-        <br></br><br></br><br></br>
-        •26 Districts
-        <br></br><br></br><br></br>
-        •Additional Data 
-        <br></br><br></br><br></br>
-        •100,139 Districtings
-        <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
+                
+                <div class="card text-white bg-secondary mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
+                <div class="card-body">
+                <h5 class="card-title">Job 2</h5>
+                <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
+                <p class="card-text">•Additional Parameters</p>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Select Job
+                  </label>
+                </div>
+                </div>
 
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Job 2 
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
-        <br></br><br></br><br></br>
-        •27 Districts
-        <br></br><br></br><br></br>
-        •Additional Data 
-        <br></br><br></br><br></br>
-        •100,121 Districtings
-        <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Job 3 
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body" style ={{fontSize:"20px"}}>
-      •New York 
-        <br></br><br></br><br></br>
-        •28 Districts
-        <br></br><br></br><br></br>
-        •Additional Data 
-        <br></br><br></br><br></br>
-        •101,230 Districtings 
-        <br></br><br></br><br></br>
-        <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-        <label class="form-check-label" for="flexCheckDefault">
-          Select Job
-        </label>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+                
+                <div class="card text-white bg-secondary mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
+                <div class="card-body">
+                <h5 class="card-title">Job 3</h5>
+                <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
+                <p class="card-text">•Additional Parameters</p>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Select Job
+                  </label>
+                </div>
+                </div>
+    
                 </div>
         case 2:
           return <div>
