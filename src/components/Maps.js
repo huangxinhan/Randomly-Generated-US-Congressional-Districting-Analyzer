@@ -631,7 +631,7 @@ class Maps extends Component{
           return <div>
             <h2 Set Constraints/>
             <br></br>
-            <div className="S2" >
+            <div className="S2" style={{ position: 'absolute', textAlign: 'left'}} >
                 <div>Select Compactness
                 <br></br>
                  <FormControl className="Form1">
@@ -1697,11 +1697,14 @@ class Maps extends Component{
               <h3>
                {this.getStepContent(this.state.activeStep)}
               </h3>
-              <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
+
+              <div className="bottomButtons" style={{position: 'absolute', textAlign: 'center', margin: 0, left: '100px', top: "900px"}}>
+                <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               ⠀⠀⠀⠀
-              {nextStepButton}
+                {nextStepButton}
               ⠀⠀⠀⠀
-              <button type="button" class="btn btn-danger" onClick={() => this.setActiveStep(this.state.activeStep, "reset")}>Reset</button>
+                <button type="button" class="btn btn-danger" onClick={() => this.setActiveStep(this.state.activeStep, "reset")}>Reset</button>
+              </div>
             </div>
 
           </div>
