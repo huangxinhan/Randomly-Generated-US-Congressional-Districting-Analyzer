@@ -1720,7 +1720,7 @@ class Maps extends Component{
           <div>
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
-            <div id="accordion filter" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 521, left: '15px', top: "15px"}}>
+            <div id="accordion filter" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501, left: '15px', top: "15px"}}>
   <div class="card">
     <div class="card-header" id="headingFilter">
       <h5 class="mb-0">
