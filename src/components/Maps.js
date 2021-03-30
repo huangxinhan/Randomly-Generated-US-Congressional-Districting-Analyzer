@@ -72,7 +72,14 @@ class Maps extends Component{
 
       MajorityMinority: 0,
       Compactness: 0,
+      PPCompactness: 0,
+      PopFatCompactness: 0,
+      GCompactness: 0,
       PopulationEquality:0,
+      DeviationFromEnacted:0,
+      DeviationFromEnactedPopulation:0,
+      SplitCounties:0,
+      DeviationFromAverage:0,
       Objective: [0,0],
 
 
@@ -94,6 +101,7 @@ class Maps extends Component{
       CitizenVotingAgePopulation:0,
 
       MajorityMinorityDistricts:0,
+      MinorityGroup: "African American",
 
       //belows are used to update slider value based on different option selections.
 
@@ -249,13 +257,39 @@ class Maps extends Component{
       this.setState({MajorityMinority :  newValue });
     };
 
-    handleComChange = (event , newValue) => {
-      this.setState({Compactness:  newValue });
+    handlePPComChange = (event , newValue) => {
+      this.setState({PPCompactness:  newValue });
+    };
+
+    handlePopFatComChange = (event , newValue) => {
+      this.setState({PopFatCompactness:  newValue });
+    };
+
+    handleGComChange = (event , newValue) => {
+      this.setState({GCompactness:  newValue });
     };
  
     handlePChange = (event , newValue) => {
       this.setState({PopulationEquality:  newValue});
     };
+
+    handleEnactedChange = (event, newValue) => {
+      this.setState({DeviationFromEnacted: newValue})
+    }
+
+  
+    handleEnactedPopulationChange = (event, newValue) => {
+      this.setState({DeviationFromEnactedPopulation: newValue})
+    }
+
+
+    handleAverageChange = (event, newValue) => {
+      this.setState({DeviationFromAverage: newValue})
+    }
+
+    handleSplitCountyChange = (event, newValue) => {
+      this.setState({SplitCounties: newValue})
+    }
 
     handleObjChange = (event , newValue) => {
       this.setState({Objective: newValue});
@@ -346,6 +380,10 @@ class Maps extends Component{
     handleChangeMajorityMinorityDistricts = (event)=>{
       this.setState({MajorityMinorityDistricts:event.target.value})
       console.log(this.state.MajorityMinorityDistricts)
+    }
+
+    handleChangeMinorityGroup = (event) => {
+      this.setState({MinorityGroup:event.target.value})
     }
 
 
@@ -629,7 +667,7 @@ class Maps extends Component{
                 </div>
         case 2:
           return <div>
-            <h2>Set Constraints</h2>
+            <h3>Set Constraints</h3>
             <div className="S2" style={{ textAlign: 'left'}} >
                 <div>⠀⠀⠀⠀Select Compactness
                 <br></br>
@@ -667,7 +705,7 @@ class Maps extends Component{
                           <h6>current value: {this.state.CompactnessTypeSliderValue}</h6>
                           </div>
                 </div>
-                <br></br><br></br>
+                <br></br>
                 <div>⠀⠀⠀⠀Population Constraints 
                 <br></br>
                 <FormControl className="Form1" style={{left: "55px"}}>
@@ -704,9 +742,26 @@ class Maps extends Component{
                       <h6>current value: {this.state.ConstrainTypeSliderValue}%</h6>
                       </div>
                 </div>
-                <br></br><br></br>
+                <br></br>
                 <div>⠀⠀⠀⠀Majority-Minority Districts
                 <br></br>
+                <FormControl className="Form1" style={{left: "55px"}}>
+                      <InputLabel htmlFor="state-native-helper">Click</InputLabel>
+                        <NativeSelect
+                          value={this.state.MinorityGroup}
+                          onChange={this.handleChangeMinorityGroup}
+                          inputProps={{
+                          name: 'Click To Select a Minority Group',
+                          id: 'state-native-helper',}}>
+                          <option aria-label="None" value="">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</option>
+                          <option value={"African American"}>African American</option>
+                          <option value={"Latino"}>Latino</option>
+                          <option value={"Asian"}>Asian</option>
+                          <option value={"Native American"}>Native American</option>
+                        </NativeSelect>
+                      <FormHelperText>Select Minority Group</FormHelperText>
+                    </FormControl>
+                  <br></br>
                 <FormControl className="Form1" style={{left: "55px"}}>
                       <InputLabel htmlFor="state-native-helper">Click</InputLabel>
                         <NativeSelect
@@ -726,7 +781,7 @@ class Maps extends Component{
                       
                     </FormControl>
                 </div>
-                <br></br><br></br>
+                <br></br>
                 <div>⠀⠀⠀⠀Set Protected Incumbents
                   <br></br>
                   <button style ={{position:"absolute", fontSize:"15px", left:"55px"}} data-toggle="modal" data-target="#myModal">
@@ -870,11 +925,12 @@ class Maps extends Component{
 
         case 4:
           return           <div className = {FilterPage}>
-                <h5>Districtings Remaining: 1,794</h5>
-          <div className = "S1"> Set Objective Functions Weight
-
-                            
-          <Typography id="discrete-slider" gutterBottom>
+            <h3>Set Objective Function Weight</h3>
+            <br></br>
+          <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
+          <Typography id="discrete-slider" gutterBottom >
           Political Fairness
            </Typography>
            <Slider 
@@ -889,14 +945,21 @@ class Maps extends Component{
              onChange={this.handleMajorChange}
            />
          </div>
+         <div class="col-2" style={{fontSize:'20px'}}>
+           <br></br>
+         {Number (this.state.MajorityMinority)}
+         </div>
+         </div>
+         </div>
 
-         <div className = "S1"> 
-
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
           <Typography id="discrete-slider" gutterBottom>
-           Compactness
+           Compactness (Polsby-Popper)
            </Typography>
            <Slider 
-             defaultValue={this.state.Compactness}
+             defaultValue={this.state.PPCompactness}
              getAriaValueText={valuetext}
              aria-labelledby="discrete-slider"
              valueLabelDisplay="auto"
@@ -904,12 +967,69 @@ class Maps extends Component{
              marks
              min={0}
              max={1}
-             onChange={this.handleComChange}
+             onChange={this.handlePPComChange}
            />
+          </div>
+            <div class="col-2" style={{fontSize:'20px'}}>
+              <br></br>
+            {this.state.PPCompactness}
+            </div>
+          </div>
          </div>
 
-         <div className = "S1"> 
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
+          <Typography id="discrete-slider" gutterBottom>
+           Compactness (Population Fatness)
+           </Typography>
+           <Slider 
+             defaultValue={this.state.PopFatCompactness}
+             getAriaValueText={valuetext}
+             aria-labelledby="discrete-slider"
+             valueLabelDisplay="auto"
+             step={0.1}
+             marks
+             min={0}
+             max={1}
+             onChange={this.handlePopFatComChange}
+           />
+          </div>
+            <div class="col-2" style={{fontSize:'20px'}}>
+              <br></br>
+            {this.state.PopFatCompactness}
+            </div>
+          </div>
+         </div>
 
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
+          <Typography id="discrete-slider" gutterBottom>
+           Compactness (Graph Compactness)
+           </Typography>
+           <Slider 
+             defaultValue={this.state.GCompactness}
+             getAriaValueText={valuetext}
+             aria-labelledby="discrete-slider"
+             valueLabelDisplay="auto"
+             step={0.1}
+             marks
+             min={0}
+             max={1}
+             onChange={this.handleGComChange}
+           />
+          </div>
+            <div class="col-2" style={{fontSize:'20px'}}>
+              <br></br>
+            {this.state.GCompactness}
+            </div>
+          </div>
+         </div>
+
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
           <Typography id="discrete-slider" gutterBottom>
           Population Equality
            </Typography>
@@ -924,15 +1044,22 @@ class Maps extends Component{
              max={1}
              onChange={this.handlePChange}
            />
+           </div>
+           <div class="col-2" style={{fontSize:'20px'}}>
+             <br></br>
+             {this.state.PopulationEquality}
+           </div>
+         </div>
          </div>
 
-         <div className = "S1"> 
-
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
           <Typography id="discrete-slider" gutterBottom>
-          Deviation from Enacted Plan
+          Deviation From Enacted Plan (Area)
            </Typography>
            <Slider 
-             defaultValue={this.state.PopulationEquality}
+             defaultValue={this.state.DeviationFromEnacted}
              getAriaValueText={valuetext}
              aria-labelledby="range-slider"
              valueLabelDisplay="auto"
@@ -940,16 +1067,75 @@ class Maps extends Component{
              marks
              min={0}
              max={1}
-             onChange={this.handlePChange}
+             onChange={this.handleEnactedChange}
            />
+           </div>
+           <div class="col-2" style={{fontSize:'20px'}}>
+             <br></br>
+             {this.state.DeviationFromEnacted}
+           </div>
          </div>
-         <div className = "S1"> 
+         </div>
 
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
+          <Typography id="discrete-slider" gutterBottom>
+          Deviation From Enacted Plan (Population)
+           </Typography>
+           <Slider 
+             defaultValue={this.state.DeviationFromEnactedPopulation}
+             getAriaValueText={valuetext}
+             aria-labelledby="range-slider"
+             valueLabelDisplay="auto"
+             step={0.1}
+             marks
+             min={0}
+             max={1}
+             onChange={this.handleEnactedPopulationChange}
+           />
+           </div>
+           <div class="col-2" style={{fontSize:'20px'}}>
+             <br></br>
+             {this.state.DeviationFromEnactedPopulation}
+           </div>
+         </div>
+         </div>
+
+
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
+          <Typography id="discrete-slider" gutterBottom>
+          Deviation From Average Districting
+           </Typography>
+           <Slider 
+             defaultValue={this.state.DeviationFromAverage}
+             getAriaValueText={valuetext}
+             aria-labelledby="range-slider"
+             valueLabelDisplay="auto"
+             step={0.1}
+             marks
+             min={0}
+             max={1}
+             onChange={this.handleAverageChange}
+           />
+           </div>
+           <div class="col-2" style={{fontSize:'20px'}}>
+             <br></br>
+             {this.state.DeviationFromAverage}
+           </div>
+         </div>
+         </div>
+
+         <div class='container'>
+            <div class='row'>
+          <div className = "S2 col-10" style={{textAlign:"left"}}>
           <Typography id="discrete-slider" gutterBottom>
           Split Counties
            </Typography>
            <Slider 
-             defaultValue={this.state.PopulationEquality}
+             defaultValue={this.state.SplitCounties}
              getAriaValueText={valuetext}
              aria-labelledby="range-slider"
              valueLabelDisplay="auto"
@@ -957,55 +1143,21 @@ class Maps extends Component{
              marks
              min={0}
              max={1}
-             onChange={this.handlePChange}
+             onChange={this.handleSplitCountyChange}
            />
+           </div>
+           <div class="col-2" style={{fontSize:'20px'}}>
+             <br></br>
+             {this.state.SplitCounties}
+           </div>
          </div>
-         <div className = "S1"> 
-
-          <Typography id="discrete-slider" gutterBottom>
-          Deviation from average districting
-           </Typography>
-           <Slider 
-             defaultValue={this.state.PopulationEquality}
-             getAriaValueText={valuetext}
-             aria-labelledby="range-slider"
-             valueLabelDisplay="auto"
-             step={0.1}
-             marks
-             min={0}
-             max={1}
-             onChange={this.handlePChange}
-           />
          </div>
 
-         <hr  style={{
-           color: '"#3719e4"',
-           backgroundColor: '"#3719e4"',
-           height: 3,
-           borderColor : '"#3719e4"'
-         }}/>
-
-           <div className = "D3"> Filter Summary
-           </div>
-           <div className = "D4"> Political Fairness：   {Number (this.state.MajorityMinority)}
-           </div>
-
-           <div className = "D4"> Compactness：   {this.state.Compactness}
-           </div>
-
-           <div className = "D4"> Population Equality：   {this.state.PopulationEquality}
-           </div>
-
-           <div className = "D4"> Deviation from Enacted Plan：   0
-           <div className = "D4"> Split Counties：   0
-           </div>
-           <div className = "D4">  Deviation from average districting：   0
-           </div>
-       </div>
    </div>
         case 3:
 
         return         <div>
+          <h3>Constraint Results</h3>
           <div class="spinner-border" role="status">
   <span class="sr-only">Loading...</span>
 </div>
