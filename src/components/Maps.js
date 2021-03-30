@@ -1720,17 +1720,17 @@ class Maps extends Component{
           <div>
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
-            <div id="accordion" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 521, left: '15px', top: "15px"}}>
+            <div id="accordion filter" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 521, left: '15px', top: "15px"}}>
   <div class="card">
-    <div class="card-header" id="headingOne">
+    <div class="card-header" id="headingFilter">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
           Expand Map Filter
         </button>
       </h5>
     </div>
 
-    <div id="collapseOne" class="accordion body collapse" aria-labelledby="headingOne" data-parent="#accordion">
+    <div id="collapseFilter" class="accordion body collapse" aria-labelledby="headingFilter" data-parent="#accordion filter">
     <div className="filternav" >
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" >
 
