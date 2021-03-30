@@ -1728,12 +1728,12 @@ class Maps extends Component{
 
 
     render(){
-      let nextStepButton = <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+      let nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
       if(this.state.activeStep == 5){
         nextStepButton = null
       }
       else {
-        nextStepButton = <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+        nextStepButton = <Button variant="outlined" color="primary"  class="btn btn-primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
       }
       let OptionPage  = "PageDisable";
 
@@ -1850,7 +1850,7 @@ class Maps extends Component{
               </h3>
 
               <div className="bottomButtons" style={{position: 'absolute', textAlign: 'center', margin: 0, left: '100px', top: "900px"}}>
-                <Button variant="outlined" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
+                <Button variant="outlined" class="btn btn-primary" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               ⠀⠀⠀⠀
                 {nextStepButton}
               ⠀⠀⠀⠀
