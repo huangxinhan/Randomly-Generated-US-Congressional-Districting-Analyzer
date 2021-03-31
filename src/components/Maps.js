@@ -133,8 +133,8 @@ class Maps extends Component{
       VotingAgePopulation:0,
       CitizenVotingAgePopulation:0,
 
-      MajorityMinorityDistricts:0,
-      MinorityGroup: "African American",
+      MajorityMinorityDistricts: null,
+      MinorityGroup: null,
 
       //belows are used to update slider value based on different option selections.
 
