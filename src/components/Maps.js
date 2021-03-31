@@ -672,27 +672,28 @@ class Maps extends Component{
       if (value === "New York"){
         this.setState({center: this.state.centerNY, zoom: 7, current_state_layer: this.state.maps_backup[0]}, 
           () => {
-            this.state.Map.flyTo(this.state.center, this.state.zoom);
+            this.state.Map.setView(this.state.center, this.state.zoom);
             this.state.Map.addLayer(this.state.current_state_layer)
           })  
+        //this.state.Map.panTo(this.state.center, this.state.zoom);
       }
 
       else if (value === "Pennsylvania"){
         this.setState({center: this.state.centerPA, zoom: 7, current_state_layer: this.state.maps_backup[3]}, 
           () => {
-            this.state.Map.flyTo(this.state.center, this.state.zoom)
+            this.state.Map.setView(this.state.center, this.state.zoom)
             this.state.Map.addLayer(this.state.current_state_layer)
           })
-        this.state.Map.flyTo(this.state.center, this.state.zoom)
+        //this.state.Map.panTo(this.state.center, this.state.zoom)
       }
 
       else if (value === "Maryland"){
         this.setState({center: this.state.centerMD, zoom: 7, current_state_layer: this.state.maps_backup[6]}, 
           () => {
-            this.state.Map.flyTo(this.state.center, this.state.zoom)
+            this.state.Map.setView(this.state.center, this.state.zoom)
             this.state.Map.addLayer(this.state.current_state_layer)
           })
-        this.state.Map.flyTo(this.state.center, this.state.zoom)
+        //this.state.Map.panTo(this.state.center, this.state.zoom)
       }
 
     };
@@ -1818,7 +1819,7 @@ class Maps extends Component{
 
 <button class='btn btn-secondary btn-lg' 
   style={{position: 'absolute', textAlign: 'center', margin: 0, left: '30px', top: "276px"}}
-  onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center
+  onClick={()=>{this.state.Map.setView(this.state.center, this.state.zoom)}}>Re-Center
 </button>
 
 
