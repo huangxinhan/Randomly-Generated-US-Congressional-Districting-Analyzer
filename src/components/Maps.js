@@ -653,9 +653,21 @@ class Maps extends Component{
       const value = event.target.value;
       this.setState({current_state: event.target.value})
 
+      //reset the state layers 
       if (this.state.current_state_layer){
         this.state.Map.removeLayer(this.state.current_state_layer);
       }
+
+      //hides all the geojsons first for precincts
+      for (var i = 0; i < this.state.maps.length; i++){
+        this.hidegeoJson(this.state.maps[i],this.state.Map)
+      }
+
+      //reset all the buttons
+      this.setState({checkerA: false, checkerB: false, checkerC: false})
+      
+
+
 
       if (value === "New York"){
         this.setState({center: this.state.centerNY, zoom: 7, current_state_layer: this.state.maps_backup[0]}, 
@@ -1818,7 +1830,7 @@ class Maps extends Component{
   <div></div>
   OFF
     <Switch
-      checked={this.state.checkedA}
+      checked={this.state.checkerA}
       onChange={this.checkerAchange}
       color="primary"
       name="checkedA"
@@ -1837,7 +1849,7 @@ class Maps extends Component{
   <div></div>
   OFF
     <Switch
-      checked={this.state.checkedC}
+      checked={this.state.checkerC}
       onChange={this.checkerCchange}
       color="primary"
       name="checkedC"
@@ -1855,7 +1867,7 @@ class Maps extends Component{
   <div></div>
   OFF
     <Switch
-      checked={this.state.checkedB}
+      checked={this.state.checkerB}
       onChange={this.checkerBchange}
       color="primary"
       name="checkedB"
