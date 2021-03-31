@@ -4,12 +4,15 @@ import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
 import nyprecincts from "../geojson/ny_final.json"
 import nydistricts from "../geojson/ny_cd.json"
 import nystate from "../geojson/ny_state_bound.json"
+import nycounty from "../geojson/ny_county.json"
 import pastate from "../geojson/pa_state_bound.json"
 import padistricts from "../geojson/PA_cd.json"
 import paprecincts from "../geojson/PA_precincts.json"
+import pacounty from "../geojson/pa_county.json"
 import mdstate from "../geojson/md_state_bound.json"
 import mddistricts from "../geojson/Maryland_cd.json"
 import mdprecincts from "../geojson/MD_precincts.json"
+import mdcounty from "../geojson/md_county.json"
 import newyorkimage from "../geojson/NewYorkPng.PNG"
 import mapboxgl from "mapbox-gl"
 import L, { layerGroup } from 'leaflet'
@@ -69,6 +72,8 @@ class Maps extends Component{
       checkerA: false,
 
       checkerB: false,
+
+      checkerC: false,
       //STATS page
       IsExpanded: false,
       // FITER page
@@ -288,14 +293,53 @@ class Maps extends Component{
         layer.on('mouseout', function(e) {
           this.closePopup();
         })
-  
-        //adding and removing layer
-        //layer.on('click', function(e) {
-          //map.removeLayer(NYprecinctLayer)
-          //alert('clicked and removed!')
-        //})
-  
       }
+
+      var NYcountyLayer = L.geoJson(nycounty, {
+        weight: 1,
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+          }
+        },
+        onEachFeature: onEachCountyFeature
+      });
+
+      var MDcountyLayer = L.geoJson(mdcounty, {
+        weight: 1,
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+          }
+        },
+        onEachFeature: onEachCountyFeature
+      });
+
+      var PAcountyLayer = L.geoJson(pacounty, {
+        weight: 1,
+        style: function(feature) {
+          if (feature.properties){
+            return {color: 'black', fillColor: getRandomColor(feature), opacity:0.5}
+          }
+        },
+        onEachFeature: onEachCountyFeature
+      });
+  
+      function onEachCountyFeature(feature, layer) {
+        layer.bindPopup(feature.properties)
+        layer.on('mouseover', function(e) {
+          if (feature.properties){
+            this.openPopup();
+          }
+        })
+        
+        layer.on('mouseout', function(e) {
+          this.closePopup();
+        })
+      }
+
+
+
       NYStateLayer.hideCode = "NYSTATE";
       NYdistrictLayer.hideCode = "NYDISTRICT"
       NYprecinctLayer.hideCode = "NYPRECINCT"
@@ -305,10 +349,13 @@ class Maps extends Component{
       MDprecinctLayer.hideCode = "MDPRECINCT"
       PAprecinctLayer.hideCode = "PAPRECINCT"
       PAdistrictLayer.hideCode = "PADISTRICT"
+      NYcountyLayer.hideCode = "NYCOUNTY"
+      MDcountyLayer.hideCode = "MDCOUNTY"
+      PAcountyLayer.hideCode = "PACOUNTY"
       //add them to the backup
-      //backup is set up like [nystate, nydistrict, nyprecinct, PAstate, PAdistrict, PAprecinct, MDstate, MDdistrict, Mdprecinct]. Load them using the respective index. 
-      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, PAdistrictLayer, PAprecinctLayer, MDStateLayer, MDdistrictLayer, MDprecinctLayer]})
-      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, PAdistrictLayer, PAprecinctLayer, MDStateLayer, MDdistrictLayer, MDprecinctLayer]})
+      //backup is set up like [nystate, nydistrict, nyprecinct, PAstate, PAdistrict, PAprecinct, MDstate, MDdistrict, Mdprecinct, NYcounty, PAcounty, MDcounty]. Load them using the respective index. 
+      this.setState({maps_backup: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, PAdistrictLayer, PAprecinctLayer, MDStateLayer, MDdistrictLayer, MDprecinctLayer, NYcountyLayer, PAcountyLayer, MDcountyLayer]})
+      this.setState({maps: [NYStateLayer, NYdistrictLayer, NYprecinctLayer, PAStateLayer, PAdistrictLayer, PAprecinctLayer, MDStateLayer, MDdistrictLayer, MDprecinctLayer, NYcountyLayer, PAcountyLayer, MDcountyLayer]})
       
 
       //Generates a random coloring for each district
@@ -519,6 +566,28 @@ class Maps extends Component{
         this.hidegeoJson(this.searchStateByHideCode("MDDISTRICT"), this.state.Map)
       }
 
+    }
+
+    checkerCchange = (event) => {
+      this.setState({checkerC: event.target.checked});
+      if (this.state.checkerC === false && this.state.current_state === "New York"){
+        this.showgeoJson(this.searchStateByHideCode("NYCOUNTY"), this.state.Map)
+      }
+      else if (this.state.checkerC === true && this.state.current_state === "New York"){
+        this.hidegeoJson(this.searchStateByHideCode("NYCOUNTY"), this.state.Map)
+      }
+      if (this.state.checkerC === false && this.state.current_state === "Pennsylvania"){
+        this.showgeoJson(this.searchStateByHideCode("PACOUNTY"), this.state.Map)
+      }
+      else if (this.state.checkerC === true && this.state.current_state === "Pennsylvania"){
+        this.hidegeoJson(this.searchStateByHideCode("PACOUNTY"), this.state.Map)
+      }
+      if (this.state.checkerC === false && this.state.current_state === "Maryland"){
+        this.showgeoJson(this.searchStateByHideCode("MDCOUNTY"), this.state.Map)
+      }
+      else if (this.state.checkerC === true && this.state.current_state === "Maryland"){
+        this.hidegeoJson(this.searchStateByHideCode("MDCOUNTY"), this.state.Map)
+      }
     }
 
     showgeoJson(layer,state){
@@ -1736,12 +1805,12 @@ class Maps extends Component{
 </div>
 
 <button class='btn btn-secondary btn-lg' 
-  style={{position: 'absolute', textAlign: 'center', margin: 0, left: '30px', top: "250px"}}
+  style={{position: 'absolute', textAlign: 'center', margin: 0, left: '30px', top: "276px"}}
   onClick={()=>{this.state.Map.flyTo(this.state.center, this.state.zoom)}}>Re-Center
 </button>
 
 
-<div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '20px'}}>
+<div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '1px', zIndex: 521}}>
   <div className = "D1" > 
   <br/><br/><br/><br/><br/>
   <div>
@@ -1760,7 +1829,26 @@ class Maps extends Component{
   </div>
   </div>
 
-  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '70px'}}>
+  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '58px'}}>
+  <div className = "D1" > 
+  <br/><br/><br/><br/><br/>
+  <div>
+  Show Counties                      
+  <div></div>
+  OFF
+    <Switch
+      checked={this.state.checkedC}
+      onChange={this.checkerCchange}
+      color="primary"
+      name="checkedC"
+      inputProps={{ 'aria-label': 'primary checkbox' }}
+    />
+    ON
+  </div>
+  </div>
+  </div>
+
+  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '20px', top: '70px', zIndex: 521}}>
   <div className = "D1" > 
   <div>
   Default Districtings
@@ -1777,6 +1865,8 @@ class Maps extends Component{
   </div>
   </div>
   </div>
+
+
 
 
 </nav>
