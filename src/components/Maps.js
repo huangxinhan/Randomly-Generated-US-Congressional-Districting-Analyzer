@@ -326,16 +326,16 @@ class Maps extends Component{
       });
   
       function onEachCountyFeature(feature, layer) {
-        layer.bindPopup(feature.properties)
-        layer.on('mouseover', function(e) {
-          if (feature.properties){
-            this.openPopup();
-          }
-        })
+        //layer.bindPopup(feature.properties)
+        //layer.on('mouseover', function(e) {
+          //if (feature.properties){
+            //this.openPopup();
+          //}
+        //})
         
-        layer.on('mouseout', function(e) {
-          this.closePopup();
-        })
+        //layer.on('mouseout', function(e) {
+          //this.closePopup();
+        //})
       }
 
 
