@@ -1,8 +1,8 @@
 import React, { useState, Component} from 'react'
 import ReactDOM from 'react-dom'
-import ReactMapboxGL, { Source, Layer } from "@urbica/react-map-gl";
 import nyprecincts from "../geojson/ny_final.json"
 import nydistricts from "../geojson/ny_cd.json"
+import testnydistricts from "../geojson/ny_cd.geojson"
 import nystate from "../geojson/ny_state_bound.json"
 import nycounty from "../geojson/ny_county.json"
 import pastate from "../geojson/pa_state_bound.json"
@@ -19,6 +19,9 @@ import L, { layerGroup } from 'leaflet'
 import "leaflet/dist/leaflet.css"
 import "./com.css";
 import Plot from 'react-plotly.js';
+import ReactMapboxGl, { Layer, Feature, GeoJSONLayer } from 'react-mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 
 //material-ui
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,6 +39,9 @@ import Switch from '@material-ui/core/Switch';
 import { NativeSelect } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
 
+
+
+
 function valuetext(value) {
   return `${value}%`;
 }
@@ -46,6 +52,8 @@ class Maps extends Component{
     this.state = {
       current_state: null,
       Map: null,
+      Map1: null,
+      Map2: null,
       maps: [],
       maps_backup: [],
       current_state_layer: null, //the current state layer
@@ -95,8 +103,10 @@ class Maps extends Component{
       job2Checked: false,
       job3Checked: false,
 
-      //Step3, slect options texts
+      //Temp geojson data
+      comparisonGeojson: nydistricts,
 
+      //Step3, slect options texts
       CompactnessType:'',
       ConstrainType:'',
       //third one is not needed.↓
@@ -136,6 +146,9 @@ class Maps extends Component{
       MajorityMinorityDistricts: null,
       MinorityGroup: null,
 
+      //mapbox gl coordinates are reversed from leaflet
+      mapboxglCoordinates: null,
+
       //belows are used to update slider value based on different option selections.
 
       CompactnessTypeSliderValue:0,
@@ -146,8 +159,23 @@ class Maps extends Component{
 
     componentDidMount(){
       this.init();
+      this.init2();
+      this.init3(); //inits all 3 maps
     }
-  
+    init2(){
+      var container = L.DomUtil.get('map1')
+      if(container != null){
+        container._leaflet_id = null;
+      }
+      var map = L.map('map').setView(this.state.center, this.state.zoom)
+      this.setState({Map1: map})
+      map.zoomControl.setPosition('bottomleft')
+      L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
+    }
+    
+    init3(){
+
+    }
     //initializes the map
     init(){
 
@@ -652,7 +680,11 @@ class Maps extends Component{
       const name = event.target.name;
       const value = event.target.value;
       this.setState({current_state: event.target.value})
-
+    
+      //set mapbox coordinates
+      if (value === "New York"){
+        this.setState({mapboxglCoordinates: [-74.2179,43.2994]})
+      }
       //reset the state layers 
       if (this.state.current_state_layer){
         this.state.Map.removeLayer(this.state.current_state_layer);
@@ -724,6 +756,19 @@ class Maps extends Component{
       const name = event.target.name;
       const value = event.target.value;
       this.setState({category: event.target.value})
+    }
+
+
+    //methods for the small react-leaflet interface
+    getComparisonGeoJSON = (event) => {
+
+    }
+
+    getMapboxCoordinates = () => {
+      if (this.state.current_state === "New York"){
+        var returnable = [-74.2179,43.2994];
+        return returnable
+      }
     }
 
     //This method generates the different steps 
@@ -1313,6 +1358,10 @@ class Maps extends Component{
 
 
         case 5:
+          const Map = ReactMapboxGl({
+            accessToken:
+              'pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA'
+          });
 
           return <div>
 <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -1575,7 +1624,38 @@ class Maps extends Component{
           <FormHelperText>Click to select a Districting To Compare</FormHelperText>
       </FormControl>
       <br></br><br></br>
-      <img src={newyorkimage} />⠀⠀⠀⠀⠀⠀⠀⠀<img src={newyorkimage} />
+
+      <Map
+        style="mapbox://styles/mapbox/light-v10"
+        containerStyle={{
+          height: '350px',
+          width: '350px',
+          left: '200px'
+        }}
+        center={this.state.mapboxglCoordinates}
+        zoom={[4.5]}
+      >
+      <GeoJSONLayer
+          data={nystate}
+      />
+      </Map>
+      <Map
+        style="mapbox://styles/mapbox/light-v10"
+        containerStyle={{
+          height: '350px',
+          width: '350px',
+          top: '160px',
+          position: "absolute",
+          left: '625px'
+        }}
+        center={this.state.mapboxglCoordinates}
+        zoom={[4.5]}
+      >
+      <GeoJSONLayer
+          data={nystate}
+      />
+      </Map>
+
       <br></br><br></br>
       <table class="table table-striped">
 
@@ -1878,9 +1958,6 @@ class Maps extends Component{
   </div>
   </div>
   </div>
-
-
-
 
 </nav>
 </div>
