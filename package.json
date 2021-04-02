@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.1",
     "@urbica/react-map-gl": "^1.14.2",
     "bootstrap": "^4.6.0",
+    "jquery": "^3.6.0",
     "leaflet": "^1.7.1",
     "mapbox-gl": "^2.2.0",
     "plotly.js": "^1.58.4",

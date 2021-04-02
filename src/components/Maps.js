@@ -21,6 +21,7 @@ import "./com.css";
 import Plot from 'react-plotly.js';
 import ReactMapboxGl, { Layer, Feature, GeoJSONLayer } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import $ from 'jquery';
 
 
 //material-ui
@@ -148,6 +149,7 @@ class Maps extends Component{
 
       //mapbox gl coordinates are reversed from leaflet
       mapboxglCoordinates: null,
+      secondaryMap: "hidden",
 
       //belows are used to update slider value based on different option selections.
 
@@ -159,23 +161,9 @@ class Maps extends Component{
 
     componentDidMount(){
       this.init();
-      this.init2();
-      this.init3(); //inits all 3 maps
     }
-    init2(){
-      var container = L.DomUtil.get('map1')
-      if(container != null){
-        container._leaflet_id = null;
-      }
-      var map = L.map('map').setView(this.state.center, this.state.zoom)
-      this.setState({Map1: map})
-      map.zoomControl.setPosition('bottomleft')
-      L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
-    }
-    
-    init3(){
 
-    }
+
     //initializes the map
     init(){
 
@@ -187,7 +175,17 @@ class Maps extends Component{
       this.setState({Map: map})
       map.zoomControl.setPosition('bottomleft')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
-  
+
+      var map1 = L.map('map1').setView(this.state.center, this.state.zoom)
+      this.setState({Map1: map1})
+      map.zoomControl.setPosition('bottomleft')
+      L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map1)
+
+      var map2 = L.map('map2').setView(this.state.center, this.state.zoom)
+      this.setState({Map2: map2})
+      map.zoomControl.setPosition('bottomleft')
+      L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map2)
+      
       var NYStateLayer = L.geoJson(nystate, {
         weight: 1,
         style: function(feature) {
@@ -1358,34 +1356,29 @@ class Maps extends Component{
 
 
         case 5:
-          const Map = ReactMapboxGl({
-            accessToken:
-              'pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA'
-          });
-
           return <div>
-<div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
+<div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-xl" role="document" id="analysisModal">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myExtraLargeModalLabel">Detailed Data Analysis</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({secondaryMap: "hidden"})}>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 <ul class="nav nav-tabs">
-  <li class="nav-item">
+  <li class="nav-item"  onClick={()=> this.setState({secondaryMap: "hidden"})}>
     <a class="nav-link" href="#districtingdata" data-toggle="tab">Districting Data</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" onClick={()=> this.setState({secondaryMap: "hidden"})}>
     <a class="nav-link" href="#districtdata" data-toggle="tab">District Data</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" onClick={()=> this.setState({secondaryMap: "hidden"})}>
     <a class="nav-link" href="#boxandwhisker" data-toggle="tab">Show Box and Whisker Plot</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#comparedistrictings" data-toggle="tab">Compare Districtings</a>
+  <li class="nav-item" onClick={()=> this.setState({secondaryMap: "hidden"})}>
+    <a class="nav-link" href="#comparedistrictings" data-toggle="tab" >Compare Districtings</a>
   </li>
 </ul>
 
@@ -1624,40 +1617,14 @@ class Maps extends Component{
           <FormHelperText>Click to select a Districting To Compare</FormHelperText>
       </FormControl>
       <br></br><br></br>
-
-      <Map
-        style="mapbox://styles/mapbox/light-v10"
-        containerStyle={{
-          height: '350px',
-          width: '350px',
-          left: '200px'
-        }}
-        center={this.state.mapboxglCoordinates}
-        zoom={[4.5]}
-      >
-      <GeoJSONLayer
-          data={nystate}
-      />
-      </Map>
-      <Map
-        style="mapbox://styles/mapbox/light-v10"
-        containerStyle={{
-          height: '350px',
-          width: '350px',
-          top: '160px',
-          position: "absolute",
-          left: '625px'
-        }}
-        center={this.state.mapboxglCoordinates}
-        zoom={[4.5]}
-      >
-      <GeoJSONLayer
-          data={nystate}
-      />
-      </Map>
-
+      <button type="button" class="btn btn-info btn-sm" onClick={()=> this.setState({secondaryMap: "visible"})} style ={{position: "absolute", left: "20px"}}>Load Geography</button>⠀
+                  
       <br></br><br></br>
-      <table class="table table-striped">
+      <br></br><br></br>
+      <br></br><br></br>
+      <br></br><br></br>
+      <br></br>
+      <table class="table table-striped" style={{fontSize: "14px"}}>
 
   <tbody>
     <tr>
@@ -1850,6 +1817,8 @@ class Maps extends Component{
 
 
     render(){
+      
+      
       let nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
       if(this.state.activeStep == 5){
         nextStepButton = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
@@ -1876,6 +1845,8 @@ class Maps extends Component{
       };
         return(
           <div>
+            <div id="map1" style={{ width: '350px', height: '300px', top:'220px', left: '600px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap}}></div> 
+            <div id="map2" style={{ width: '350px', height: '300px', top:'220px', left: '1000px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap}}></div> 
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
             <div id="accordion filter" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501, left: '15px', top: "15px"}}>
