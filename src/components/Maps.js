@@ -1733,80 +1733,90 @@ class Maps extends Component{
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 1 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 2 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 3 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 4 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 5 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 6 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 7 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 8 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 9 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
       <div class="card bg-light mb-3" style={{width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center"}}>
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 10 - Score: 99.72⠀
-                 <button type="button" class="btn btn-info btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Show Detailed Data</button>
+                  <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
       </div>
