@@ -1870,12 +1870,12 @@ class Maps extends Component{
 
 
 <button class='btn btn-secondary btn-lg' 
-  style={{position: 'absolute', textAlign: 'center', margin: 0, left: '115px', top: "276px"}}
+  style={{position: 'absolute', textAlign: 'center', margin: 0, left: '125px', top: "276px"}}
   onClick={()=>{this.state.Map.setView(this.state.center, this.state.zoom)}}>Re-Center
 </button>
 
 
-<div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '110px', top: '1px', zIndex: 521}}>
+<div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '120px', top: '1px', zIndex: 521}}>
   <div className = "D1" > 
   <br/><br/><br/><br/><br/>
   <div>
@@ -1894,7 +1894,7 @@ class Maps extends Component{
   </div>
   </div>
 
-  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '110px', top: '58px'}}>
+  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '120px', top: '58px'}}>
   <div className = "D1" > 
   <br/><br/><br/><br/><br/>
   <div>
@@ -1913,7 +1913,7 @@ class Maps extends Component{
   </div>
   </div>
 
-  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '110px', top: '70px', zIndex: 521}}>
+  <div className = {OptionPage} style={{ textAlign:'left', margin: 0, left: '120px', top: '70px', zIndex: 521}}>
   <div className = "D1" > 
   <div>
   Default Districting
