@@ -51,7 +51,7 @@ class Maps extends Component{
   constructor(props) {
     super(props)
     this.state = {
-      current_state: null,
+      current_state: "None",
       Map: null,
       Map1: null,
       Map2: null,
