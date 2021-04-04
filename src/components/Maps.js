@@ -1867,7 +1867,7 @@ class Maps extends Component{
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
 
-            <div class="card" style={{ position: 'absolute', height: '550px', width: '450px', textAlign: 'center', margin: 0, zIndex: 501, left: '1px', top: "410px", visibility: this.state.districtingDataBox}}>
+            <div class="card" style={{ position: 'absolute', height: '550px', width: '450px', textAlign: 'center', margin: 0, zIndex: 501, left: '1px', top: "420px", visibility: this.state.districtingDataBox}}>
               <div class="card-header" id="headingFilter">
                 <h5> Districting Details </h5>
               </div>
@@ -1937,8 +1937,6 @@ class Maps extends Component{
 
             </div>
 
-
-
             <div id="accordion filter" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501, left: '15px', top: "15px"}}>
   <div class="card">
     <div class="card-header" id="headingFilter">
@@ -1959,8 +1957,8 @@ class Maps extends Component{
 </div>
 
 
-<button class='btn btn-secondary btn-lg' 
-  style={{position: 'absolute', textAlign: 'center', margin: 0, left: '125px', top: "276px"}}
+<button class='btn btn-secondary btn-sm' 
+  style={{position: 'absolute', textAlign: 'center', margin: 0, left: '140px', top: "276px"}}
   onClick={()=>{this.state.Map.setView(this.state.center, this.state.zoom)}}>Re-Center
 </button>
 
