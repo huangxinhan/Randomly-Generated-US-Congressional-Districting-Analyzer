@@ -4,20 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "./com.css";
 
 //material-ui
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Switch from '@material-ui/core/Switch';
 import { NativeSelect } from '@material-ui/core';
-import Slider from '@material-ui/core/Slider';
 
 class StateSelection extends Component {
     constructor(props){
