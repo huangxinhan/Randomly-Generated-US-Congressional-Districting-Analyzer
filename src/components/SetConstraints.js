@@ -17,7 +17,7 @@ class SetConstraints extends Component {
 
     render(){
         return(
-<div>
+        <div>
             <h3>Set Constraints</h3>
             <div className="S2" style={{ textAlign: 'left'}} >
                 <div>⠀⠀⠀⠀Select Compactness

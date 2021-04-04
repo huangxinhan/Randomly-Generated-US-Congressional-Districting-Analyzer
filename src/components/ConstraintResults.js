@@ -1,16 +1,16 @@
-import React, { useState, Component} from 'react'
+import React, { useState, Component } from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./com.css";
 
 
 class ConstraintResults extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <h3>Constraint Results</h3>
                 <div class="spinner-border" role="status">
@@ -23,7 +23,7 @@ class ConstraintResults extends Component {
             </div>
         )
     }
-}   
+}
 
 
 export default ConstraintResults
