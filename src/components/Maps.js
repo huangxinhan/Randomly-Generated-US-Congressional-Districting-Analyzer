@@ -40,7 +40,8 @@ import Switch from '@material-ui/core/Switch';
 import { NativeSelect } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
 
-
+//components
+import StateSelection from "./StateSelection"
 
 
 function valuetext(value) {
@@ -798,24 +799,7 @@ class Maps extends Component{
 
       switch(stepIndex) {
         case 0:
-          return <div>
-                  <h3>Select a State</h3> 
-                    <FormControl className="Form1">
-                      <InputLabel htmlFor="state-native-helper">State</InputLabel>
-                        <NativeSelect
-                          value={this.state.current_state}
-                          onChange={this.handleChange}
-                          inputProps={{
-                          name: 'Click To Select A State',
-                          id: 'state-native-helper',}}>
-                          <option aria-label="None" value="" />
-                          <option value={"New York"}>New York</option>
-                          <option value={"Pennsylvania"}>Pennsylvania</option>
-                          <option value={"Maryland"}>Maryland</option>
-                        </NativeSelect>
-                      <FormHelperText>Click to select a state</FormHelperText>
-                    </FormControl>
-                </div>
+          return <StateSelection current_state={this.state.current_state} handleChange={this.handleChange}/>
         case 1:
           return <div>
                 <h3>Select a Job</h3>
