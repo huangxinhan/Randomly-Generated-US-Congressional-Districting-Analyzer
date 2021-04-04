@@ -45,6 +45,8 @@ import SetConstraints from "./SetConstraints"
 import ConstraintResults from "./ConstraintResults"
 import SetMeasures from './SetMeasures'
 import AnalyzeDistrictings from "./AnalyzeDistrictings"
+import DistrictingSummary from './DistrictingSummary'
+import MapFilter from "./MapFilter"
 
 function valuetext(value) {
   return `${value}%`;
@@ -871,166 +873,12 @@ class Maps extends Component {
         <div id="map2" style={{ width: '350px', height: '300px', top: '220px', left: '1000px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap }}></div>
         <div id="map" style={{ width: '100vw', height: '100vh' }}>
         </div>
+        <DistrictingSummary districtingDataBox={this.state.districtingDataBox} closeDataBox={() => this.setState({ districtingDataBox: "hidden" })}/>
+        <MapFilter reCenter={() => { this.state.Map.setView(this.state.center, this.state.zoom) }} current_state={this.state.current_state}
+                   OptionPage={OptionPage} checkerA={this.state.checkerA} checkerAchange={this.checkerAchange}
+                   checkerB={this.state.checkerB} checkerBchange={this.checkerBchange}
+                   checkerC={this.state.checkerC} checkerCchange={this.checkerCchange} />
 
-        <div class="card" style={{ position: 'absolute', height: '550px', width: '450px', textAlign: 'center', margin: 0, zIndex: 501, left: '1px', top: "413px", visibility: this.state.districtingDataBox }}>
-          <div class="card-header" id="headingFilter">
-            <h5> Districting Details </h5>
-          </div>
-          <div>
-            <table class="table table-striped" style={{ fontSize: "12px" }}>
-              <thead>
-                <tr>
-                  <th scope="col">Objective Function Attributes</th>
-                  <th scope="col">Weight</th>
-                  <th scope="col">Value</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <th scope="row">Population Equality</th>
-                  <td>0.3</td>
-                  <td>0.2</td>
-                </tr>
-
-                <tr>
-                  <th scope="row">Split Counties</th>
-                  <td>0.4</td>
-                  <td>0.2</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deviation From Average Districting</th>
-                  <td>0.4</td>
-                  <td>0.3</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deviation From Enacted Districting(Area)</th>
-                  <td>0.5</td>
-                  <td>0.3</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deviation From Enacted Districting(Population)</th>
-                  <td>0.2</td>
-                  <td>0.4</td>
-                </tr>
-                <tr>
-                  <th scope="row">Compactness(Polsby-Popper)</th>
-                  <td>0.3</td>
-                  <td>0.1</td>
-                </tr>
-                <tr>
-                  <th scope="row">Compactness(Population Fatness)</th>
-                  <td>0.8</td>
-                  <td>0.1</td>
-                </tr>
-                <tr>
-                  <th scope="row">Compactness(Graph)</th>
-                  <td>0.6</td>
-                  <td>0.5</td>
-                </tr>
-                <tr>
-                  <th scope="row">Political Fairness</th>
-                  <td>0.2</td>
-                  <td>0.6</td>
-                </tr>
-              </tbody>
-            </table>
-
-          Objective Function Score: 99.73⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-          <button class="btn btn-danger btn-sm" onClick={() => this.setState({ districtingDataBox: "hidden" })}>Close</button>
-          </div>
-
-        </div>
-
-        <div id="accordion filter" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501, left: '15px', top: "15px" }}>
-          <div class="card">
-            <div class="card-header" id="headingFilter">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
-                  Expand Map Filter
-        </button>
-              </h5>
-            </div>
-
-            <div id="collapseFilter" class="accordion body collapse" aria-labelledby="headingFilter" data-parent="#accordion filter">
-              <div className="filternav" >
-                <nav class="navbar navbar-expand-lg navbar-light bg-light rounded" >
-
-                  <div>
-                    <h5>  &nbsp;&nbsp;&nbsp;Current State: {this.state.current_state}</h5>
-                    <h5>  &nbsp;&nbsp;&nbsp;Current Districting: Default Districting</h5>
-                  </div>
-
-
-                  <button class='btn btn-secondary btn-sm'
-                    style={{ position: 'absolute', textAlign: 'center', margin: 0, left: '140px', top: "276px" }}
-                    onClick={() => { this.state.Map.setView(this.state.center, this.state.zoom) }}>Re-Center
-</button>
-
-
-                  <div className={OptionPage} style={{ textAlign: 'left', margin: 0, left: '120px', top: '1px', zIndex: 521 }}>
-                    <div className="D1" >
-                      <br /><br /><br /><br /><br />
-                      <div>
-                        Show Precincts
-  <div></div>
-  OFF
-    <Switch
-                          checked={this.state.checkerA}
-                          onChange={this.checkerAchange}
-                          color="primary"
-                          name="checkedA"
-                          inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-    ON
-  </div>
-                    </div>
-                  </div>
-
-                  <div className={OptionPage} style={{ textAlign: 'left', margin: 0, left: '120px', top: '58px' }}>
-                    <div className="D1" >
-                      <br /><br /><br /><br /><br />
-                      <div>
-                        Show Counties
-  <div></div>
-  OFF
-    <Switch
-                          checked={this.state.checkerC}
-                          onChange={this.checkerCchange}
-                          color="primary"
-                          name="checkedC"
-                          inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-    ON
-  </div>
-                    </div>
-                  </div>
-
-                  <div className={OptionPage} style={{ textAlign: 'left', margin: 0, left: '120px', top: '70px', zIndex: 521 }}>
-                    <div className="D1" >
-                      <div>
-                        Default Districting
-  <div></div>
-  OFF
-    <Switch
-                          checked={this.state.checkerB}
-                          onChange={this.checkerBchange}
-                          color="primary"
-                          name="checkedB"
-                          inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-    ON
-  </div>
-                    </div>
-                  </div>
-
-
-
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div className="sidenav" style={{ position: 'absolute', textAlign: 'center', zIndex: 501 }}>
           <Stepper activeStep={this.state.activeStep} alternativeLabel>
