@@ -42,6 +42,7 @@ import Slider from '@material-ui/core/Slider';
 
 //components
 import StateSelection from "./StateSelection"
+import JobSelection from "./JobSelection"
 
 
 function valuetext(value) {
@@ -801,48 +802,7 @@ class Maps extends Component{
         case 0:
           return <StateSelection current_state={this.state.current_state} handleChange={this.handleChange}/>
         case 1:
-          return <div>
-                <h3>Select a Job</h3>
-                
-                <div class="card bg-light mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
-                <div class="card-body">
-                <h5 class="card-title">Job 1</h5>
-                <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
-                <p class="card-text">•Additional Parameters</p>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 1" onClick={this.selectJob}/>
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Select Job
-                  </label>
-                </div>
-                </div>
-
-                
-                <div class="card bg-light mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
-                <div class="card-body">
-                <h5 class="card-title">Job 2</h5>
-                <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
-                <p class="card-text">•Additional Parameters</p>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 2"/>
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Select Job
-                  </label>
-                </div>
-                </div>
-
-                
-                <div class="card bg-light mb-3" style={{width: "550px", fontSize: "15px", left: "13px"}}>
-                <div class="card-body">
-                <h5 class="card-title">Job 3</h5>
-                <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
-                <p class="card-text">•Additional Parameters</p>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 3"/>
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Select Job
-                  </label>
-                </div>
-                </div>
-    
-                </div>
+          return <JobSelection selectJob={this.selectJob}/>
         case 2:
           return <div>
             <h3>Set Constraints</h3>
