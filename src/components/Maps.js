@@ -155,6 +155,8 @@ class Maps extends Component{
 
       CompactnessTypeSliderValue:0,
       ConstrainTypeSliderValue:0,
+
+      districtingDataBox: "hidden"
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
@@ -173,17 +175,17 @@ class Maps extends Component{
       }
       var map = L.map('map').setView(this.state.center, this.state.zoom)
       this.setState({Map: map})
-      map.zoomControl.setPosition('bottomleft')
+      map.zoomControl.setPosition('topright')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map)
 
       var map1 = L.map('map1').setView(this.state.center, this.state.zoom)
       this.setState({Map1: map1})
-      map.zoomControl.setPosition('bottomleft')
+      map1.zoomControl.setPosition('bottomleft')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map1)
 
       var map2 = L.map('map2').setView(this.state.center, this.state.zoom)
       this.setState({Map2: map2})
-      map.zoomControl.setPosition('bottomleft')
+      map2.zoomControl.setPosition('bottomleft')
       L.tileLayer('https://api.mapbox.com/styles/v1/worldcalling/cklvc0h5648r517o49ebf9d6q/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid29ybGRjYWxsaW5nIiwiYSI6ImNrbHZjbjV4cjJvcXYycHBtMmJjaGZ0aHcifQ.68N60kfWy9s3PeNMuqnuQA').addTo(map2)
       
       var NYStateLayer = L.geoJson(nystate, {
@@ -767,6 +769,11 @@ class Maps extends Component{
         var returnable = [-74.2179,43.2994];
         return returnable
       }
+    }
+
+    //this method unhides a popup that shows districting data
+    showDistrictingData = () => {
+      this.setState({districtingDataBox: "visible"})
     }
 
     //This method generates the different steps 
@@ -1734,7 +1741,7 @@ class Maps extends Component{
                 <div class="card-body align-items-center d-flex justify-content-center">
                   <p class="card-text">Districting 1 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
+                 <button type="button" class="btn btn-success btn-sm" onClick={this.showDistrictingData}>Show Data</button>⠀
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
                  </p>
                 </div>
@@ -1859,6 +1866,79 @@ class Maps extends Component{
             <div id="map2" style={{ width: '350px', height: '300px', top:'220px', left: '1000px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap}}></div> 
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
+
+            <div class="card" style={{ position: 'absolute', height: '550px', width: '450px', textAlign: 'center', margin: 0, zIndex: 501, left: '1px', top: "410px", visibility: this.state.districtingDataBox}}>
+              <div class="card-header" id="headingFilter">
+                <h5> Districting Details </h5>
+              </div>
+              <div>
+              <table class="table table-striped" style={{fontSize: "12px"}}>
+<thead>
+    <tr>
+      <th scope="col">Objective Function Attributes</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+
+<tbody>
+  <tr>
+    <th scope="row">Population Equality</th>
+    <td>0.3</td>
+    <td>0.2</td>
+  </tr>
+
+  <tr>
+    <th scope="row">Split Counties</th>
+    <td>0.4</td>
+    <td>0.2</td>
+  </tr>
+  <tr>
+    <th scope="row">Deviation From Average Districting</th>
+    <td>0.4</td>
+    <td>0.3</td>
+  </tr>
+  <tr>
+    <th scope="row">Deviation From Enacted Districting(Area)</th>
+    <td>0.5</td>
+    <td>0.3</td>
+  </tr>
+  <tr>
+    <th scope="row">Deviation From Enacted Districting(Population)</th>
+    <td>0.2</td>
+    <td>0.4</td>
+  </tr>
+  <tr>
+    <th scope="row">Compactness(Polsby-Popper)</th>
+    <td>0.3</td>
+    <td>0.1</td>
+  </tr>
+  <tr>
+    <th scope="row">Compactness(Population Fatness)</th>
+    <td>0.8</td>
+    <td>0.1</td>
+  </tr>
+  <tr>
+    <th scope="row">Compactness(Graph)</th>
+    <td>0.6</td>
+    <td>0.5</td>
+  </tr>
+  <tr>
+    <th scope="row">Political Fairness</th>
+    <td>0.2</td>
+    <td>0.6</td>
+  </tr>
+</tbody>
+</table>
+
+          Objective Function Score: 99.73⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+          <button class="btn btn-danger btn-sm" onClick={()=> this.setState({districtingDataBox: "hidden"})}>Close</button>
+              </div>
+
+            </div>
+
+
+
             <div id="accordion filter" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501, left: '15px', top: "15px"}}>
   <div class="card">
     <div class="card-header" id="headingFilter">

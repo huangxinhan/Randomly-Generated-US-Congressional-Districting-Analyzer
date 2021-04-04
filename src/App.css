@@ -99,3 +99,4 @@
   padding: 0px 10px;
 }
 
+.leaflet-control-container { position: absolute; right: 590px } 
