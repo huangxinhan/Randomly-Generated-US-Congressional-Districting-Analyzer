@@ -100,4 +100,4 @@
   padding: 0px 10px;
 }
 
-.leaflet-control-container { position: absolute; right: 590px } 
+.leaflet-control-container { position: absolute; right: 590px; z-index: 473; } 

@@ -1867,7 +1867,7 @@ class Maps extends Component{
             <div id="map" style={{ width: '100vw', height: '100vh'}}> 
             </div>
 
-            <div class="card" style={{ position: 'absolute', height: '550px', width: '450px', textAlign: 'center', margin: 0, zIndex: 501, left: '1px', top: "420px", visibility: this.state.districtingDataBox}}>
+            <div class="card" style={{ position: 'absolute', height: '550px', width: '450px', textAlign: 'center', margin: 0, zIndex: 501, left: '1px', top: "413px", visibility: this.state.districtingDataBox}}>
               <div class="card-header" id="headingFilter">
                 <h5> Districting Details </h5>
               </div>
