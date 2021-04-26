@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
     "@urbica/react-map-gl": "^1.14.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
     "leaflet": "^1.7.1",
@@ -23,8 +24,8 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
