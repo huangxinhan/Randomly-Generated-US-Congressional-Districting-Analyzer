@@ -20,6 +20,7 @@ import "./com.css";
 import Plot from 'react-plotly.js';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import $ from 'jquery';
+import axios from 'axios';
 
 
 //material-ui
@@ -47,7 +48,7 @@ import SetMeasures from './SetMeasures'
 import AnalyzeDistrictings from "./AnalyzeDistrictings"
 import DistrictingSummary from './DistrictingSummary'
 import MapFilter from "./MapFilter"
-
+const REST_URL = 'http://localhost:8080';
 function valuetext(value) {
   return `${value}%`;
 }
@@ -105,6 +106,7 @@ class Maps extends Component {
       Objective: [0, 0],
 
       //Checkers for job selection
+      jobChecked: 0,
       job1Checked: false,
       job2Checked: false,
       job3Checked: false,
@@ -408,9 +410,19 @@ class Maps extends Component {
       return color
     }
   }
-
+// check which job is selected
   selectJob = (newValue) => {
     if (document.getElementById("flexCheckDefault 1").checked) {
+      console.log("job1 selected");
+      this.setState({jobChecked:1});
+    }
+    else if (document.getElementById("flexCheckDefault 2").checked) {
+      console.log("job2 selected");
+      this.setState({jobChecked:2});
+    }
+    else if (document.getElementById("flexCheckDefault 3").checked) {
+      console.log("job3 selected");
+      this.setState({jobChecked:3});
     }
   }
 
@@ -662,7 +674,7 @@ class Maps extends Component {
     this.setState({ IsExpanded: !this.state.IsExpanded });
   }
 
-
+//for "next" button
   setActiveStep(prev_active_step, direction) {
     if (direction == "forward" && prev_active_step < 5) {
       this.setState({ activeStep: prev_active_step + 1 })
@@ -675,6 +687,58 @@ class Maps extends Component {
     }
     else if (direction == "reset") {
       this.setState({ activeStep: 0 })
+    }
+  }
+  
+  setActiveSteps(prev_active_step, direction) {
+    if (direction == "forward" && prev_active_step < 5) {
+        if(prev_active_step==0){
+          //selected state
+          console.log(this.state.current_state);
+          axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
+          // .then(response =>{
+          //   if (response.data!=null){
+          //     this
+          //   }
+          // })
+        }
+        else if(prev_active_step==1){
+          //selected jobs
+          console.log(this.state.jobChecked);
+          axios.post(REST_URL+'/api/v1/test1',"whiat is goint on");
+        }
+        else if(prev_active_step==2){
+          //selected constraints
+          const constraintsObj={
+            GraphCompactness: this.state.GraphCompactness ,
+            PopulationFatness: this.state.PopulationFatness ,
+            PolsbyPopper: this.state.PolsbyPopper ,
+            TotalPopulation: this.state.TotalPopulation ,
+            VotingAgePopulation:this.state.VotingAgePopulation ,
+            CitizenVotingAgePopulation: this.state.CitizenVotingAgePopulation,
+            MajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
+            MinorityGroup: this.state.MinorityGroup,
+            CompactnessTypeSliderValue: this.state.CompactnessTypeSliderValue,
+            ConstrainTypeSliderValue: this.state.ConstrainTypeSliderValue,
+          };
+          console.log(constraintsObj);
+          //axios.post(REST_URL+'/api/v1/test1',constraintsObj);
+        }
+        else if(prev_active_step==3){
+          //selected obj function
+          axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
+        } 
+        else if(prev_active_step==4){
+          //selected obj function
+          axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
+        }               
+      this.setState({ activeStep: prev_active_step + 1 })
+    }
+    
+
+    else if (direction == "reset") {
+      this.setState({ activeStep: 0 })
+      //reset states
     }
   }
 
@@ -848,7 +912,7 @@ class Maps extends Component {
       nextStepButton = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
     }
     else {
-      nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+      nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveSteps(this.state.activeStep, "forward")}>Next Step</Button>
     }
     let OptionPage = "PageDisable";
 
