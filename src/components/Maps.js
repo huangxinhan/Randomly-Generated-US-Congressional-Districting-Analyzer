@@ -116,7 +116,9 @@ class Maps extends Component {
 
       //Step3, slect options texts
       CompactnessType: '',
+      //FinalCompactVal:0,
       ConstrainType: '',
+      //FinalConstrainVal:0,
       //third one is not needed.↓
 
       //Box and Whisker data
@@ -494,14 +496,17 @@ class Maps extends Component {
 
     if (this.state.CompactnessType === "graph compactness") {
       this.setState({ GraphCompactness: value })
+      //this.setState({ FinalCompactVal: value })
       // console.log(this.state.GraphCompactness)
     }
     else if (this.state.CompactnessType === "population fatness") {
       this.setState({ PopulationFatness: value })
+      //this.setState({ FinalCompactVal: value })
       // console.log(this.state.PopulationFatness)
     }
     else if (this.state.CompactnessType === "Polsby-Popper") {
       this.setState({ PolsbyPopper: value })
+      //this.setState({ FinalCompactVal: value })
       // console.log(this.state.PolsbyPopper)
     }
     else {
@@ -705,21 +710,25 @@ class Maps extends Component {
         else if(prev_active_step==1){
           //selected jobs
           console.log(this.state.jobChecked);
-          axios.post(REST_URL+'/api/v1/test1',"whiat is goint on");
+          axios.post(REST_URL+'/api/v1/test1',);
         }
         else if(prev_active_step==2){
           //selected constraints
+  
           const constraintsObj={
-            GraphCompactness: this.state.GraphCompactness ,
-            PopulationFatness: this.state.PopulationFatness ,
-            PolsbyPopper: this.state.PolsbyPopper ,
-            TotalPopulation: this.state.TotalPopulation ,
-            VotingAgePopulation:this.state.VotingAgePopulation ,
-            CitizenVotingAgePopulation: this.state.CitizenVotingAgePopulation,
+//             GraphCompactness: this.state.GraphCompactness ,
+//             PopulationFatness: this.state.PopulationFatness ,
+//             PolsbyPopper: this.state.PolsbyPopper ,
+//             TotalPopulation: this.state.TotalPopulation ,
+//             VotingAgePopulation:this.state.VotingAgePopulation ,
+//             CitizenVotingAgePopulation: this.state.CitizenVotingAgePopulation,
             MajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             MinorityGroup: this.state.MinorityGroup,
             CompactnessTypeSliderValue: this.state.CompactnessTypeSliderValue,
             ConstrainTypeSliderValue: this.state.ConstrainTypeSliderValue,
+            CompactnessType: this.state.CompactnessType,
+            ConstrainType: this.state.ConstrainType,
+            //incumbent value
           };
           console.log(constraintsObj);
           //axios.post(REST_URL+'/api/v1/test1',constraintsObj);
@@ -875,7 +884,7 @@ class Maps extends Component {
       case 1:
         return <JobSelection selectJob={this.selectJob} />
       case 2:
-        return <SetConstraints compactnessType={this.state.compactnessType} handleCompactnessTypeChange={this.handleCompactnessTypeChange}
+        return <SetConstraints CompactnessType={this.state.CompactnessType} handleCompactnessTypeChange={this.handleCompactnessTypeChange}
           CompactnessTypeSliderValue={this.state.CompactnessTypeSliderValue} valuetext={valuetext}
           handleChangeCompactnessTypeSliderValue={this.handleChangeCompactnessTypeSliderValue}
           ConstrainType={this.state.ConstrainType} handleConstrainTypeChange={this.handleConstrainTypeChange} ConstrainTypeSliderValue={this.state.ConstrainTypeSliderValue}

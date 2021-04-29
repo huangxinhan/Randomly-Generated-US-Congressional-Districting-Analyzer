@@ -31,7 +31,7 @@ class JobSelection extends Component {
             <h5 class="card-title">Job 2</h5>
             <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
             <p class="card-text">•Additional Parameters</p>
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 2" />
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 2" onClick={this.props.selectJob}/>
             <label class="form-check-label" for="flexCheckDefault">
               Select Job
                   </label>
@@ -43,7 +43,7 @@ class JobSelection extends Component {
             <h5 class="card-title">Job 3</h5>
             <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
             <p class="card-text">•Additional Parameters</p>
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 3" />
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault 3" onClick={this.props.selectJob}/>
             <label class="form-check-label" for="flexCheckDefault">
               Select Job
                   </label>
