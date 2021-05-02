@@ -16,6 +16,13 @@ class SetConstraints extends Component {
     }
 
     render(){
+      let minorityOptions = [];
+        if (this.props.MinorityGroup=="AFRICAN_AMERICAN"){
+          minorityOptions=[1,2,3,4];
+        }
+        else{
+          minorityOptions=[0];
+        }
         return(
         <div>
             <h3>Set Constraints</h3>
@@ -67,7 +74,7 @@ class SetConstraints extends Component {
                           inputProps={{
                           name: 'Click To Select population constrain type',
                           id: 'state-native-helper',}}>
-                          <option aria-label="None" value="">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</option>
+                          <option aria-label="None" value="">⠀                      ⠀</option>
                           <option value={"TOTAL"}>total population</option>
                           <option value={"VAP"}>voting age population (TVAP)</option>
                           <option value={"CVAP"}>citizen voting age population (CVAP)</option>
@@ -122,17 +129,38 @@ class SetConstraints extends Component {
                           name: 'Click To Select Majority-Minority Districts',
                           id: 'state-native-helper',}}>
                           <option aria-label="None" value="">⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</option>
-                          <option value={"0"}>0</option>
+                          {/* <option value={"0"}>0</option>
                           <option value={"1"}>1</option>
                           <option value={"2"}>2</option>
                           <option value={"3"}>3</option>
-                           <option value={"4"}>4</option>
+                           <option value={"4"}>4</option> */}
+                           {minorityOptions.map((value, index) => {
+                            return <option key={index}>{value}</option>
+                          })}
                         </NativeSelect>
                       <FormHelperText>Select Majority-Minority Districts</FormHelperText>
+                      </FormControl>
+                      <div className = "S1" style={{left: "40px"}}> 
+                    <Typography id="discrete-slider" gutterBottom>
                       
-                    </FormControl>
+                      </Typography>
+                 
+                    <Slider 
+                        defaultValue={0}
+                        value={this.props.MajorMinorThres}
+                        getAriaValueText={this.props.valuetext}
+                        aria-labelledby="discrete-slider"
+                        valueLabelDisplay="auto"
+                        step={10}
+                        marks
+                        min={0}
+                        max={100}
+                        onChange={this.props.handleChangeMajorMinorThres}
+                      />
+                      <h6>Threshold value: {this.props.MajorMinorThres}%</h6>
+                      </div>
                 </div>
-                <br></br>
+                <div></div>
                 <div>⠀⠀⠀⠀Set Protected Incumbents
                   <br></br>
                   <button style ={{position:"absolute", fontSize:"15px", left:"53px"}} data-toggle="modal" data-target="#myModal">

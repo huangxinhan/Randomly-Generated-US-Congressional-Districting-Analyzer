@@ -107,8 +107,8 @@ class Maps extends Component {
       Objective: [0, 0],
 
       //Checkers for job selection
-      jobChecked: 0,
-      job1Checked: false,
+      jobChecked: 1,
+      job1Checked: true,
       job2Checked: false,
       job3Checked: false,
 
@@ -152,7 +152,7 @@ class Maps extends Component {
       TotalPopulation: 0,
       VotingAgePopulation: 0,
       CitizenVotingAgePopulation: 0,
-
+      MajorMinorThres:0,
       MajorityMinorityDistricts: null,
       MinorityGroup: null,
 
@@ -416,20 +416,30 @@ class Maps extends Component {
     }
   }
 // check which job is selected
-  selectJob = (newValue) => {
-    if (document.getElementById("flexCheckDefault 1").checked) {
+  selectJob = jobid=>() => {
+    if (jobid==1) {
       console.log("job1 selected");
+      this.setState({job1Checked:true, job2Checked:false,job3Checked:false});
       this.setState({jobChecked:1});
     }
-    else if (document.getElementById("flexCheckDefault 2").checked) {
+    else if (jobid==2) {
       console.log("job2 selected");
+      this.setState({job1Checked:false, job2Checked:true,job3Checked:false});
       this.setState({jobChecked:2});
     }
-    else if (document.getElementById("flexCheckDefault 3").checked) {
+    else if (jobid==3) {
       console.log("job3 selected");
+      this.setState({job1Checked:false, job2Checked:false,job3Checked:true});
       this.setState({jobChecked:3});
     }
   }
+  selectJobs = (id)=>() => {
+    
+    this.setState({
+      jobChecked: id
+    });
+    console.log(this.state.jobChecked);
+  };
 
   handleMajorChange = (event, newValue) => {
     this.setState({ MajorityMinority: newValue });
@@ -556,6 +566,9 @@ class Maps extends Component {
     else {
 
     }
+  }
+  handleChangeMajorMinorThres = (event, value) => {
+    this.setState({ MajorMinorThres: value })
   }
 
   handleChangeMajorityMinorityDistricts = (event) => {
@@ -707,10 +720,7 @@ class Maps extends Component {
            .then(response =>{
              console.log(response.data);
            });
-          //   if (response.data!=null){
-          //     this
-          //   }
-          // })
+  
         }
         else if(prev_active_step==1){
           //selected jobs
@@ -727,7 +737,7 @@ class Maps extends Component {
 //             TotalPopulation: this.state.TotalPopulation ,
 //             VotingAgePopulation:this.state.VotingAgePopulation ,
 //             CitizenVotingAgePopulation: this.state.CitizenVotingAgePopulation,
-            MajorMinorThres:0.5,
+            MajorMinorThres: this.state.MajorMinorThres,
             populationEqualityThres:0.4,
             //MajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             minorityType: this.state.MinorityGroup,
@@ -781,9 +791,7 @@ class Maps extends Component {
           MajorityMinorityDistricts: null,
           MinorityGroup: null,
     
-          //mapbox gl coordinates are reversed from leaflet
-          mapboxglCoordinates: null,
-          secondaryMap: "hidden",
+          
     
           //belows are used to update slider value based on different option selections.
           CompactnessType: 'POLSBYPOPPER_COMPACTNESS',
@@ -942,13 +950,14 @@ class Maps extends Component {
       case 0:
         return <StateSelection current_state={this.state.current_state} handleChange={this.handleChange} />
       case 1:
-        return <JobSelection selectJob={this.selectJob} />
+        return <JobSelection selectJobs={this.selectJobs} jobChecked={this.state.jobChecked} />
       case 2:
         return <SetConstraints CompactnessType={this.state.CompactnessType} handleCompactnessTypeChange={this.handleCompactnessTypeChange}
           CompactnessTypeSliderValue={this.state.CompactnessTypeSliderValue} valuetext={valuetext}
           handleChangeCompactnessTypeSliderValue={this.handleChangeCompactnessTypeSliderValue}
           ConstrainType={this.state.ConstrainType} handleConstrainTypeChange={this.handleConstrainTypeChange} ConstrainTypeSliderValue={this.state.ConstrainTypeSliderValue}
           handleChangeConstrainTypeSliderValue={this.handleChangeConstrainTypeSliderValue}
+          handleChangeMajorMinorThres={this.handleChangeMajorMinorThres}  MajorMinorThres={this.state.MajorMinorThres}
           MinorityGroup={this.state.MinorityGroup} handleChangeMinorityGroup={this.handleChangeMinorityGroup}
           MajorityMinorityDistricts={this.state.MajorityMinorityDistricts} handleChangeMajorityMinorityDistricts={this.handleChangeMajorityMinorityDistricts} />
       case 3:
