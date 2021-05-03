@@ -5,7 +5,7 @@ import nydistricts from "../geojson/ny_cd.json"
 import testnydistricts from "../geojson/ny_cd.geojson"
 import nystate from "../geojson/ny_state_bound.json"
 import nycounty from "../geojson/ny_county.json"
-import pastate from "../geojson/pa_state_bound.json"
+import pastate from "../geojson/stateboundtest.json"
 import padistricts from "../geojson/PA_cd.json"
 import paprecincts from "../geojson/PA_precincts.json"
 import pacounty from "../geojson/pa_county.json"
@@ -165,7 +165,9 @@ class Maps extends Component {
       CompactnessTypeSliderValue: 0,
       ConstrainTypeSliderValue: 0,
 
-      districtingDataBox: "hidden"
+      districtingDataBox: "hidden",
+
+      stateDistrictBoundary: null
     }
 
         
@@ -174,7 +176,17 @@ class Maps extends Component {
 
    
   componentDidMount() {
-    this.init();
+    axios.get(REST_URL+'/api/getStateDistrictBoundary/PA')
+    .then(response =>response.data)
+    .then((data)=>{
+      this.setState({stateDistrictBoundary:data}, ()=>{
+        axios.get(REST_URL+'/api/getStateBoundary/PA')
+        .then(response =>response.data)
+        .then((data)=>{
+          this.setState({stateBoundary:data}, ()=>{this.init()});
+        })
+      });
+    })
   }
 
 
@@ -210,7 +222,7 @@ class Maps extends Component {
       onEachFeature: onEachStateFeature
     });
 
-    var PAStateLayer = L.geoJson(pastate, {
+    var PAStateLayer = L.geoJson(this.state.stateBoundary, {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
@@ -219,6 +231,8 @@ class Maps extends Component {
       },
       onEachFeature: onEachStateFeature
     })
+
+    console.log("lolol" + this.state.stateBoundary);
 
     var MDStateLayer = L.geoJson(mdstate, {
       weight: 1,
@@ -232,15 +246,15 @@ class Maps extends Component {
 
 
     function onEachStateFeature(feature, layer) {
-      layer.bindPopup(feature.properties.NAME)
-      layer.on('mouseover', function (e) {
-        if (this.feature) {
-          this.openPopup();
-        }
-      })
-      layer.on('mouseout', function (e) {
-        this.closePopup();
-      })
+      // layer.bindPopup(feature.properties.NAME)
+      // layer.on('mouseover', function (e) {
+      //   if (this.feature) {
+      //     this.openPopup();
+      //   }
+      // })
+      // layer.on('mouseout', function (e) {
+      //   this.closePopup();
+      // })
     }
 
     //geojson for New York State Congressional Districtings
@@ -254,7 +268,7 @@ class Maps extends Component {
       onEachFeature: onEachDistrictFeature
     });
 
-    var PAdistrictLayer = L.geoJson(padistricts, {
+    var PAdistrictLayer = L.geoJson(this.state.stateDistrictBoundary, {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
@@ -263,6 +277,8 @@ class Maps extends Component {
       },
       onEachFeature: onEachDistrictFeature
     });
+
+    console.log("lololololol" + this.state.stateDistrictBoundary);
 
     var MDdistrictLayer = L.geoJson(mddistricts, {
       weight: 1,
@@ -277,16 +293,16 @@ class Maps extends Component {
 
 
     function onEachDistrictFeature(feature, layer) {
-      layer.bindPopup(feature.properties.LEG_DISTRI + "     " + " Population: 717,820, Incumbent: John Doe, Split Counties: 0, Democratic Voter percentage: 57.4%, Republic Voter Percentage: 32.6%")
-      layer.on('mouseover', function (e) {
-        if (feature.properties) {
-          this.openPopup();
-        }
-      }
-      )
-      layer.on('mouseout', function (e) {
-        this.closePopup();
-      })
+      // layer.bindPopup(feature.properties.LEG_DISTRI + "     " + " Population: 717,820, Incumbent: John Doe, Split Counties: 0, Democratic Voter percentage: 57.4%, Republic Voter Percentage: 32.6%")
+      // layer.on('mouseover', function (e) {
+      //   if (feature.properties) {
+      //     this.openPopup();
+      //   }
+      // }
+      // )
+      // layer.on('mouseout', function (e) {
+      //   this.closePopup();
+      // })
     }
 
     //geojson for New York State precincts
@@ -735,7 +751,7 @@ class Maps extends Component {
 
             MajorMinorThres: this.state.MajorMinorThres,
             populationEqualityThres:0.4,
-            //MajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
+            numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             minorityType: this.state.MinorityGroup,
             compactnessValue: this.state.CompactnessTypeSliderValue,
             populationValue: this.state.ConstrainTypeSliderValue,
@@ -744,7 +760,7 @@ class Maps extends Component {
             incumbentValue:[false],
           };
           console.log(constraintsObj);
-          axios.post(REST_URL+'/api/v1/test1/constraints',constraintsObj);
+          axios.post(REST_URL+'/api/constraints',constraintsObj);
         }
         else if(prev_active_step==3){
           //summary page
@@ -761,11 +777,11 @@ class Maps extends Component {
             DEVIATION_FROM_ENACTEDAREA: this.state.DeviationFromEnacted,
             DEVIATION_FROM_ENACTEDPOP: this.state.DeviationFromEnactedPopulation,
             SPLIT_COUNTIES: this.state.SplitCounties,
-            DeviationFromAverage: this.state.DeviationFromAverage,//not in measure
+            //DeviationFromAverage: this.state.DeviationFromAverage,//not in measure
           };
           console.log(objFunctionObj);
           //selected obj function
-          axios.post(REST_URL+'/api/v1/test1/weights',objFunctionObj);
+          axios.post(REST_URL+'/api/weights',objFunctionObj);
         }               
       this.setState({ activeStep: prev_active_step + 1 })
     }
