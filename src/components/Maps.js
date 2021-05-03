@@ -732,7 +732,7 @@ class Maps extends Component {
         if(prev_active_step==0){
           //selected state
           console.log(this.state.current_state);
-          axios.post(REST_URL+'/api/v1/test1/state',this.state.current_state)
+          axios.post(REST_URL+'/api/state',this.state.current_state)
            .then(response =>{
              console.log(response.data);
              this.setState({ mgggPrams: response.data })
@@ -742,7 +742,7 @@ class Maps extends Component {
         else if(prev_active_step==1){
           //selected jobs
           console.log(this.state.jobChecked);
-          axios.post(REST_URL+'/api/v1/test1/job',this.state.jobChecked);
+          axios.post(REST_URL+'/api/job',this.state.jobChecked);
         }
         else if(prev_active_step==2){
           //selected constraints
