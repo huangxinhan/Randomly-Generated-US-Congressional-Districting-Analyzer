@@ -81,7 +81,7 @@ class Maps extends Component {
       current_districting1: null,
       current_districting2: null,
       category: null,
-
+      mgggPrams:null,
 
       //Option page
 
@@ -716,9 +716,10 @@ class Maps extends Component {
         if(prev_active_step==0){
           //selected state
           console.log(this.state.current_state);
-          axios.post(REST_URL+'/api/v1/test1',this.state.current_state)
+          axios.post(REST_URL+'/api/v1/test1/state',this.state.current_state)
            .then(response =>{
              console.log(response.data);
+             //this.setState({ mgggPrams: response.data })
            });
   
         }
@@ -778,7 +779,7 @@ class Maps extends Component {
     else if (direction == "reset") {
       this.setState({ activeStep: 0,
         current_state: "None",
-          jobChecked: 0,
+          jobChecked: 1,
           // step3, corresponding slider values to options
           GraphCompactness: 0,
           PopulationFatness: 0,
@@ -950,7 +951,7 @@ class Maps extends Component {
       case 0:
         return <StateSelection current_state={this.state.current_state} handleChange={this.handleChange} />
       case 1:
-        return <JobSelection selectJobs={this.selectJobs} jobChecked={this.state.jobChecked} />
+        return <JobSelection selectJobs={this.selectJobs} jobChecked={this.state.jobChecked} mgggPrams={this.state.mgggPrams}/>
       case 2:
         return <SetConstraints CompactnessType={this.state.CompactnessType} handleCompactnessTypeChange={this.handleCompactnessTypeChange}
           CompactnessTypeSliderValue={this.state.CompactnessTypeSliderValue} valuetext={valuetext}

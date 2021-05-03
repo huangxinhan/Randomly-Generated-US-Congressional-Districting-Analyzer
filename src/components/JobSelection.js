@@ -10,6 +10,9 @@ class JobSelection extends Component {
   }
 
   render() {
+    let mggg=this.props.mgggPrams;
+    let state=["penn","100999"];
+    console.log(mggg,state);
     return (
       <div>
         <h3>Select a Job</h3>
@@ -17,7 +20,7 @@ class JobSelection extends Component {
         <div class="card bg-light mb-3" style={{ width: "550px", fontSize: "15px", left: "13px" }}>
           <div class="card-body">
             <h5 class="card-title">Job 1</h5>
-            <p class="card-text">•New York   •100,139 districtings    •27 districts</p>
+            <p class="card-text">  {state.map((value, index) => { return <li key={index}>{value}</li>})}  •100,139 districtings    •27 districts</p>
             <p class="card-text">•Additional Parameters</p>
             <input class="form-check-input" type="radio" value="1" checked={this.props.jobChecked===1?true :false} id="flexCheckDefault 1" onClick={this.props.selectJobs(1)} />
             <label class="form-check-label" for="flexCheckDefault">
