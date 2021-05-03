@@ -274,7 +274,7 @@ class Maps extends Component {
 
 
     function onEachDistrictFeature(feature, layer) {
-      layer.bindPopup(feature.properties.NAMELSAD + "     " + " Population: 717,820, Incumbent: John Doe, Split Counties: 0, Democratic Voter percentage: 57.4%, Republic Voter Percentage: 32.6%")
+      layer.bindPopup(feature.properties.LEG_DISTRI + "     " + " Population: 717,820, Incumbent: John Doe, Split Counties: 0, Democratic Voter percentage: 57.4%, Republic Voter Percentage: 32.6%")
       layer.on('mouseover', function (e) {
         if (feature.properties) {
           this.openPopup();
