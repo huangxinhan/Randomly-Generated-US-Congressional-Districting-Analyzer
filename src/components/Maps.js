@@ -719,25 +719,20 @@ class Maps extends Component {
           axios.post(REST_URL+'/api/v1/test1/state',this.state.current_state)
            .then(response =>{
              console.log(response.data);
-             //this.setState({ mgggPrams: response.data })
+             this.setState({ mgggPrams: response.data })
            });
   
         }
         else if(prev_active_step==1){
           //selected jobs
           console.log(this.state.jobChecked);
-          axios.post(REST_URL+'/api/v1/test1',this.state.jobChecked);
+          axios.post(REST_URL+'/api/v1/test1/job',this.state.jobChecked);
         }
         else if(prev_active_step==2){
           //selected constraints
   
           const constraintsObj={
-//             GraphCompactness: this.state.GraphCompactness ,
-//             PopulationFatness: this.state.PopulationFatness ,
-//             PolsbyPopper: this.state.PolsbyPopper ,
-//             TotalPopulation: this.state.TotalPopulation ,
-//             VotingAgePopulation:this.state.VotingAgePopulation ,
-//             CitizenVotingAgePopulation: this.state.CitizenVotingAgePopulation,
+
             MajorMinorThres: this.state.MajorMinorThres,
             populationEqualityThres:0.4,
             //MajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
