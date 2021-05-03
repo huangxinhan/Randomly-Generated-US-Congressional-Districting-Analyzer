@@ -56,6 +56,7 @@ function valuetext(value) {
 class Maps extends Component {
   constructor(props) {
     super(props)
+    
     this.state = {
       current_state: "None",
       Map: null,
@@ -80,7 +81,7 @@ class Maps extends Component {
       current_districting1: null,
       current_districting2: null,
       category: null,
-
+      mgggPrams:null,
 
       //Option page
 
@@ -106,8 +107,8 @@ class Maps extends Component {
       Objective: [0, 0],
 
       //Checkers for job selection
-      jobChecked: 0,
-      job1Checked: false,
+      jobChecked: 1,
+      job1Checked: true,
       job2Checked: false,
       job3Checked: false,
 
@@ -115,10 +116,9 @@ class Maps extends Component {
       comparisonGeojson: nydistricts,
 
       //Step3, slect options texts
-      CompactnessType: '',
-      //FinalCompactVal:0,
-      ConstrainType: '',
-      //FinalConstrainVal:0,
+      CompactnessType: 'POLSBYPOPPER_COMPACTNESS',
+      ConstrainType: 'TOTAL',
+      
       //third one is not needed.↓
 
       //Box and Whisker data
@@ -152,7 +152,7 @@ class Maps extends Component {
       TotalPopulation: 0,
       VotingAgePopulation: 0,
       CitizenVotingAgePopulation: 0,
-
+      MajorMinorThres:0,
       MajorityMinorityDistricts: null,
       MinorityGroup: null,
 
@@ -167,9 +167,12 @@ class Maps extends Component {
 
       districtingDataBox: "hidden"
     }
+
+        
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
 
+   
   componentDidMount() {
     this.init();
   }
@@ -413,20 +416,30 @@ class Maps extends Component {
     }
   }
 // check which job is selected
-  selectJob = (newValue) => {
-    if (document.getElementById("flexCheckDefault 1").checked) {
+  selectJob = jobid=>() => {
+    if (jobid==1) {
       console.log("job1 selected");
+      this.setState({job1Checked:true, job2Checked:false,job3Checked:false});
       this.setState({jobChecked:1});
     }
-    else if (document.getElementById("flexCheckDefault 2").checked) {
+    else if (jobid==2) {
       console.log("job2 selected");
+      this.setState({job1Checked:false, job2Checked:true,job3Checked:false});
       this.setState({jobChecked:2});
     }
-    else if (document.getElementById("flexCheckDefault 3").checked) {
+    else if (jobid==3) {
       console.log("job3 selected");
+      this.setState({job1Checked:false, job2Checked:false,job3Checked:true});
       this.setState({jobChecked:3});
     }
   }
+  selectJobs = (id)=>() => {
+    
+    this.setState({
+      jobChecked: id
+    });
+    console.log(this.state.jobChecked);
+  };
 
   handleMajorChange = (event, newValue) => {
     this.setState({ MajorityMinority: newValue });
@@ -554,6 +567,9 @@ class Maps extends Component {
 
     }
   }
+  handleChangeMajorMinorThres = (event, value) => {
+    this.setState({ MajorMinorThres: value })
+  }
 
   handleChangeMajorityMinorityDistricts = (event) => {
     this.setState({ MajorityMinorityDistricts: event.target.value })
@@ -561,7 +577,7 @@ class Maps extends Component {
   }
 
   handleChangeMinorityGroup = (event) => {
-    this.setState({ MinorityGroup: event.target.value })
+    this.setState({ MinorityGroup: event.target.value})
   }
 
 
@@ -700,17 +716,17 @@ class Maps extends Component {
         if(prev_active_step==0){
           //selected state
           console.log(this.state.current_state);
-          axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
-          // .then(response =>{
-          //   if (response.data!=null){
-          //     this
-          //   }
-          // })
+          axios.post(REST_URL+'/api/v1/test1/state',this.state.current_state)
+           .then(response =>{
+             console.log(response.data);
+             //this.setState({ mgggPrams: response.data })
+           });
+  
         }
         else if(prev_active_step==1){
           //selected jobs
           console.log(this.state.jobChecked);
-          axios.post(REST_URL+'/api/v1/test1',);
+          axios.post(REST_URL+'/api/v1/test1',this.state.jobChecked);
         }
         else if(prev_active_step==2){
           //selected constraints
@@ -722,32 +738,85 @@ class Maps extends Component {
 //             TotalPopulation: this.state.TotalPopulation ,
 //             VotingAgePopulation:this.state.VotingAgePopulation ,
 //             CitizenVotingAgePopulation: this.state.CitizenVotingAgePopulation,
-            MajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
-            MinorityGroup: this.state.MinorityGroup,
-            CompactnessTypeSliderValue: this.state.CompactnessTypeSliderValue,
-            ConstrainTypeSliderValue: this.state.ConstrainTypeSliderValue,
-            CompactnessType: this.state.CompactnessType,
-            ConstrainType: this.state.ConstrainType,
-            //incumbent value
+            MajorMinorThres: this.state.MajorMinorThres,
+            populationEqualityThres:0.4,
+            //MajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
+            minorityType: this.state.MinorityGroup,
+            compactnessValue: this.state.CompactnessTypeSliderValue,
+            populationValue: this.state.ConstrainTypeSliderValue,
+            compactnessType: this.state.CompactnessType,
+            populationType: this.state.ConstrainType,
+            incumbentValue:[false],
           };
           console.log(constraintsObj);
-          //axios.post(REST_URL+'/api/v1/test1',constraintsObj);
+          axios.post(REST_URL+'/api/v1/test1/constraints',constraintsObj);
         }
         else if(prev_active_step==3){
-          //selected obj function
-          axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
+          //summary page
+         
+          //axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
         } 
         else if(prev_active_step==4){
+          const objFunctionObj={
+            POLITICAL_FAIRNESS:this.state.MajorityMinority,
+            POLSBYPOPPER_COMPACTNESS: this.state.PPCompactness,
+            POPULATIONFATNESS_COMPACTNESS: this.state.PopFatCompactness,
+            GRAPH_COMPACTNESS: this.state.GCompactness,
+            POPULATION_EQUALITY: this.state.PopulationEquality,
+            DEVIATION_FROM_ENACTEDAREA: this.state.DeviationFromEnacted,
+            DEVIATION_FROM_ENACTEDPOP: this.state.DeviationFromEnactedPopulation,
+            SPLIT_COUNTIES: this.state.SplitCounties,
+            DeviationFromAverage: this.state.DeviationFromAverage,//not in measure
+          };
+          console.log(objFunctionObj);
           //selected obj function
-          axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
+          axios.post(REST_URL+'/api/v1/test1/weights',objFunctionObj);
         }               
       this.setState({ activeStep: prev_active_step + 1 })
     }
     
 
     else if (direction == "reset") {
-      this.setState({ activeStep: 0 })
-      //reset states
+      this.setState({ activeStep: 0,
+        current_state: "None",
+          jobChecked: 1,
+          // step3, corresponding slider values to options
+          GraphCompactness: 0,
+          PopulationFatness: 0,
+          PolsbyPopper: 0,
+    
+          TotalPopulation: 0,
+          VotingAgePopulation: 0,
+          CitizenVotingAgePopulation: 0,
+    
+          MajorityMinorityDistricts: null,
+          MinorityGroup: null,
+    
+          
+    
+          //belows are used to update slider value based on different option selections.
+          CompactnessType: 'POLSBYPOPPER_COMPACTNESS',
+          ConstrainType: 'TOTAL',
+          CompactnessTypeSliderValue: 0,
+          ConstrainTypeSliderValue: 0,
+          
+          //obj functions            
+          MajorityMinority: 0,
+          Compactness: 0,
+          PPCompactness: 0,
+          PopFatCompactness: 0,
+          GCompactness: 0,
+          PopulationEquality: 0,
+          DeviationFromEnacted: 0,
+          DeviationFromEnactedPopulation: 0,
+          SplitCounties: 0,
+          DeviationFromAverage: 0,
+      
+      
+      })
+      console.log(this.state.current_state,this.state.GraphCompactness);
+      
+
     }
   }
 
@@ -882,13 +951,14 @@ class Maps extends Component {
       case 0:
         return <StateSelection current_state={this.state.current_state} handleChange={this.handleChange} />
       case 1:
-        return <JobSelection selectJob={this.selectJob} />
+        return <JobSelection selectJobs={this.selectJobs} jobChecked={this.state.jobChecked} mgggPrams={this.state.mgggPrams}/>
       case 2:
         return <SetConstraints CompactnessType={this.state.CompactnessType} handleCompactnessTypeChange={this.handleCompactnessTypeChange}
           CompactnessTypeSliderValue={this.state.CompactnessTypeSliderValue} valuetext={valuetext}
           handleChangeCompactnessTypeSliderValue={this.handleChangeCompactnessTypeSliderValue}
           ConstrainType={this.state.ConstrainType} handleConstrainTypeChange={this.handleConstrainTypeChange} ConstrainTypeSliderValue={this.state.ConstrainTypeSliderValue}
           handleChangeConstrainTypeSliderValue={this.handleChangeConstrainTypeSliderValue}
+          handleChangeMajorMinorThres={this.handleChangeMajorMinorThres}  MajorMinorThres={this.state.MajorMinorThres}
           MinorityGroup={this.state.MinorityGroup} handleChangeMinorityGroup={this.handleChangeMinorityGroup}
           MajorityMinorityDistricts={this.state.MajorityMinorityDistricts} handleChangeMajorityMinorityDistricts={this.handleChangeMajorityMinorityDistricts} />
       case 3:
@@ -916,7 +986,7 @@ class Maps extends Component {
   render() {
 
 
-    let nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveStep(this.state.activeStep, "forward")}>Next Step</Button>
+    let nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveSteps(this.state.activeStep, "forward")}>Next Step</Button>
     if (this.state.activeStep == 5) {
       nextStepButton = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
     }
@@ -996,7 +1066,7 @@ class Maps extends Component {
               ⠀⠀⠀⠀
                 {nextStepButton}
               ⠀⠀⠀⠀
-                <button type="button" class="btn btn-danger" onClick={() => this.setActiveStep(this.state.activeStep, "reset")}>Reset</button>
+                <button type="button" class="btn btn-danger" onClick={() => this.setActiveSteps(this.state.activeStep, "reset")}>Reset</button>
           </div>
         </div>
 
