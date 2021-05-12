@@ -159,18 +159,13 @@ class Maps extends Component {
       //mapbox gl coordinates are reversed from leaflet
       mapboxglCoordinates: null,
       secondaryMap: "hidden",
-
       //belows are used to update slider value based on different option selections.
-
       CompactnessTypeSliderValue: 0,
       ConstrainTypeSliderValue: 0,
-
       districtingDataBox: "hidden",
-
-      stateDistrictBoundary: null
+      stateDistrictBoundary: null,
+      statePrecinctBoundary: null
     }
-
-        
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
 
@@ -183,7 +178,15 @@ class Maps extends Component {
         axios.get(REST_URL+'/api/getStateBoundary/PA')
         .then(response =>response.data)
         .then((data)=>{
-          this.setState({stateBoundary:data}, ()=>{this.init()});
+          this.setState({stateBoundary:data}, ()=>{
+              axios.get(REST_URL+'/api/getStatePrecinctBoundary/PA')
+              .then(response=>response.data)
+              .then((data)=>{
+                this.setState({statePrecinctBoundary: data}, ()=>{
+                  this.init();
+                })
+              })
+            });
         })
       });
     })
@@ -293,16 +296,18 @@ class Maps extends Component {
 
 
     function onEachDistrictFeature(feature, layer) {
-      // layer.bindPopup(feature.properties.LEG_DISTRI + "     " + " Population: 717,820, Incumbent: John Doe, Split Counties: 0, Democratic Voter percentage: 57.4%, Republic Voter Percentage: 32.6%")
-      // layer.on('mouseover', function (e) {
-      //   if (feature.properties) {
-      //     this.openPopup();
-      //   }
-      // }
-      // )
-      // layer.on('mouseout', function (e) {
-      //   this.closePopup();
-      // })
+      layer.bindPopup("District ID:" + feature.properties.NAME +
+      "\n Total Population:" + feature.properties.TOTPOP +
+      "\n Voting Age Population:" + feature.properties.VAP)
+      layer.on('mouseover', function (e) {
+        if (feature.properties) {
+          this.openPopup();
+        }
+      }
+      )
+      layer.on('mouseout', function (e) {
+        this.closePopup();
+      })
     }
 
     //geojson for New York State precincts
@@ -327,7 +332,7 @@ class Maps extends Component {
       onEachFeature: onEachPrecinctFeature
     });
 
-    var PAprecinctLayer = L.geoJson(paprecincts, {
+    var PAprecinctLayer = L.geoJson(this.state.statePrecinctBoundary, {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
@@ -337,9 +342,14 @@ class Maps extends Component {
       onEachFeature: onEachPrecinctFeature
     });
 
+    console.log("state precinct boundary found: ", this.state.statePrecinctBoundary);
+
 
     function onEachPrecinctFeature(feature, layer) {
-      layer.bindPopup(feature.properties.NAMELSAD10)
+      layer.bindPopup("Precinct ID:" + feature.properties.NAMELSAD10 + "\n total Population:" + feature.properties.TOTPOP
+      + "\n total African American Population:" + feature.properties.AFAPOP +
+      "\n total Asian Population:" + feature.properties.APOP + 
+      "\n total Voting Age Population:" + feature.properties.VAP)
       layer.on('mouseover', function (e) {
         if (feature.properties) {
           this.openPopup();
@@ -736,13 +746,16 @@ class Maps extends Component {
            .then(response =>{
              console.log(response.data);
              this.setState({ mgggPrams: response.data })
-           });
+           }).finally(()=>{
+            this.setState({ activeStep: prev_active_step + 1 })
+             });
   
         }
         else if(prev_active_step==1){
           //selected jobs
           console.log(this.state.jobChecked);
           axios.post(REST_URL+'/api/job',this.state.jobChecked);
+          this.setState({ activeStep: prev_active_step + 1 });
         }
         else if(prev_active_step==2){
           //selected constraints
@@ -761,10 +774,11 @@ class Maps extends Component {
           };
           console.log(constraintsObj);
           axios.post(REST_URL+'/api/constraints',constraintsObj);
+          this.setState({ activeStep: prev_active_step + 1 });
         }
         else if(prev_active_step==3){
           //summary page
-         
+          this.setState({ activeStep: prev_active_step + 1 });
           //axios.post(REST_URL+'/api/v1/test1',this.state.current_state);
         } 
         else if(prev_active_step==4){
@@ -782,8 +796,9 @@ class Maps extends Component {
           console.log(objFunctionObj);
           //selected obj function
           axios.post(REST_URL+'/api/weights',objFunctionObj);
+          this.setState({ activeStep: prev_active_step + 1 });
         }               
-      this.setState({ activeStep: prev_active_step + 1 })
+      //this.setState({ activeStep: prev_active_step + 1 })
     }
     
 
