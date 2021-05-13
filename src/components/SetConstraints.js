@@ -182,36 +182,209 @@ class SetConstraints extends Component {
       </div>
 
       
-      <div class="modal-body">
+      <div class="modal-body" style={{display:this.props.current_state==="Pennsylvania"?"block":"none"}}>
               <div class="form-check">
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
+                class="Incumbent-Checkbox" type="checkbox" value="Tammy_Rowe" id="flexCheckDefault" 
+                onClick={this.props.selectIncumbents("Brian_Fitzpatrick")}      />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Brian Fitzpatrick(D1)
+              </label>
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox"value="" id="flexCheckDefault"
+                onClick={this.props.selectIncumbents("Brendan_Boyle")}/>
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Brendan Boyle(D2)
+              </label>
+              
+              
+              <input
+                class="Incumbent-Checkbox"type="checkbox" value=""
+                id="flexCheckDefault"onClick={this.props.selectIncumbents("Dwight_Evans")}/>
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Dwight Evans(D3)
+              </label>
+
+              <br></br>
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox" value=""
+                onClick={this.props.selectIncumbents("Madeleine_Dean")}
                 id="flexCheckDefault"
               />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Madeleine Dean(D4)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Mary_Gay_Scanlon")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Mary Gay Scanlon(D5)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Chrissy_Houlahan")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Chrissy Houlahan(D6)
+              </label>
+
+              <br></br>
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Susan_Wild")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Susan Wild(D7)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Matt_Cartwright")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Matt Cartwright(D8)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Dan_Meuser")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Dan Meuser(D9)
+              </label>
+
+              <br></br>       
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Scott_Perry")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Scott Perry(D10)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Lloyd_Smucker")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Lloyd Smucker(D11)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Fred_Keller")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Fred Keller(D12)
+              </label>
+
+              <br></br>      
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("John_Joyce")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              John Joyce(D13)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Guy_Reschenthaler")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Guy Reschenthaler(D14)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Glenn_Thompson")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Glenn Thompson(D15)
+              </label>
+
+              <br></br>    
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Mike_Kelly")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+               Mike Kelly(D16)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Conor_Lamb")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Conor Lamb(D17)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Michael_Doyle")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Michael Doyle(D18)
+              </label>
+
+              <br></br>     
+              
+          </div>
+      </div>
+
+
+
+
+      <div class="modal-body"style={{display:this.props.current_state==="New York"?"block":"none"}}>
+      <div class="form-check">
+              <input
+                class="Incumbent-Checkbox" type="checkbox" value="Tammy_Rowe" id="flexCheckDefault" 
+                onClick={this.props.selectIncumbents("Tammy_Rowe")}      />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
               Tammy Rowe(D1)
               </label>
 
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
+                class="Incumbent-Checkbox"type="checkbox"value="" id="flexCheckDefault"
+                onClick={this.props.selectIncumbents("Clifford_Kim")}/>
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
               Clifford Kim(D2)
               </label>
               
               
-
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
+                class="Incumbent-Checkbox"type="checkbox" value=""
+                id="flexCheckDefault"onClick={this.props.selectIncumbents("Owen_Neal")}/>
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
               Owen Neal(D3)
               </label>
@@ -219,9 +392,8 @@ class SetConstraints extends Component {
               <br></br>
 
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
+                class="Incumbent-Checkbox"type="checkbox" value=""
+                onClick={this.props.selectIncumbents("Mabel_Logan")}
                 id="flexCheckDefault"
               />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
@@ -230,9 +402,8 @@ class SetConstraints extends Component {
 
 
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Nicole_Mann")}
                 id="flexCheckDefault"
               />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
@@ -241,9 +412,8 @@ class SetConstraints extends Component {
 
 
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Sara_Holloway")}
                 id="flexCheckDefault"
               />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
@@ -252,9 +422,8 @@ class SetConstraints extends Component {
 
               <br></br>
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Edward_Carson")}
                 id="flexCheckDefault"
               />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
@@ -263,9 +432,8 @@ class SetConstraints extends Component {
 
 
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Doreen_Lewis")}
                 id="flexCheckDefault"
               />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
@@ -274,9 +442,8 @@ class SetConstraints extends Component {
 
 
               <input
-                class="Incumbent-Checkbox"
-                type="checkbox"
-                value=""
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Inez_Jimenez")}
                 id="flexCheckDefault"
               />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
@@ -286,13 +453,102 @@ class SetConstraints extends Component {
               <br></br>       
               
           </div>
-      </div>
-
+        </div>
       
+
+
+
+        <div class="modal-body"style={{display:this.props.current_state==="Maryland"?"block":"none"}}>
+        <div class="form-check">
+              <input
+                class="Incumbent-Checkbox" type="checkbox" value="Tammy_Rowe" id="flexCheckDefault" 
+                onClick={this.props.selectIncumbents("Tammy_Rowe")}      />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Andrew Harris(D1)
+              </label>
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox"value="" id="flexCheckDefault"
+                onClick={this.props.selectIncumbents("Clifford_Kim")}/>
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Dutch Ruppersberger(D2)
+              </label>
+              
+              
+              <input
+                class="Incumbent-Checkbox"type="checkbox" value=""
+                id="flexCheckDefault"onClick={this.props.selectIncumbents("Owen_Neal")}/>
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              John Sarbanes(D3)
+              </label>
+
+              <br></br>
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox" value=""
+                onClick={this.props.selectIncumbents("Mabel_Logan")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Anthony Brown(D4)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Nicole_Mann")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Steny Hoyer(D5)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Sara_Holloway")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              David Trone(D6)
+              </label>
+
+              <br></br>
+              <input
+                class="Incumbent-Checkbox"type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Edward_Carson")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Kweisi Mfume(D7)
+              </label>
+
+
+              <input
+                class="Incumbent-Checkbox" type="checkbox"
+                value=""onClick={this.props.selectIncumbents("Doreen_Lewis")}
+                id="flexCheckDefault"
+              />
+              <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
+              Jamie Raskin(D8)
+              </label>
+
+
+              
+
+              <br></br>       
+              
+          </div>
+        </div>
+
+
+
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-dismiss="modal">Apply</button>
       </div>
 
+
+      
     </div>
   </div> 
   </div> 

@@ -52,6 +52,31 @@ const REST_URL = 'http://localhost:8080';
 function valuetext(value) {
   return `${value}%`;
 }
+let incumbentMap = new Map([
+  //PA
+  ["Brian_Fitzpatrick",false],["Brendan_Boyle",false],["Dwight_Evans",false],
+  ["Madeleine_Dean",false],["Mary_Gay_Scanlon",false],["Chrissy_Houlahan",false],
+  ["Susan_Wild",false],["Matt_Cartwright",false],["Dan_Meuser",false],
+  ["Scott_Perry",false],["Lloyd_Smucker",false],["Fred_Keller",false],
+  ["John_Joyce",false],["Guy_Reschenthaler",false],["Glenn_Thompson",false],
+  ["Mike_Kelly",false],["Conor_Lamb",false],["Michael_Doyle",false],
+  //MD
+  ["Andrew Harris",false],["Dutch Ruppersberger",false],["John Sarbanes",false],
+  ["Anthony Brown",false],["Steny Hoyer",false],["David Trone",false],
+  ["Kweisi Mfume",false],["Jamie Raskin",false],
+  //NY
+  // ["Brian_Fitzpatrick",false],["Brendan_Boyle",false],["Dwight_Evans",false],
+  // ["Madeleine_Dean",false],["Mary_Gay_Scanlon",false],["Chrissy_Houlahan",false],
+  // ["Susan_Wild",false],["Matt_Cartwright",false],["Dan_Meuser",false],
+  // ["Scott_Perry",false],["Lloyd_Smucker",false],["Fred_Keller",false],
+  // ["John_Joyce",false],["Guy_Reschenthaler ",false],["Glenn_Thompson",false],
+  // ["Mike_Kelly",false],["Conor_Lamb",false],["Michael_Doyle",false],
+  // ["Andrew Harris",false],["Dutch Ruppersberger",false],["John Sarbanes",false],
+  // ["Anthony Brown",false],["Steny Hoyer",false],["David Trone",false],
+  // ["Kweisi Mfume",false],["Jamie Raskin ",false],["Andrew Harris",false],
+  // ["Dutch Ruppersberger",false],["John Sarbanes",false]
+]);
+//window.$PAIncum=PAincum;
 
 class Maps extends Component {
   constructor(props) {
@@ -164,11 +189,13 @@ class Maps extends Component {
       ConstrainTypeSliderValue: 0,
       districtingDataBox: "hidden",
       stateDistrictBoundary: null,
-      statePrecinctBoundary: null
+      statePrecinctBoundary: null,
+      //incumbent list
+     // incumbentPA:{Tammy_Rowe:false, Clifford_Kim:false}
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
-
+  
    
   componentDidMount() {
     axios.get(REST_URL+'/api/getStateDistrictBoundary/PA')
@@ -195,7 +222,7 @@ class Maps extends Component {
 
   //initializes the map
   init() {
-
+    
     var container = L.DomUtil.get('map');
     if (container != null) {
       container._leaflet_id = null;
@@ -459,12 +486,22 @@ class Maps extends Component {
       this.setState({jobChecked:3});
     }
   }
-  selectJobs = (id)=>() => {
-    
+  
+  selectJobs = (id)=>() => {    
     this.setState({
       jobChecked: id
     });
     console.log(this.state.jobChecked);
+  };
+
+  selectIncumbents = (name)=>() => {  
+    
+    // let incum = new Map();
+    // incum=PAincum;  
+    var temp = incumbentMap.get(name);
+    console.log(name);
+    incumbentMap.set(name, !temp)
+    console.log(incumbentMap);
   };
 
   handleMajorChange = (event, newValue) => {
@@ -759,7 +796,8 @@ class Maps extends Component {
         }
         else if(prev_active_step==2){
           //selected constraints
-  
+          const incumbent= Object.fromEntries(incumbentMap);
+
           const constraintsObj={
 
             MajorMinorThres: this.state.MajorMinorThres,
@@ -770,10 +808,11 @@ class Maps extends Component {
             populationValue: this.state.ConstrainTypeSliderValue,
             compactnessType: this.state.CompactnessType,
             populationType: this.state.ConstrainType,
-            incumbentValue:[false],
+            incumbentValue:incumbent,
           };
           console.log(constraintsObj);
-          axios.post(REST_URL+'/api/constraints',constraintsObj);
+          //axios.post(REST_URL+'/api/constraints',constraintsObj);
+          axios.post(REST_URL+'/api/test',incumbent);
           this.setState({ activeStep: prev_active_step + 1 });
         }
         else if(prev_active_step==3){
@@ -981,9 +1020,9 @@ class Maps extends Component {
       case 2:
         return <SetConstraints CompactnessType={this.state.CompactnessType} handleCompactnessTypeChange={this.handleCompactnessTypeChange}
           CompactnessTypeSliderValue={this.state.CompactnessTypeSliderValue} valuetext={valuetext}
-          handleChangeCompactnessTypeSliderValue={this.handleChangeCompactnessTypeSliderValue}
+          handleChangeCompactnessTypeSliderValue={this.handleChangeCompactnessTypeSliderValue}current_state={this.state.current_state}
           ConstrainType={this.state.ConstrainType} handleConstrainTypeChange={this.handleConstrainTypeChange} ConstrainTypeSliderValue={this.state.ConstrainTypeSliderValue}
-          handleChangeConstrainTypeSliderValue={this.handleChangeConstrainTypeSliderValue}
+          handleChangeConstrainTypeSliderValue={this.handleChangeConstrainTypeSliderValue} selectIncumbents={this.selectIncumbents}
           handleChangeMajorMinorThres={this.handleChangeMajorMinorThres}  MajorMinorThres={this.state.MajorMinorThres}
           MinorityGroup={this.state.MinorityGroup} handleChangeMinorityGroup={this.handleChangeMinorityGroup}
           MajorityMinorityDistricts={this.state.MajorityMinorityDistricts} handleChangeMajorityMinorityDistricts={this.handleChangeMajorityMinorityDistricts} />
