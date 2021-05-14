@@ -198,25 +198,26 @@ class Maps extends Component {
   
    
   componentDidMount() {
-    axios.get(REST_URL+'/api/getStateDistrictBoundary/PA')
-    .then(response =>response.data)
-    .then((data)=>{
-      this.setState({stateDistrictBoundary:data}, ()=>{
-        axios.get(REST_URL+'/api/getStateBoundary/PA')
-        .then(response =>response.data)
-        .then((data)=>{
-          this.setState({stateBoundary:data}, ()=>{
-              axios.get(REST_URL+'/api/getStatePrecinctBoundary/PA')
-              .then(response=>response.data)
-              .then((data)=>{
-                this.setState({statePrecinctBoundary: data}, ()=>{
-                  this.init();
-                })
-              })
-            });
-        })
-      });
-    })
+    this.init();
+    // axios.get(REST_URL+'/api/getStateDistrictBoundary/PA')
+    // .then(response =>response.data)
+    // .then((data)=>{
+    //   this.setState({stateDistrictBoundary:data}, ()=>{
+    //     axios.get(REST_URL+'/api/getStateBoundary/PA')
+    //     .then(response =>response.data)
+    //     .then((data)=>{
+    //       this.setState({stateBoundary:data}, ()=>{
+    //           axios.get(REST_URL+'/api/getStatePrecinctBoundary/PA')
+    //           .then(response=>response.data)
+    //           .then((data)=>{
+    //             this.setState({statePrecinctBoundary: data}, ()=>{
+    //               this.init();
+    //             })
+    //           })
+    //         });
+    //     })
+    //   });
+    // })
   }
 
 
@@ -252,7 +253,7 @@ class Maps extends Component {
       onEachFeature: onEachStateFeature
     });
 
-    var PAStateLayer = L.geoJson(this.state.stateBoundary, {
+    var PAStateLayer = L.geoJson(pastate, {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
@@ -262,7 +263,7 @@ class Maps extends Component {
       onEachFeature: onEachStateFeature
     })
 
-    console.log("lolol" + this.state.stateBoundary);
+    //console.log("lolol" + this.state.stateBoundary);
 
     var MDStateLayer = L.geoJson(mdstate, {
       weight: 1,
@@ -298,7 +299,7 @@ class Maps extends Component {
       onEachFeature: onEachDistrictFeature
     });
 
-    var PAdistrictLayer = L.geoJson(this.state.stateDistrictBoundary, {
+    var PAdistrictLayer = L.geoJson(padistricts, {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
@@ -359,7 +360,7 @@ class Maps extends Component {
       onEachFeature: onEachPrecinctFeature
     });
 
-    var PAprecinctLayer = L.geoJson(this.state.statePrecinctBoundary, {
+    var PAprecinctLayer = L.geoJson(paprecincts, {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
@@ -784,8 +785,8 @@ class Maps extends Component {
              console.log(response.data);
              this.setState({ mgggPrams: response.data })
            }).finally(()=>{
-            this.setState({ activeStep: prev_active_step + 1 })
-             });
+            this.setState({ activeStep: prev_active_step + 1 })
+             });
   
         }
         else if(prev_active_step==1){
@@ -802,12 +803,12 @@ class Maps extends Component {
 
             MajorMinorThres: this.state.MajorMinorThres,
             populationEqualityThres:0.4,
-            numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
-            minorityType: this.state.MinorityGroup,
-            compactnessValue: this.state.CompactnessTypeSliderValue,
-            populationValue: this.state.ConstrainTypeSliderValue,
-            compactnessType: this.state.CompactnessType,
-            populationType: this.state.ConstrainType,
+            numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
+            minorityType: this.state.MinorityGroup,
+            compactnessValue: this.state.CompactnessTypeSliderValue,
+            populationValue: this.state.ConstrainTypeSliderValue,
+            compactnessType: this.state.CompactnessType,
+            populationType: this.state.ConstrainType,
             incumbentValue:incumbent,
           };
           console.log(constraintsObj);
