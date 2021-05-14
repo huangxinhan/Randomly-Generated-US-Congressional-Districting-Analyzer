@@ -55,26 +55,27 @@ function valuetext(value) {
 let incumbentMap = new Map([
   //PA
   ["Brian Fitzpatrick",false],["Brendan Boyle",false],["Dwight Evans",false],
-  ["Madeleine_Dean",false],["Mary_Gay_Scanlon",false],["Chrissy_Houlahan",false],
-  ["Susan_Wild",false],["Matt_Cartwright",false],["Dan_Meuser",false],
-  ["Scott_Perry",false],["Lloyd_Smucker",false],["Fred_Keller",false],
-  ["John_Joyce",false],["Guy_Reschenthaler",false],["Glenn_Thompson",false],
-  ["Mike_Kelly",false],["Conor_Lamb",false],["Michael_Doyle",false],
+  ["Madeleine Dean",false],["Mary Gay Scanlon",false],["Chrissy Houlahan",false],
+  ["Susan Wild",false],["Matt Cartwright",false],["Dan Meuser",false],
+  ["Scott Perry",false],["Lloyd Smucker",false],["Fred Keller",false],
+  ["John Joyce",false],["Guy Reschenthaler",false],["Glenn Thompson",false],
+  ["Mike Kelly",false],["Conor Lamb",false],["Michael Doyle",false],
   //MD
   ["Andrew Harris",false],["Dutch Ruppersberger",false],["John Sarbanes",false],
   ["Anthony Brown",false],["Steny Hoyer",false],["David Trone",false],
   ["Kweisi Mfume",false],["Jamie Raskin",false],
   //NY
-  // ["Brian_Fitzpatrick",false],["Brendan_Boyle",false],["Dwight_Evans",false],
-  // ["Madeleine_Dean",false],["Mary_Gay_Scanlon",false],["Chrissy_Houlahan",false],
-  // ["Susan_Wild",false],["Matt_Cartwright",false],["Dan_Meuser",false],
-  // ["Scott_Perry",false],["Lloyd_Smucker",false],["Fred_Keller",false],
-  // ["John_Joyce",false],["Guy_Reschenthaler ",false],["Glenn_Thompson",false],
-  // ["Mike_Kelly",false],["Conor_Lamb",false],["Michael_Doyle",false],
-  // ["Andrew Harris",false],["Dutch Ruppersberger",false],["John Sarbanes",false],
-  // ["Anthony Brown",false],["Steny Hoyer",false],["David Trone",false],
-  // ["Kweisi Mfume",false],["Jamie Raskin ",false],["Andrew Harris",false],
-  // ["Dutch Ruppersberger",false],["John Sarbanes",false]
+  ["Lee Zeldin",false],["Peter King",false],["Tom Suozzi",false],
+  ["Kathleen Rice",false],["Gregory Meeks",false],["Grace Meng",false],
+  ["Nydia Velazquez",false],["Hakeem Jeffries",false],["Yvette Clarke",false],
+  ["Jerrold Nadler",false],["Max Rose",false],["Carolyn Maloney",false],
+  ["Adriano Espaillat",false],["Alexandria Ocasio-Cortez ",false],["Jose Serrano",false],
+  ["Eliot Engel",false],["Nita Lowey",false],["Sean Maloney",false],
+  ["Antonio Delgado",false],["Paul Tonko",false],["Elise Stefanik",false],
+  ["Anthony Brindisi",false],["Tom Reed",false],["John Katko",false],
+  ["Joseph Morelle",false],["Brian Higgins",false],["Christopher Jacobs",false],
+  ["John Winston",false],["Henry Franklin",false],
+
 ]);
 //window.$PAIncum=PAincum;
 
@@ -141,7 +142,7 @@ class Maps extends Component {
       comparisonGeojson: nydistricts,
 
       //Step3, slect options texts
-      CompactnessType: 'POLSBYPOPPER_COMPACTNESS',
+      CompactnessType: 'GRAPH_COMPACTNESS',
       ConstrainType: 'TOTAL',
       
       //third one is not needed.↓
@@ -178,8 +179,8 @@ class Maps extends Component {
       VotingAgePopulation: 0,
       CitizenVotingAgePopulation: 0,
       MajorMinorThres:0,
-      MajorityMinorityDistricts: null,
-      MinorityGroup: null,
+      MajorityMinorityDistricts: 0,
+      MinorityGroup: "AFRICAN_AMERICAN",
 
       //mapbox gl coordinates are reversed from leaflet
       mapboxglCoordinates: null,
@@ -854,13 +855,13 @@ class Maps extends Component {
           VotingAgePopulation: 0,
           CitizenVotingAgePopulation: 0,
     
-          MajorityMinorityDistricts: null,
-          MinorityGroup: null,
+          MajorityMinorityDistricts: 0,
+          MinorityGroup: "AFRICAN_AMERICAN",
     
           
     
           //belows are used to update slider value based on different option selections.
-          CompactnessType: 'POLSBYPOPPER_COMPACTNESS',
+          CompactnessType: 'GRAPH_COMPACTNESS',
           ConstrainType: 'TOTAL',
           CompactnessTypeSliderValue: 0,
           ConstrainTypeSliderValue: 0,
