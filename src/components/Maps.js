@@ -808,7 +808,7 @@ class Maps extends Component {
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             populationEqualityThres:0.4,
             populationValue: this.state.ConstrainTypeSliderValue,
-            incumbentValue:[false],
+            incumbentValue:incumbent,
           };
           console.log(constraintsObj);
           axios.post(REST_URL+'/api/constraints',constraintsObj);
