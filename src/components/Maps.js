@@ -800,20 +800,19 @@ class Maps extends Component {
           const incumbent= Object.fromEntries(incumbentMap);
 
           const constraintsObj={
-
-            MajorMinorThres: this.state.MajorMinorThres,
-            populationEqualityThres:0.4,
-            numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
-            minorityType: this.state.MinorityGroup,
-            compactnessValue: this.state.CompactnessTypeSliderValue,
-            populationValue: this.state.ConstrainTypeSliderValue,
             compactnessType: this.state.CompactnessType,
             populationType: this.state.ConstrainType,
-            incumbentValue:incumbent,
+            compactnessValue: this.state.CompactnessTypeSliderValue,
+            minorityType: this.state.MinorityGroup,
+            majorMinorThres: this.state.MajorMinorThres,
+            numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
+            populationEqualityThres:0.4,
+            populationValue: this.state.ConstrainTypeSliderValue,
+            incumbentValue:[false],
           };
           console.log(constraintsObj);
-          //axios.post(REST_URL+'/api/constraints',constraintsObj);
-          axios.post(REST_URL+'/api/test',incumbent);
+          axios.post(REST_URL+'/api/constraints',constraintsObj);
+          //axios.post(REST_URL+'/api/test',incumbent);
           this.setState({ activeStep: prev_active_step + 1 });
         }
         else if(prev_active_step==3){

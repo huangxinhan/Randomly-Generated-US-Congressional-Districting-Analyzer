@@ -97,7 +97,7 @@ class SetConstraints extends Component {
                         max={100}
                         onChange={this.props.handleChangeConstrainTypeSliderValue}
                       />
-                      <h6>current value: {this.props.ConstrainTypeSliderValue}%</h6>
+                      <h6>current value: {this.props.ConstrainTypeSliderValue/10}%</h6>
                       </div>
                 </div>
                 <br></br>
@@ -151,13 +151,13 @@ class SetConstraints extends Component {
                         getAriaValueText={this.props.valuetext}
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"
-                        step={10}
+                        step={0.1}
                         marks
                         min={0}
-                        max={100}
+                        max={1}
                         onChange={this.props.handleChangeMajorMinorThres}
                       />
-                      <h6>Threshold value: {this.props.MajorMinorThres}%</h6>
+                      <h6>Threshold value: {this.props.MajorMinorThres * 100}%</h6>
                       </div>
                 </div>
                 <div></div>
