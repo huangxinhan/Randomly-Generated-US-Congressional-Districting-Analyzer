@@ -54,7 +54,7 @@ function valuetext(value) {
 }
 let incumbentMap = new Map([
   //PA
-  ["Brian_Fitzpatrick",false],["Brendan_Boyle",false],["Dwight_Evans",false],
+  ["Brian Fitzpatrick",false],["Brendan Boyle",false],["Dwight Evans",false],
   ["Madeleine_Dean",false],["Mary_Gay_Scanlon",false],["Chrissy_Houlahan",false],
   ["Susan_Wild",false],["Matt_Cartwright",false],["Dan_Meuser",false],
   ["Scott_Perry",false],["Lloyd_Smucker",false],["Fred_Keller",false],

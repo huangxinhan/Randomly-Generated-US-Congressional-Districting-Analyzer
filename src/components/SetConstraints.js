@@ -186,14 +186,14 @@ class SetConstraints extends Component {
               <div class="form-check">
               <input
                 class="Incumbent-Checkbox" type="checkbox" value="Tammy_Rowe" id="flexCheckDefault" 
-                onClick={this.props.selectIncumbents("Brian_Fitzpatrick")}      />
+                onClick={this.props.selectIncumbents("Brian Fitzpatrick")}      />
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
               Brian Fitzpatrick(D1)
               </label>
 
               <input
                 class="Incumbent-Checkbox"type="checkbox"value="" id="flexCheckDefault"
-                onClick={this.props.selectIncumbents("Brendan_Boyle")}/>
+                onClick={this.props.selectIncumbents("Brendan Boyle")}/>
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
               Brendan Boyle(D2)
               </label>
@@ -201,7 +201,7 @@ class SetConstraints extends Component {
               
               <input
                 class="Incumbent-Checkbox"type="checkbox" value=""
-                id="flexCheckDefault"onClick={this.props.selectIncumbents("Dwight_Evans")}/>
+                id="flexCheckDefault"onClick={this.props.selectIncumbents("Dwight Evans")}/>
               <label class="Incumbent-Checkbox" for="flexCheckDefault" id="checkbox1" >
               Dwight Evans(D3)
               </label>
