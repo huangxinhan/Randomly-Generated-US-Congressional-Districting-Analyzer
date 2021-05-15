@@ -809,17 +809,18 @@ class Maps extends Component {
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             populationEqualityThres:0.4,
             populationValue: this.state.ConstrainTypeSliderValue,
-            incumbentValue:[false]//incumbent,
+            incumbentValue:incumbent,
           };
           console.log(constraintsObj);
           axios.post(REST_URL+'/api/constraints',constraintsObj).then(response =>{
             console.log(response.data);
             this.setState({ constraintsResults: response.data })
           }).finally(()=>{
+            console.log("ran next page")
            this.setState({ activeStep: prev_active_step + 1 })
             });
           //axios.post(REST_URL+'/api/test',incumbent);
-          this.setState({ activeStep: prev_active_step + 1 });
+          //this.setState({ activeStep: prev_active_step + 1 });
         }
         else if(prev_active_step==3){
           //summary page
