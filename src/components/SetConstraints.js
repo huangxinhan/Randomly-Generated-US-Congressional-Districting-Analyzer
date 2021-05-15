@@ -77,7 +77,7 @@ class SetConstraints extends Component {
                           <option aria-label="None" value="">⠀                      ⠀</option>
                           <option value={"TOTAL"}>total population</option>
                           <option value={"VAP"}>voting age population (TVAP)</option>
-                          <option value={"CVAP"}>citizen voting age population (CVAP)</option>
+                          <option value={"CVAP"}disabled={true}>citizen voting age population (CVAP)</option>
                         </NativeSelect>
                       <FormHelperText>Select Population constrain Type</FormHelperText>
                     </FormControl>
