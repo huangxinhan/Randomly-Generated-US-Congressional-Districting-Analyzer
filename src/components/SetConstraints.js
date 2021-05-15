@@ -18,7 +18,7 @@ class SetConstraints extends Component {
     render(){
       let minorityOptions = [];
         if (this.props.MinorityGroup=="AFRICAN_AMERICAN"){
-          minorityOptions=[1,2,3,4];
+          minorityOptions=[0,1,2,3,4];
         }
         else{
           minorityOptions=[0];

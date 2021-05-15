@@ -27,10 +27,10 @@ class StateSelection extends Component {
               name: 'Click To Select A State',
               id: 'state-native-helper',
             }}>
-            <option aria-label="None" value="" />
-            <option value={"New York"}>New York</option>
+            <option aria-label="None" value="" />            
             <option value={"Pennsylvania"}>Pennsylvania</option>
             <option value={"Maryland"}>Maryland</option>
+            <option value={"New York"}>New York</option>
           </NativeSelect>
           <FormHelperText>Click to select a state</FormHelperText>
         </FormControl>

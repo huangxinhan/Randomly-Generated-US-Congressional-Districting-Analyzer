@@ -16,6 +16,17 @@ class AnalyzeDistrictings extends Component {
   }
 
   render() {
+    let districts = [];
+    if (this.props.current_state=="New York"){
+      districts=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29];
+    }
+    else if (this.props.current_state=="Pennsylvania"){
+      districts=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+    }
+    else if (this.props.current_state=="Maryland"){
+      districts=[1,2,3,4,5,6,7,8];
+    }
+
     return (
       <div>
         <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -63,48 +74,48 @@ class AnalyzeDistrictings extends Component {
                       <tbody>
                         <tr>
                           <th scope="row">Population Equality</th>
-                          <td>0.3</td>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
                           <td>0.2</td>
                         </tr>
 
                         <tr>
                           <th scope="row">Split Counties</th>
-                          <td>0.4</td>
+                          <td>{this.props.SPLIT_COUNTIES}</td>
                           <td>0.2</td>
                         </tr>
                         <tr>
                           <th scope="row">Deviation From Average Districting</th>
-                          <td>0.4</td>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
                           <td>0.3</td>
                         </tr>
                         <tr>
                           <th scope="row">Deviation From Enacted Districting(Area)</th>
-                          <td>0.5</td>
+                          <td>{this.props.DEVIATION_FROM_ENACTEDAREA}</td>
                           <td>0.3</td>
                         </tr>
                         <tr>
                           <th scope="row">Deviation From Enacted Districting(Population)</th>
-                          <td>0.2</td>
+                          <td>{this.props.DEVIATION_FROM_ENACTEDPOP}</td>
                           <td>0.4</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th scope="row">Compactness(Polsby-Popper)</th>
-                          <td>0.3</td>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
                           <td>0.1</td>
                         </tr>
                         <tr>
                           <th scope="row">Compactness(Population Fatness)</th>
-                          <td>0.8</td>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
                           <td>0.1</td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <th scope="row">Compactness(Graph)</th>
-                          <td>0.6</td>
+                          <td>{this.props.GRAPH_COMPACTNESS}</td>
                           <td>0.5</td>
                         </tr>
                         <tr>
                           <th scope="row">Political Fairness</th>
-                          <td>0.2</td>
+                          <td>{this.props.POLITICAL_FAIRNESS}</td>
                           <td>0.6</td>
                         </tr>
                       </tbody>
@@ -122,7 +133,7 @@ class AnalyzeDistrictings extends Component {
                           name: 'Click To View Detailed Information About a District',
                           id: 'state-native-helper',
                         }}>
-                        <option value={"District 1"}>District 1</option>
+                        {/* <option value={"District 1"}>District 1</option>
                         <option value={"District 2"}>District 2</option>
                         <option value={"District 3"}>District 3</option>
                         <option value={"District 4"}>District 4</option>
@@ -148,7 +159,10 @@ class AnalyzeDistrictings extends Component {
                         <option value={"District 24"}>District 24</option>
                         <option value={"District 25"}>District 25</option>
                         <option value={"District 26"}>District 26</option>
-                        <option value={"District 27"}>District 27</option>
+                        <option value={"District 27"}>District 27</option> */}
+                         {districts.map((value, index) => {
+                            return <option value ={"District "+{value}}key={index}>District {value}</option>
+                          })}
                       </NativeSelect>
                       <FormHelperText>Click to select a District</FormHelperText>
                     </FormControl>
@@ -366,6 +380,8 @@ class AnalyzeDistrictings extends Component {
                       </tbody>
                     </table>
                   </div>
+
+
                 </div>
 
               </div>
@@ -382,15 +398,16 @@ class AnalyzeDistrictings extends Component {
           <NativeSelect
             value={this.props.category}
             onChange={this.props.categorySelect}
+            
             inputProps={{
               name: 'Click To Select a Districting',
               id: 'state-native-helper',
             }}>
             <option aria-label="None" value="" />⠀⠀
-                  <option value={"1"}>Top 10 Districtings by Objective Function Score</option>
+            <option value={"1"}>Top 10 Districtings by Objective Function Score</option>
             <option value={"2"}>Top 10 Districtings by Majority Minority</option>
             <option value={"3"}>Top 10 Districtings by Closest to the Enacted Districting</option>
-            <option value={"4"}>Top 10 Districting by Area Pair Deviations</option>
+            {/* <option value={"4"}>Top 10 Districting by Area Pair Deviations</option> */}
           </NativeSelect>
           <FormHelperText>Click to select a category</FormHelperText>
         </FormControl>
