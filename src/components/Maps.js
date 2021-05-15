@@ -806,8 +806,8 @@ class Maps extends Component {
             compactnessValue: this.state.CompactnessTypeSliderValue,
             minorityType: this.state.MinorityGroup,
             majorMinorThres: this.state.MajorMinorThres,
-            numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
-            populationEqualityThres:0.4,
+            numberOfMajorityMinorityDistricts: parseInt(this.state.MajorityMinorityDistricts+0),
+            populationEqualityThres:0,
             populationValue: this.state.ConstrainTypeSliderValue,
             incumbentValue:[false]//incumbent,
           };
@@ -819,7 +819,7 @@ class Maps extends Component {
            this.setState({ activeStep: prev_active_step + 1 })
             });
           //axios.post(REST_URL+'/api/test',incumbent);
-          this.setState({ activeStep: prev_active_step + 1 });
+          //this.setState({ activeStep: prev_active_step + 1 });
         }
         else if(prev_active_step==3){
           //summary page
@@ -960,6 +960,7 @@ class Maps extends Component {
   districtSelect = (event) => {
     const name = event.target.name;
     const value = event.target.value;
+    console.log(value)
     this.setState({ current_district: event.target.value })
   }
 
@@ -1047,10 +1048,16 @@ class Maps extends Component {
           SplitCounties={this.state.SplitCounties} handleSplitCountyChange={this.handleSplitCountyChange} />
       case 5:
         return <AnalyzeDistrictings MapHandler={() => this.setState({ secondaryMap: "hidden" })} MapHandler2={() => this.setState({ secondaryMap: "visible" })}
-          current_district={this.state.current_district} districtSelect={this.districtSelect}
+          current_state ={this.state.current_state}current_district={this.state.current_district} districtSelect={this.districtSelect}
           BoxAndWhiskerData={this.state.BoxAndWhiskerData} current_districting1={this.state.current_districting1} districtingSelect={this.districtingSelect}
           current_districting2={this.state.current_districting2} districtingSelect={this.districtingSelect}
-          category={this.state.category} categorySelect={this.categorySelect} showDistrictingData={this.showDistrictingData} />
+          category={this.state.category} categorySelect={this.categorySelect} showDistrictingData={this.showDistrictingData} 
+          POLITICAL_FAIRNESS={this.state.MajorityMinority}POLSBYPOPPER_COMPACTNESS= {this.state.PPCompactness}
+            POPULATIONFATNESS_COMPACTNESS= {this.state.PopFatCompactness} GRAPH_COMPACTNESS= {this.state.GCompactness}
+            POPULATION_EQUALITY= {this.state.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.state.DeviationFromEnacted}
+            DEVIATION_FROM_ENACTEDPOP={ this.state.DeviationFromEnactedPopulation} SPLIT_COUNTIES= {this.state.SplitCounties}
+                   
+          />
     }
   }
 
@@ -1088,7 +1095,11 @@ class Maps extends Component {
         <div id="map2" style={{ width: '350px', height: '300px', top: '220px', left: '1000px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap }}></div>
         <div id="map" style={{ width: '100vw', height: '100vh' }}>
         </div>
-        <DistrictingSummary districtingDataBox={this.state.districtingDataBox} closeDataBox={() => this.setState({ districtingDataBox: "hidden" })}/>
+        <DistrictingSummary districtingDataBox={this.state.districtingDataBox} closeDataBox={() => this.setState({ districtingDataBox: "hidden" })}
+         POPULATIONFATNESS_COMPACTNESS= {this.state.PopFatCompactness} GRAPH_COMPACTNESS= {this.state.GCompactness}
+         POPULATION_EQUALITY= {this.state.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.state.DeviationFromEnacted}
+         DEVIATION_FROM_ENACTEDPOP={ this.state.DeviationFromEnactedPopulation} SPLIT_COUNTIES= {this.state.SplitCounties}
+        />
         <MapFilter reCenter={() => { this.state.Map.setView(this.state.center, this.state.zoom) }} current_state={this.state.current_state}
                    OptionPage={OptionPage} checkerA={this.state.checkerA} checkerAchange={this.checkerAchange}
                    checkerB={this.state.checkerB} checkerBchange={this.checkerBchange}

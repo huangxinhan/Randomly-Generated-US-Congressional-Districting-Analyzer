@@ -25,53 +25,53 @@ class DistrictingSummary extends Component {
               </thead>
 
               <tbody>
-                <tr>
-                  <th scope="row">Population Equality</th>
-                  <td>0.3</td>
-                  <td>0.2</td>
-                </tr>
+                        <tr>
+                          <th scope="row">Population Equality</th>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
+                          <td>0.2</td>
+                        </tr>
 
-                <tr>
-                  <th scope="row">Split Counties</th>
-                  <td>0.4</td>
-                  <td>0.2</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deviation From Average Districting</th>
-                  <td>0.4</td>
-                  <td>0.3</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deviation From Enacted Districting(Area)</th>
-                  <td>0.5</td>
-                  <td>0.3</td>
-                </tr>
-                <tr>
-                  <th scope="row">Deviation From Enacted Districting(Population)</th>
-                  <td>0.2</td>
-                  <td>0.4</td>
-                </tr>
-                <tr>
-                  <th scope="row">Compactness(Polsby-Popper)</th>
-                  <td>0.3</td>
-                  <td>0.1</td>
-                </tr>
-                <tr>
-                  <th scope="row">Compactness(Population Fatness)</th>
-                  <td>0.8</td>
-                  <td>0.1</td>
-                </tr>
-                <tr>
-                  <th scope="row">Compactness(Graph)</th>
-                  <td>0.6</td>
-                  <td>0.5</td>
-                </tr>
-                <tr>
-                  <th scope="row">Political Fairness</th>
-                  <td>0.2</td>
-                  <td>0.6</td>
-                </tr>
-              </tbody>
+                        <tr>
+                          <th scope="row">Split Counties</th>
+                          <td>{this.props.SPLIT_COUNTIES}</td>
+                          <td>0.2</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Deviation From Average Districting</th>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
+                          <td>0.3</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Deviation From Enacted Districting(Area)</th>
+                          <td>{this.props.DEVIATION_FROM_ENACTEDAREA}</td>
+                          <td>0.3</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Deviation From Enacted Districting(Population)</th>
+                          <td>{this.props.DEVIATION_FROM_ENACTEDPOP}</td>
+                          <td>0.4</td>
+                        </tr>
+                        {/* <tr>
+                          <th scope="row">Compactness(Polsby-Popper)</th>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
+                          <td>0.1</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Compactness(Population Fatness)</th>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
+                          <td>0.1</td>
+                        </tr> */}
+                        <tr>
+                          <th scope="row">Compactness(Graph)</th>
+                          <td>{this.props.GRAPH_COMPACTNESS}</td>
+                          <td>0.5</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Political Fairness</th>
+                          <td>{this.props.POLITICAL_FAIRNESS}</td>
+                          <td>0.6</td>
+                        </tr>
+                      </tbody>
             </table>
 
           Objective Function Score: 99.73⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
