@@ -91,13 +91,13 @@ class SetConstraints extends Component {
                         getAriaValueText={this.props.valuetext}
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"
-                        step={10}
+                        step={1}
                         marks
                         min={0}
-                        max={100}
+                        max={10}
                         onChange={this.props.handleChangeConstrainTypeSliderValue}
                       />
-                      <h6>current value: {this.props.ConstrainTypeSliderValue/10}%</h6>
+                      <h6>current value: {this.props.ConstrainTypeSliderValue}%</h6>
                       </div>
                 </div>
                 {/* <br></br> */}
