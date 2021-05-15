@@ -119,7 +119,7 @@ class Maps extends Component {
       //STATS page
       IsExpanded: false,
       // FITER page
-
+      constraintsResults:null,
       MajorityMinority: 0,
       Compactness: 0,
       PPCompactness: 0,
@@ -809,10 +809,15 @@ class Maps extends Component {
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             populationEqualityThres:0.4,
             populationValue: this.state.ConstrainTypeSliderValue,
-            incumbentValue:incumbent,
+            incumbentValue:[false]//incumbent,
           };
           console.log(constraintsObj);
-          axios.post(REST_URL+'/api/constraints',constraintsObj);
+          axios.post(REST_URL+'/api/constraints',constraintsObj).then(response =>{
+            console.log(response.data);
+            this.setState({ constraintsResults: response.data })
+          }).finally(()=>{
+           this.setState({ activeStep: prev_active_step + 1 })
+            });
           //axios.post(REST_URL+'/api/test',incumbent);
           this.setState({ activeStep: prev_active_step + 1 });
         }
@@ -856,6 +861,7 @@ class Maps extends Component {
           CitizenVotingAgePopulation: 0,
     
           MajorityMinorityDistricts: 0,
+          constraintsResults:null,
           MinorityGroup: "AFRICAN_AMERICAN",
     
           
@@ -1028,7 +1034,7 @@ class Maps extends Component {
           MinorityGroup={this.state.MinorityGroup} handleChangeMinorityGroup={this.handleChangeMinorityGroup}
           MajorityMinorityDistricts={this.state.MajorityMinorityDistricts} handleChangeMajorityMinorityDistricts={this.handleChangeMajorityMinorityDistricts} />
       case 3:
-        return <ConstraintResults />
+        return <ConstraintResults constraintsResults={this.state.constraintsResults}/>
       case 4:
         return <SetMeasures FilterPage={FilterPage} MajorityMinority={this.state.MajorityMinority} valuetext={valuetext}
           handleMajorChange={this.handleMajorChange} PPCompactness={this.state.PPCompactness} handlePPComChange={this.handlePPComChange}

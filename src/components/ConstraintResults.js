@@ -10,16 +10,18 @@ class ConstraintResults extends Component {
     }
 
     render() {
+        let ConstraintResults=this.props.constraintsResults;
         return (
             <div>
                 <h3>Constraint Results</h3>
                 <div class="spinner-border" role="status">
-                    <span class="sr-only">Loading...</span>
+                    {/* <span class="sr-only">Loading...</span> */}
                 </div>
-                <h5>Filtered Out By Population Compactness: 27,301</h5>
-                <h5>Filtered Out By Majority-Minority: 50,230</h5>
-                <h5>Filtered Out By Population Constraint: 18,301</h5>
-                <h5>Districtings Remaining: 1,794</h5>
+                <h5>Filtered Out By graph Compactness: {ConstraintResults.filteredByCompactnessCount}</h5>
+                <h5>Filtered Out By Majority-Minority: {ConstraintResults.filteredByMMDCount}</h5>
+                <h5>Filtered Out By Population Constraint: {ConstraintResults.filteredByPopConstraintCount}</h5>
+                <h5>Filtered Out By Incumbent Protection: {ConstraintResults.filteredByIncumbentCount}</h5>
+                <h5>Districtings Remaining: {ConstraintResults.constrainedDistrictings}</h5>
             </div>
         )
     }

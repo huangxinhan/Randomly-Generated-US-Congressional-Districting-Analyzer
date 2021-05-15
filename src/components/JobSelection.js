@@ -20,7 +20,7 @@ class JobSelection extends Component {
 
         <div class="card bg-light mb-3" style={{ width: "550px", fontSize: "15px", left: "13px" }}>
           <div class="card-body">
-            <h5 class="card-title">{job1.jobSummaryID}</h5>
+            <h5 class="card-title">{job1.stateName} Job1</h5>
             <p class="card-text">•{job1.numOfDistrictings} districtings  •{job1.numOfDistricts} districts   </p>
             <p class="card-text">• Cooling Rounds: {job1.coolingRounds} </p>
             <p class="card-text">•TotalRounds: {job1.totalRounds}   </p>
@@ -33,7 +33,7 @@ class JobSelection extends Component {
 
         <div class="card bg-light mb-3" style={{ width: "550px", fontSize: "15px", left: "13px" }}>
           <div class="card-body">
-          <h5 class="card-title">{states.stateName}_Job2</h5>
+          <h5 class="card-title">{states.stateName} Job2</h5>
             <p class="card-text">•{states.numOfDistrictings} districtings  •{states.numOfDistricts} districts   </p>
             <p class="card-text">• Cooling Rounds: {states.coolingRounds} </p>
             <p class="card-text">•TotalRounds: {states.totalRounds}   </p>
@@ -46,7 +46,7 @@ class JobSelection extends Component {
 
         <div class="card bg-light mb-3" style={{ width: "550px", fontSize: "15px", left: "13px" }}>
           <div class="card-body">
-          <h5 class="card-title">{states.stateName}-Job3</h5>
+          <h5 class="card-title">{states.stateName} Job3</h5>
             <p class="card-text">•{states.numOfDistrictings} districtings  •{states.numOfDistricts} districts   </p>
             <p class="card-text">• Cooling Rounds: {states.coolingRounds} </p>
             <p class="card-text">•TotalRounds: {states.totalRounds}   </p>
