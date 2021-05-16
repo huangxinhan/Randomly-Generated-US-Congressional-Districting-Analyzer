@@ -981,8 +981,8 @@ class Maps extends Component {
     const name = event.target.name;
     const value = parseInt(event.target.value);
     console.log(value)
-    this.setState({ current_district: event.target.value })
-   //this.setState({ current_district:this.state.selectedDistricting.couties[value]  })
+    //this.setState({ current_district: event.target.value })
+   this.setState({ current_district:this.state.selectedDistricting.districts[value]  })
   }
 
   districtingSelect1 = (event) => {
