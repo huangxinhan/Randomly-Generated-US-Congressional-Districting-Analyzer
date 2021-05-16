@@ -169,7 +169,7 @@ class Maps extends Component {
           type: 'box'
         }
       ],
-
+      boxWhisker:null,
       // step3, corresponding slider values to options
       GraphCompactness: 0,
       PopulationFatness: 0,
@@ -1039,6 +1039,13 @@ class Maps extends Component {
     const id = this.state.selectedDistricting.districtingID
     //this.setState({ districtingDataBox: "visible" })
     console.log(id)
+    axios.post(REST_URL+'/api/boxWhisker',id).then(response =>{
+      console.log(response.data);
+      this.setState({ boxWhisker: response.data })
+    }).finally(()=>{
+      console.log("box whisker loaded")
+     //this.setState({ activeStep: prev_active_step + 1 })
+      });
   }
 
   //This method generates the different steps 

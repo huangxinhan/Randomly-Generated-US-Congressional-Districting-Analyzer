@@ -54,13 +54,13 @@ class SetConstraints extends Component {
                             getAriaValueText={this.props.valuetext}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
-                            step={0.1}
+                            step={0.01}
                             marks
                             min={0}
                             max={1}
                             onChange={this.props.handleChangeCompactnessTypeSliderValue}
                           />
-                          <h6>current value: {this.props.CompactnessTypeSliderValue}</h6>
+                          <h6>current value: {this.props.CompactnessTypeSliderValue*100}%</h6>
                           </div>
                 </div>
                 {/* <br></br> */}
@@ -91,13 +91,13 @@ class SetConstraints extends Component {
                         getAriaValueText={this.props.valuetext}
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"
-                        step={1}
+                        step={0.01}
                         marks
                         min={0}
-                        max={10}
+                        max={1}
                         onChange={this.props.handleChangeConstrainTypeSliderValue}
                       />
-                      <h6>current value: {this.props.ConstrainTypeSliderValue}%</h6>
+                      <h6>current value: {this.props.ConstrainTypeSliderValue*100}%</h6>
                       </div>
                 </div>
                 {/* <br></br> */}

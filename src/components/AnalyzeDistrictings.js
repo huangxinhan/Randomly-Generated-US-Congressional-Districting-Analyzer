@@ -245,15 +245,15 @@ class AnalyzeDistrictings extends Component {
                         </tr>
                         <tr>
                           <th scope="row">African American Population Percentage</th>
-                          <td>{current_district.africanAmericanPopulation/current_district.totalPopulation}%</td>
+                          <td>{current_district.africanAmericanPopulation*100/current_district.totalPopulation}%</td>
                         </tr>
                         <tr>
                           <th scope="row">Asian Population Percentage</th>
-                          <td>{current_district.asianPopulation}</td>
+                          <td>{current_district.asianPopulation*100/current_district.totalPopulation}</td>
                         </tr>
                         <tr>
                           <th scope="row">Hispanic or Latino Percentage</th>
-                          <td>{current_district.hispanicPopulation}</td>
+                          <td>{current_district.hispanicPopulation*100/current_district.totalPopulation}</td>
                         </tr>
                         {/* <tr>
                           <th scope="row">American Indian or Alaska Native Percentage</th>
