@@ -63,9 +63,9 @@ class AnalyzeDistrictings extends Component {
                   <li class="nav-item" onClick={this.props.MapHandler}>
                     <a class="nav-link" href="#boxandwhisker" data-toggle="tab">Show Box and Whisker Plot</a>
                   </li>
-                  <li class="nav-item" onClick={this.props.MapHandler}>
+                  {/* <li class="nav-item" onClick={this.props.MapHandler}>
                     <a class="nav-link" href="#comparedistrictings" data-toggle="tab" >Compare Districtings</a>
-                  </li>
+                  </li> */}
                 </ul>
 
 
@@ -73,7 +73,7 @@ class AnalyzeDistrictings extends Component {
                 <div class="tab-content">
                   <div role="tabpanel" class="tab-pane" id="districtingdata" style={{ fontSize: "20px" }}>
                     <div><br></br></div>
-       Objective Function Score: 99.73
+       Objective Function Score: {selectedDistricting.objectiveFunctionScore}
        <div><br></br></div>
 
                     <table class="table table-striped">
@@ -130,12 +130,12 @@ class AnalyzeDistrictings extends Component {
                         <tr>
                           <th scope="row">Majority Minority Districts</th>
                           <td>{this.props.MajorityMinorityDistricts}</td>
-                          <td>{selectedDistricting.populationPercentDifference}</td>
+                          <td>{selectedDistricting.numberOfMajorityMinorityDistricts}</td>
                         </tr>
                         <tr>
                           <th scope="row">Compactness(Graph)</th>
                           <td>{this.props.GRAPH_COMPACTNESS}</td>
-                          <td>{selectedDistricting.numberOfMajorityMinorityDistricts}</td>
+                          <td>{selectedDistricting.graphCompactness}</td>
                         </tr>
                         {/* <tr>
                           <th scope="row">Political Fairness</th>
@@ -220,8 +220,8 @@ class AnalyzeDistrictings extends Component {
                           <td>{current_district.deviationAverage}</td>
                         </tr>
                         <tr>
-                          <th scope="row">Population Density</th>
-                          <td>unknown</td>
+                          <th scope="row">Deviation from Enacted</th>
+                          <td>{current_district.deviationEnacted}</td>
                         </tr>
                         <tr>
                           <th scope="row">Population Equality</th>
@@ -238,23 +238,23 @@ class AnalyzeDistrictings extends Component {
                         <tr>
                           <th scope="row">Republican Voter Percentage</th>
                           <td>43.6%</td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <th scope="row">Total Minority Percentage</th>
-                          <td>12.6%</td>
+                          <td>unknown</td>
                         </tr>
                         <tr>
-                          <th scope="row">Black Population Percentage</th>
-                          <td>7.8%</td>
+                          <th scope="row">African American Population Percentage</th>
+                          <td>{current_district.africanAmericanPopulation/current_district.totalPopulation}%</td>
                         </tr>
                         <tr>
                           <th scope="row">Asian Population Percentage</th>
-                          <td>1.3%</td>
+                          <td>{current_district.asianPopulation}</td>
                         </tr>
                         <tr>
                           <th scope="row">Hispanic or Latino Percentage</th>
-                          <td>3.2%</td>
-                        </tr> */}
+                          <td>{current_district.hispanicPopulation}</td>
+                        </tr>
                         {/* <tr>
                           <th scope="row">American Indian or Alaska Native Percentage</th>
                           <td>0.3%</td>
@@ -430,7 +430,7 @@ class AnalyzeDistrictings extends Component {
             <option value={"1"}>Top 10 Districtings by Objective Function Score</option>
             <option value={"2"}>Top 10 Districtings by Majority Minority</option>
             <option value={"3"}>Top 10 Districtings by Closest to the Enacted Districting</option>
-            {/* <option value={"4"}>Top 10 Districting by Area Pair Deviations</option> */}
+            <option value={"4"}>Top 10 Districting by Area Pair Deviations</option>
           </NativeSelect>
           <FormHelperText>Click to select a category</FormHelperText>
         </FormControl>

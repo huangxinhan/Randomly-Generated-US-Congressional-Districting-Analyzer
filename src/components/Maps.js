@@ -197,7 +197,8 @@ class Maps extends Component {
       sortByObjScore:null,
       sortByMM:null,
       sortByEnacted:null,
-      selectedDistricting:null
+      selectedDistricting:null,
+      pairDeviation:null
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
@@ -853,6 +854,7 @@ class Maps extends Component {
             this.setState({ sortByObjScore: response.data[0] })
             this.setState({ sortByMM: response.data[1] })
             this.setState({ sortByEnacted: response.data[2] })
+            this.setState({ pairDeviation: response.data[3] })
            
           }).finally(()=>{
             console.log("ran next page")
@@ -1011,6 +1013,9 @@ class Maps extends Component {
     else if (value=="3"){
       this.setState({ districtingsSum: this.state.sortByEnacted });
     }
+    else if (value=="4"){
+      this.setState({ districtingsSum: this.state.pairDeviation });
+    }
     console.log("current sorting plan"+ this.state.districtingsSum)
   }
 
@@ -1031,8 +1036,9 @@ class Maps extends Component {
   showDistrictingData = (index) =>()=> {
     var i =index-1
     this.setState({ selectedDistricting: this.state.districtingsSum[i] })
+    const id = this.state.selectedDistricting.districtingID
     //this.setState({ districtingDataBox: "visible" })
-    console.log(this.state.selectedDistricting,i)
+    console.log(id)
   }
 
   //This method generates the different steps 
