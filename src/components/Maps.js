@@ -784,10 +784,10 @@ class Maps extends Component {
   
   setActiveSteps(prev_active_step, direction) {
     if (direction == "forward" && prev_active_step < 5) {
-      this.setState({ districtingDataBox: "visible" })
+     
         if(prev_active_step==0){
           //selected state
-          
+          this.setState({ districtingDataBox: "visible" })
           console.log(this.state.current_state);
           axios.post(REST_URL+'/api/state',this.state.current_state)
            .then(response =>{
@@ -801,6 +801,7 @@ class Maps extends Component {
         }
         else if(prev_active_step==1){
           //selected jobs
+          this.setState({ districtingDataBox: "visible" })
           console.log(this.state.jobChecked);
           axios.post(REST_URL+'/api/job',this.state.jobChecked)
           .then(response =>{
@@ -816,6 +817,7 @@ class Maps extends Component {
         }
         else if(prev_active_step==2){
           //selected constraints
+          this.setState({ districtingDataBox: "visible" })
           const incumbent= Object.fromEntries(incumbentMap);
 
           const constraintsObj={

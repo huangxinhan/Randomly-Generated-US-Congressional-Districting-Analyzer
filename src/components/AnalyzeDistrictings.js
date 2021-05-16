@@ -129,7 +129,7 @@ class AnalyzeDistrictings extends Component {
                         </tr> */}
                         <tr>
                           <th scope="row">Majority Minority Districts</th>
-                          <td>{this.props.MajorityMinorityDistricts}</td>
+                          <td> </td>
                           <td>{selectedDistricting.numberOfMajorityMinorityDistricts}</td>
                         </tr>
                         <tr>
@@ -207,10 +207,10 @@ class AnalyzeDistrictings extends Component {
                           <th scope="row">Voting Population</th>
                           <td>{current_district.votingAgePopulation}</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th scope="row">Objective Function Score</th>
                           <td>{current_district.objectiveFunctionScore}</td>
-                        </tr>
+                        </tr> */}
                         {/* <tr>
                           <th scope="row">Incumbents</th>
                           <td>John Doe</td>
@@ -239,21 +239,21 @@ class AnalyzeDistrictings extends Component {
                           <th scope="row">Republican Voter Percentage</th>
                           <td>43.6%</td>
                         </tr> */}
-                        <tr>
+                        {/* <tr>
                           <th scope="row">Total Minority Percentage</th>
                           <td>unknown</td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <th scope="row">African American Population Percentage</th>
                           <td>{current_district.africanAmericanPopulation*100/current_district.totalPopulation}%</td>
                         </tr>
                         <tr>
                           <th scope="row">Asian Population Percentage</th>
-                          <td>{current_district.asianPopulation*100/current_district.totalPopulation}</td>
+                          <td>{current_district.asianPopulation*100/current_district.totalPopulation}%</td>
                         </tr>
                         <tr>
                           <th scope="row">Hispanic or Latino Percentage</th>
-                          <td>{current_district.hispanicPopulation*100/current_district.totalPopulation}</td>
+                          <td>{current_district.hispanicPopulation*100/current_district.totalPopulation}%</td>
                         </tr>
                         {/* <tr>
                           <th scope="row">American Indian or Alaska Native Percentage</th>
