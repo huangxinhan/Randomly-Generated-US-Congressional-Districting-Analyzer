@@ -813,7 +813,7 @@ class Maps extends Component {
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             populationEqualityThres:this.state.ConstrainTypeSliderValue,
             populationValue: this.state.ConstrainTypeSliderValue,
-            incumbentValue:[false]//incumbent,
+            incumbentValue:incumbent,
           };
           console.log(constraintsObj);
           axios.post(REST_URL+'/api/constraints',constraintsObj).then(response =>{
@@ -841,7 +841,7 @@ class Maps extends Component {
             DEVIATION_FROM_ENACTEDAREA: this.state.DeviationFromEnacted,
             DEVIATION_FROM_ENACTEDPOP: this.state.DeviationFromEnactedPopulation,
             SPLIT_COUNTIES: this.state.SplitCounties,
-            //DeviationFromAverage: this.state.DeviationFromAverage,//not in measure
+            DEVIATION_FROM_AVERAGE: this.state.DeviationFromAverage,//not in measure
           };
           console.log(objFunctionObj);
           //selected obj function
@@ -856,6 +856,7 @@ class Maps extends Component {
           }).finally(()=>{
             console.log("ran next page")
             this.setState({ selectedDistricting: this.state.sortByObjScore[0] })
+           this.setState({  current_district: this.state.selectedDistricting.districts[0]})
             console.log(this.state.selectedDistricting);
            this.setState({ activeStep: prev_active_step + 1 })
             });
@@ -1085,12 +1086,14 @@ class Maps extends Component {
           BoxAndWhiskerData={this.state.BoxAndWhiskerData} current_districting1={this.state.current_districting1} districtingSelect={this.districtingSelect}
           current_districting2={this.state.current_districting2} districtingSelect={this.districtingSelect}
           category={this.state.category} categorySelect={this.categorySelect} showDistrictingData={this.showDistrictingData} 
-          POLITICAL_FAIRNESS={this.state.MajorityMinority}POLSBYPOPPER_COMPACTNESS= {this.state.PPCompactness}
+          POLITICAL_FAIRNESS={this.state.MajorityMinority}POLSBYPOPPER_COMPACTNESS= {this.state.PPCompactness}current_district={this.state.current_district}
             POPULATIONFATNESS_COMPACTNESS= {this.state.PopFatCompactness} GRAPH_COMPACTNESS= {this.state.GCompactness}
             POPULATION_EQUALITY= {this.state.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.state.DeviationFromEnacted}
             DEVIATION_FROM_ENACTEDPOP={ this.state.DeviationFromEnactedPopulation} SPLIT_COUNTIES= {this.state.SplitCounties}
             districtingsSum={this.state.districtingsSum} sortByObjScore={this.state.sortByObjScore} sortByMM={this.state.sortByMM}   sortByEnacted={this.state.sortByEnacted}        
-            districtingDataBox={this.state.districtingDataBox}selectedDistricting={this.state.selectedDistricting}closeDataBox={this.closeDataBox}/>
+            districtingDataBox={this.state.districtingDataBox}selectedDistricting={this.state.selectedDistricting}closeDataBox={this.closeDataBox}
+            MajorityMinorityDistricts={this.state.MajorityMinorityDistricts} DEVIATION_FROM_AVERAGE= {this.state.DeviationFromAverage}
+            />
     }
   }
 

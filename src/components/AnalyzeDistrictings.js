@@ -31,6 +31,7 @@ class AnalyzeDistrictings extends Component {
     let sortByEnacted=this.props.sortByEnacted
     let districtingsSum=this.props.districtingsSum
     let selectedDistricting=this.props.selectedDistricting
+    let current_district=this.props.current_district
     console.log(selectedDistricting)
 
     return (
@@ -88,49 +89,59 @@ class AnalyzeDistrictings extends Component {
                         <tr>
                           <th scope="row">Population Equality</th>
                           <td>{this.props.POPULATION_EQUALITY}</td>
-                          <td>0.2</td>
+                          <td>{selectedDistricting.populationEqualityDifference}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Population Percent Difference</th>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
+                          <td>{selectedDistricting.populationPercentDifference}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Population Percent Difference VAP</th>
+                          <td>{this.props.POPULATION_EQUALITY}</td>
+                          <td>{selectedDistricting.populationPercentDifferenceVAP}</td>
                         </tr>
 
                         <tr>
                           <th scope="row">Split Counties</th>
                           <td>{this.props.SPLIT_COUNTIES}</td>
-                          <td>0.2</td>
+                          <td>{selectedDistricting.splitCountyScore}</td>
                         </tr>
                         <tr>
                           <th scope="row">Deviation From Average Districting</th>
-                          <td>{this.props.POPULATION_EQUALITY}</td>
-                          <td>0.3</td>
+                          <td>{this.props.DEVIATION_FROM_AVERAGE}</td>
+                          <td>{selectedDistricting.deviationFromAverage}</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th scope="row">Deviation From Enacted Districting(Area)</th>
                           <td>{this.props.DEVIATION_FROM_ENACTEDAREA}</td>
                           <td>0.3</td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <th scope="row">Deviation From Enacted Districting(Population)</th>
                           <td>{this.props.DEVIATION_FROM_ENACTEDPOP}</td>
-                          <td>0.4</td>
+                          <td>{selectedDistricting.deviationFromEnactedPop}</td>
                         </tr>
                         {/* <tr>
                           <th scope="row">Compactness(Polsby-Popper)</th>
                           <td>{this.props.POPULATION_EQUALITY}</td>
                           <td>0.1</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Compactness(Population Fatness)</th>
-                          <td>{this.props.POPULATION_EQUALITY}</td>
-                          <td>0.1</td>
                         </tr> */}
+                        <tr>
+                          <th scope="row">Majority Minority Districts</th>
+                          <td>{this.props.MajorityMinorityDistricts}</td>
+                          <td>{selectedDistricting.populationPercentDifference}</td>
+                        </tr>
                         <tr>
                           <th scope="row">Compactness(Graph)</th>
                           <td>{this.props.GRAPH_COMPACTNESS}</td>
-                          <td>0.5</td>
+                          <td>{selectedDistricting.numberOfMajorityMinorityDistricts}</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th scope="row">Political Fairness</th>
                           <td>{this.props.POLITICAL_FAIRNESS}</td>
-                          <td>0.6</td>
-                        </tr>
+                          <td>nothing for now</td>
+                        </tr> */}
                       </tbody>
                     </table>
                   </div>
@@ -190,37 +201,37 @@ class AnalyzeDistrictings extends Component {
                       <tbody>
                         <tr>
                           <th scope="row">Total Population</th>
-                          <td>783,827</td>
+                          <td>{current_district.totalPopulation}</td>
                         </tr>
                         <tr>
                           <th scope="row">Voting Population</th>
-                          <td>104,381</td>
+                          <td>{current_district.votingAgePopulation}</td>
                         </tr>
                         <tr>
                           <th scope="row">Objective Function Score</th>
-                          <td>99.78</td>
+                          <td>{current_district.objectiveFunctionScore}</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th scope="row">Incumbents</th>
                           <td>John Doe</td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <th scope="row">Average Deviation</th>
-                          <td>24</td>
+                          <td>{current_district.deviationAverage}</td>
                         </tr>
                         <tr>
                           <th scope="row">Population Density</th>
-                          <td>0.35</td>
+                          <td>unknown</td>
                         </tr>
                         <tr>
                           <th scope="row">Population Equality</th>
-                          <td>0.62</td>
+                          <td>{current_district.populationEquality}</td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th scope="row">Political Fairness</th>
-                          <td>0.48</td>
-                        </tr>
-                        <tr>
+                          <td>{current_district.totalPopulation}</td>
+                        </tr> */}
+                        {/* <tr>
                           <th scope="row">Democratic Voter Percentage</th>
                           <td>56.4%</td>
                         </tr>
@@ -243,11 +254,11 @@ class AnalyzeDistrictings extends Component {
                         <tr>
                           <th scope="row">Hispanic or Latino Percentage</th>
                           <td>3.2%</td>
-                        </tr>
-                        <tr>
+                        </tr> */}
+                        {/* <tr>
                           <th scope="row">American Indian or Alaska Native Percentage</th>
                           <td>0.3%</td>
-                        </tr>
+                        </tr> */}
                       </tbody>
                     </table>
                   </div>
@@ -426,7 +437,7 @@ class AnalyzeDistrictings extends Component {
 
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 1 - Score: {districtingsSum[0].SPLIT_COUNTIES} {}
+            <p class="card-text">Districting 1 - Score: {districtingsSum[0].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("1")}> Analyze</button>⠀
@@ -435,7 +446,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 2 - Score: 99.72⠀
+            <p class="card-text">Districting 2 - Score: {districtingsSum[1].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("2")}> Analyze</button>⠀
@@ -444,7 +455,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 3 - Score: 99.72⠀
+            <p class="card-text">Districting 3 - Score: {districtingsSum[2].objectiveFunctionScore}   {} 
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("3")}> Analyze</button>⠀
@@ -453,7 +464,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 4 - Score: 99.72⠀
+            <p class="card-text">Districting 4 - Score: {districtingsSum[3].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("4")}> Analyze</button>⠀
@@ -462,7 +473,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 5 - Score: 99.72⠀
+            <p class="card-text">Districting 5 - Score: {districtingsSum[4].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("5")}> Analyze</button>⠀
@@ -471,7 +482,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 6 - Score: 99.72⠀
+            <p class="card-text">Districting 6 - Score: {districtingsSum[5].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("6")}> Analyze</button>⠀
@@ -480,7 +491,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 7 - Score: 99.72⠀
+            <p class="card-text">Districting 7 - Score: {districtingsSum[6].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("7")}> Analyze</button>⠀
@@ -489,7 +500,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 8 - Score: 99.72⠀
+            <p class="card-text">Districting 8 - Score: {districtingsSum[7].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("8")}> Analyze</button>⠀
@@ -498,7 +509,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 9 - Score: 99.72⠀
+            <p class="card-text">Districting 9 - Score: {districtingsSum[8].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("9")}> Analyze</button>⠀
@@ -507,7 +518,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 10 - Score: 99.72⠀
+            <p class="card-text">Districting 10 - Score: {districtingsSum[9].objectiveFunctionScore}  {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("10")}> Analyze</button>⠀
