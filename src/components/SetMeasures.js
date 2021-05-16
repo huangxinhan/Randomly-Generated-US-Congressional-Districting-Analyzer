@@ -24,7 +24,7 @@ class SetMeasures extends Component {
                 Political Fairness
            </Typography>
               <Slider
-                defaultValue={this.props.MajorityMinority}
+                defaultValue={this.props.MajorityMinority} disabled={true}
                 getAriaValueText={this.props.valuetext}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
@@ -49,7 +49,7 @@ class SetMeasures extends Component {
                 Compactness (Polsby-Popper)
            </Typography>
               <Slider
-                defaultValue={this.props.PPCompactness}
+                defaultValue={this.props.PPCompactness}disabled={true}
                 getAriaValueText={this.props.valuetext}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
@@ -74,7 +74,7 @@ class SetMeasures extends Component {
                 Compactness (Population Fatness)
            </Typography>
               <Slider
-                defaultValue={this.props.PopFatCompactness}
+                defaultValue={this.props.PopFatCompactness}disabled={true}
                 getAriaValueText={this.props.valuetext}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
@@ -149,7 +149,7 @@ class SetMeasures extends Component {
                 Deviation From Enacted Plan (Area)
            </Typography>
               <Slider
-                defaultValue={this.props.DeviationFromEnacted}
+                defaultValue={this.props.DeviationFromEnacted}disabled={true}
                 getAriaValueText={this.props.valuetext}
                 aria-labelledby="range-slider"
                 valueLabelDisplay="auto"

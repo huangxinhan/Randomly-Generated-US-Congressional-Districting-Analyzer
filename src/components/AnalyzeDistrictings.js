@@ -9,7 +9,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import { NativeSelect } from '@material-ui/core';
 import Plot from 'react-plotly.js';
-
+import DistrictingSummary from './DistrictingSummary'
 class AnalyzeDistrictings extends Component {
   constructor(props) {
     super(props)
@@ -26,9 +26,22 @@ class AnalyzeDistrictings extends Component {
     else if (this.props.current_state=="Maryland"){
       districts=[1,2,3,4,5,6,7,8];
     }
+    let  sortByObjScore=this.props.sortByObjScore
+    let sortByMM=this.props.sortByMM   
+    let sortByEnacted=this.props.sortByEnacted
+    let districtingsSum=this.props.districtingsSum
+    let selectedDistricting=this.props.selectedDistricting
+    console.log(selectedDistricting)
 
     return (
+      
       <div>
+        {/* <DistrictingSummary districtingDataBox={this.props.districtingDataBox} closeDataBox={this.props.closeDataBox}
+         POPULATIONFATNESS_COMPACTNESS= {this.props.PopFatCompactness} GRAPH_COMPACTNESS= {this.props.GCompactness}
+         POPULATION_EQUALITY= {this.props.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.props.DeviationFromEnacted}
+         DEVIATION_FROM_ENACTEDPOP={ this.props.DeviationFromEnactedPopulation} SPLIT_COUNTIES= {this.props.SplitCounties}
+         selectedDistricting={this.props.selectedDistricting}/> */}
+
         <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
           <div class="modal-dialog modal-xl" role="document" id="analysisModal">
             <div class="modal-content">
@@ -161,7 +174,7 @@ class AnalyzeDistrictings extends Component {
                         <option value={"District 26"}>District 26</option>
                         <option value={"District 27"}>District 27</option> */}
                          {districts.map((value, index) => {
-                            return <option value ={"District "+{value}}key={index}>District {value}</option>
+                            return <option value ={index}key={index}>District {value}</option>
                           })}
                       </NativeSelect>
                       <FormHelperText>Click to select a District</FormHelperText>
@@ -398,7 +411,6 @@ class AnalyzeDistrictings extends Component {
           <NativeSelect
             value={this.props.category}
             onChange={this.props.categorySelect}
-            
             inputProps={{
               name: 'Click To Select a Districting',
               id: 'state-native-helper',
@@ -414,10 +426,10 @@ class AnalyzeDistrictings extends Component {
 
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 1 - Score: 99.72⠀
+            <p class="card-text">Districting 1 - Score: {districtingsSum[0].SPLIT_COUNTIES} {}
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" onClick={this.props.showDistrictingData}>Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("1")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -425,8 +437,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 2 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("2")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -434,8 +446,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 3 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("3")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -443,8 +455,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 4 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("4")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -452,8 +464,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 5 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("5")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -461,8 +473,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 6 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("6")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -470,8 +482,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 7 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("7")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -479,8 +491,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 8 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("8")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -488,8 +500,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 9 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("9")}> Analyze</button>⠀
                  </p>
           </div>
         </div>
@@ -497,8 +509,8 @@ class AnalyzeDistrictings extends Component {
           <div class="card-body align-items-center d-flex justify-content-center">
             <p class="card-text">Districting 10 - Score: 99.72⠀
                   <button type="button" class="btn btn-primary btn-sm">Load Districting</button>⠀
-                 <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀
-                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> Analyze</button>⠀
+                 {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
+                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("10")}> Analyze</button>⠀
                  </p>
           </div>
         </div>

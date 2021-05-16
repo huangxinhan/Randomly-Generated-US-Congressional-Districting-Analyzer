@@ -9,6 +9,8 @@ class DistrictingSummary extends Component {
   }
 
   render() {
+    const selectedDistricting=this.props.selectedDistricting
+    console.log(selectedDistricting.SPLIT_COUNTIES)
     return (
         <div class="card" style={{ position: 'absolute', height: '550px', width: '450px', textAlign: 'center', margin: 0, zIndex: 501, left: '1px', top: "413px", visibility: this.props.districtingDataBox }}>
           <div class="card-header" id="headingFilter">
@@ -28,7 +30,7 @@ class DistrictingSummary extends Component {
                         <tr>
                           <th scope="row">Population Equality</th>
                           <td>{this.props.POPULATION_EQUALITY}</td>
-                          <td>0.2</td>
+                          <td>{selectedDistricting.SPLIT_COUNTIES}</td>
                         </tr>
 
                         <tr>

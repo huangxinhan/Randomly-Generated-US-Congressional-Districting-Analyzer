@@ -174,7 +174,7 @@ class Maps extends Component {
       GraphCompactness: 0,
       PopulationFatness: 0,
       PolsbyPopper: 0,
-
+      PopulationEquality:0,
       TotalPopulation: 0,
       VotingAgePopulation: 0,
       CitizenVotingAgePopulation: 0,
@@ -190,9 +190,13 @@ class Maps extends Component {
       ConstrainTypeSliderValue: 0,
       districtingDataBox: "hidden",
       stateDistrictBoundary: null,
-      statePrecinctBoundary: null,
-      //incumbent list
-     // incumbentPA:{Tammy_Rowe:false, Clifford_Kim:false}
+      statePrecinctBoundary: null,      
+
+      districtingsSum:null,
+      sortByObjScore:null,
+      sortByMM:null,
+      sortByEnacted:null,
+      selectedDistricting:null
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
@@ -806,10 +810,10 @@ class Maps extends Component {
             compactnessValue: this.state.CompactnessTypeSliderValue,
             minorityType: this.state.MinorityGroup,
             majorMinorThres: this.state.MajorMinorThres,
-            numberOfMajorityMinorityDistricts: parseInt(this.state.MajorityMinorityDistricts+0),
+            numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
             populationEqualityThres:this.state.ConstrainTypeSliderValue,
             populationValue: this.state.ConstrainTypeSliderValue,
-            incumbentValue:incumbent,
+            incumbentValue:[false]//incumbent,
           };
           console.log(constraintsObj);
           axios.post(REST_URL+'/api/constraints',constraintsObj).then(response =>{
@@ -841,8 +845,21 @@ class Maps extends Component {
           };
           console.log(objFunctionObj);
           //selected obj function
-          axios.post(REST_URL+'/api/weights',objFunctionObj);
-          this.setState({ activeStep: prev_active_step + 1 });
+          axios.post(REST_URL+'/api/weights',objFunctionObj).then(response =>{
+            console.log(response.data);
+            //console.log(response.data[0]);
+            this.setState({ districtingsSum: response.data[0] })//defualt sorting plan
+            this.setState({ sortByObjScore: response.data[0] })
+            this.setState({ sortByMM: response.data[1] })
+            this.setState({ sortByEnacted: response.data[2] })
+           
+          }).finally(()=>{
+            console.log("ran next page")
+            this.setState({ selectedDistricting: this.state.sortByObjScore[0] })
+            console.log(this.state.selectedDistricting);
+           this.setState({ activeStep: prev_active_step + 1 })
+            });
+          //this.setState({ activeStep: prev_active_step + 1 });
         }               
       //this.setState({ activeStep: prev_active_step + 1 })
     }
@@ -892,7 +909,8 @@ class Maps extends Component {
 
     }
   }
-
+  closeDataBox=()=>
+  {this.setState({ districtingDataBox: "hidden" })}
   //this can also handle the zooming of the map and stuff 
   handleChange = (event) => {
     const name = event.target.name;
@@ -960,9 +978,10 @@ class Maps extends Component {
 
   districtSelect = (event) => {
     const name = event.target.name;
-    const value = event.target.value;
+    const value = parseInt(event.target.value);
     console.log(value)
     this.setState({ current_district: event.target.value })
+   //this.setState({ current_district:this.state.selectedDistricting.couties[value]  })
   }
 
   districtingSelect1 = (event) => {
@@ -981,6 +1000,16 @@ class Maps extends Component {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({ category: event.target.value })
+    if (value=="1"){
+      this.setState({ districtingsSum: this.state.sortByObjScore });
+    }
+    else if (value=="2"){
+      this.setState({ districtingsSum: this.state.sortByMM });
+    }
+    else if (value=="3"){
+      this.setState({ districtingsSum: this.state.sortByEnacted });
+    }
+    console.log("current sorting plan"+ this.state.districtingsSum)
   }
 
 
@@ -997,8 +1026,11 @@ class Maps extends Component {
   }
 
   //this method unhides a popup that shows districting data
-  showDistrictingData = () => {
-    this.setState({ districtingDataBox: "visible" })
+  showDistrictingData = (index) =>()=> {
+    var i =index-1
+    this.setState({ selectedDistricting: this.state.districtingsSum[i] })
+    //this.setState({ districtingDataBox: "visible" })
+    console.log(this.state.selectedDistricting,i)
   }
 
   //This method generates the different steps 
@@ -1057,8 +1089,8 @@ class Maps extends Component {
             POPULATIONFATNESS_COMPACTNESS= {this.state.PopFatCompactness} GRAPH_COMPACTNESS= {this.state.GCompactness}
             POPULATION_EQUALITY= {this.state.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.state.DeviationFromEnacted}
             DEVIATION_FROM_ENACTEDPOP={ this.state.DeviationFromEnactedPopulation} SPLIT_COUNTIES= {this.state.SplitCounties}
-                   
-          />
+            districtingsSum={this.state.districtingsSum} sortByObjScore={this.state.sortByObjScore} sortByMM={this.state.sortByMM}   sortByEnacted={this.state.sortByEnacted}        
+            districtingDataBox={this.state.districtingDataBox}selectedDistricting={this.state.selectedDistricting}closeDataBox={this.closeDataBox}/>
     }
   }
 
@@ -1096,11 +1128,11 @@ class Maps extends Component {
         <div id="map2" style={{ width: '350px', height: '300px', top: '220px', left: '1000px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap }}></div>
         <div id="map" style={{ width: '100vw', height: '100vh' }}>
         </div>
-        <DistrictingSummary districtingDataBox={this.state.districtingDataBox} closeDataBox={() => this.setState({ districtingDataBox: "hidden" })}
+        {/* <DistrictingSummary districtingDataBox={this.state.districtingDataBox} closeDataBox={() => this.setState({ districtingDataBox: "hidden" })}
          POPULATIONFATNESS_COMPACTNESS= {this.state.PopFatCompactness} GRAPH_COMPACTNESS= {this.state.GCompactness}
          POPULATION_EQUALITY= {this.state.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.state.DeviationFromEnacted}
          DEVIATION_FROM_ENACTEDPOP={ this.state.DeviationFromEnactedPopulation} SPLIT_COUNTIES= {this.state.SplitCounties}
-        />
+         selectedDistricting={this.state.selectedDistricting}/> */}
         <MapFilter reCenter={() => { this.state.Map.setView(this.state.center, this.state.zoom) }} current_state={this.state.current_state}
                    OptionPage={OptionPage} checkerA={this.state.checkerA} checkerAchange={this.checkerAchange}
                    checkerB={this.state.checkerB} checkerBchange={this.checkerBchange}
