@@ -198,7 +198,9 @@ class Maps extends Component {
       sortByMM:null,
       sortByEnacted:null,
       selectedDistricting:null,
-      pairDeviation:null
+      pairDeviation:null,
+      currentDistrictingGEOJSON: null,
+      districtLayer: null
     }
     this.toggleExpanded = this.toggleExpanded.bind(this);
   }
@@ -351,7 +353,7 @@ class Maps extends Component {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
-          return { color: 'black', fillColor: getRandomColor(feature), opacity: 0.5 }
+          return { color: 'black',  opacity: 0.5 }
         }
       },
       onEachFeature: onEachPrecinctFeature
@@ -361,7 +363,7 @@ class Maps extends Component {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
-          return { color: 'black', fillColor: getRandomColor(feature), opacity: 0.5 }
+          return { color: 'black',  opacity: 0.5 }
         }
       },
       onEachFeature: onEachPrecinctFeature
@@ -371,7 +373,7 @@ class Maps extends Component {
       weight: 1,
       style: function (feature) {
         if (feature.properties) {
-          return { color: 'black', fillColor: getRandomColor(feature), opacity: 0.5 }
+          return { color: 'black',  opacity: 0.5 }
         }
       },
       onEachFeature: onEachPrecinctFeature
@@ -1064,6 +1066,64 @@ class Maps extends Component {
       });
   }
 
+  getDistrictingJson = (index)  =>()=> {
+    var i =index-1
+    this.setState({ selectedDistricting: this.state.districtingsSum[i] })
+    const id = this.state.selectedDistricting.districtingID
+    console.log("id is ", id)
+    axios.post(REST_URL+"/api/getJson",id).then(response =>{
+      console.log(response.data);
+      this.setState({currentDistrictingGEOJSON: response.data})
+    }).finally(()=> {
+      if (this.state.districtLayer != null){
+        this.hidegeoJson(this.state.districtLayer, this.state.Map);
+      }
+      var districtLayer = L.geoJson(this.state.currentDistrictingGEOJSON, {
+        weight: 1,
+        style: function (feature) {
+          if (feature.properties) {
+            return { color: 'black', fillColor: getRandomColor(feature) }
+          }
+        },
+        onEachFeature: onEachDistrictFeature
+      });
+
+      this.setState({districtLayer: districtLayer})
+
+      function onEachDistrictFeature(feature, layer) {
+        layer.bindPopup("District ID:" + feature.properties.NAME +
+        "\n Total Population:" + feature.properties.TOTPOP +
+        "\n Voting Age Population:" + feature.properties.VAP)
+        layer.on('mouseover', function (e) {
+          if (feature.properties) {
+            this.openPopup();
+          }
+        }
+        )
+        layer.on('mouseout', function (e) {
+          this.closePopup();
+        })
+      }
+      function getRandomColor(feature) {
+        var precinct_color = new Map()
+        var keyString = feature.properties.NAME10 + feature.properties.COUNTY_NAM;
+        if (precinct_color.has(keyString)) {
+          return precinct_color.get(keyString)
+        }
+  
+        var letters = "0123456789ABCDEF"
+        var color = "#"
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        precinct_color.set(keyString, color)
+        return color
+      }
+
+      this.showgeoJson(districtLayer, this.state.Map)
+    })
+  }
+
   //This method generates the different steps 
   getStepContent(stepIndex) {
     let OptionPage = "PageDisable";
@@ -1115,7 +1175,7 @@ class Maps extends Component {
           current_state ={this.state.current_state}current_district={this.state.current_district} districtSelect={this.districtSelect}
           BoxAndWhiskerData={this.state.BoxAndWhiskerData} current_districting1={this.state.current_districting1} districtingSelect={this.districtingSelect}
           current_districting2={this.state.current_districting2} districtingSelect={this.districtingSelect}
-          category={this.state.category} categorySelect={this.categorySelect} showDistrictingData={this.showDistrictingData} 
+          category={this.state.category} categorySelect={this.categorySelect} showDistrictingData={this.showDistrictingData} getDistrictingJson={this.getDistrictingJson}
           POLITICAL_FAIRNESS={this.state.MajorityMinority}POLSBYPOPPER_COMPACTNESS= {this.state.PPCompactness}current_district={this.state.current_district}
             POPULATIONFATNESS_COMPACTNESS= {this.state.PopFatCompactness} GRAPH_COMPACTNESS= {this.state.GCompactness}
             POPULATION_EQUALITY= {this.state.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.state.DeviationFromEnacted}
