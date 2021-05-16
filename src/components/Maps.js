@@ -837,7 +837,7 @@ class Maps extends Component {
             POLSBYPOPPER_COMPACTNESS: this.state.PPCompactness,
             POPULATIONFATNESS_COMPACTNESS: this.state.PopFatCompactness,
             GRAPH_COMPACTNESS: this.state.GCompactness,
-            POPULATION_EQUALITY: this.state.PopulationEqualityConstraints,
+            POPULATION_EQUALITY: this.state.PopulationEquality,
             DEVIATION_FROM_ENACTEDAREA: this.state.DeviationFromEnacted,
             DEVIATION_FROM_ENACTEDPOP: this.state.DeviationFromEnactedPopulation,
             SPLIT_COUNTIES: this.state.SplitCounties,
