@@ -181,6 +181,7 @@ class Maps extends Component {
       MajorMinorThres:0,
       MajorityMinorityDistricts: 0,
       MinorityGroup: "AFRICAN_AMERICAN",
+      districtNumber: 0,
 
       //mapbox gl coordinates are reversed from leaflet
       mapboxglCoordinates: null,
@@ -981,7 +982,7 @@ class Maps extends Component {
     const name = event.target.name;
     const value = parseInt(event.target.value);
     console.log(value)
-    //this.setState({ current_district: event.target.value })
+    this.setState({ districtNumber: value })
    this.setState({ current_district:this.state.selectedDistricting.districts[value]  })
   }
 
@@ -1092,7 +1093,7 @@ class Maps extends Component {
             DEVIATION_FROM_ENACTEDPOP={ this.state.DeviationFromEnactedPopulation} SPLIT_COUNTIES= {this.state.SplitCounties}
             districtingsSum={this.state.districtingsSum} sortByObjScore={this.state.sortByObjScore} sortByMM={this.state.sortByMM}   sortByEnacted={this.state.sortByEnacted}        
             districtingDataBox={this.state.districtingDataBox}selectedDistricting={this.state.selectedDistricting}closeDataBox={this.closeDataBox}
-            MajorityMinorityDistricts={this.state.MajorityMinorityDistricts} DEVIATION_FROM_AVERAGE= {this.state.DeviationFromAverage}
+            MajorityMinorityDistricts={this.state.MajorityMinorityDistricts} DEVIATION_FROM_AVERAGE= {this.state.DeviationFromAverage} districtNumber={this.state.districtNumber}
             />
     }
   }

@@ -151,7 +151,7 @@ class AnalyzeDistrictings extends Component {
                     <FormControl className="Form1">
                       <InputLabel htmlFor="state-native-helper">District</InputLabel>
                       <NativeSelect
-                        value={this.props.current_district}
+                        value={this.props.districtNumber}
                         onChange={this.props.districtSelect}
                         inputProps={{
                           name: 'Click To View Detailed Information About a District',
