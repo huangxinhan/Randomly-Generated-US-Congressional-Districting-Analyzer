@@ -14,9 +14,9 @@ class ConstraintResults extends Component {
         return (
             <div>
                 <h3>Constraint Results</h3>
-                <div class="spinner-border" role="status">
-                    {/* <span class="sr-only">Loading...</span> */}
-                </div>
+                {/* <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> */}
                 <h5>Filtered Out By graph Compactness: {ConstraintResults.filteredByCompactnessCount}</h5>
                 <h5>Filtered Out By Majority-Minority: {ConstraintResults.filteredByMMDCount}</h5>
                 <h5>Filtered Out By Population Constraint: {ConstraintResults.filteredByPopConstraintCount}</h5>

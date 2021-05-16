@@ -18,7 +18,7 @@ class SetConstraints extends Component {
     render(){
       let minorityOptions = [];
         if (this.props.MinorityGroup=="AFRICAN_AMERICAN"){
-          minorityOptions=[0,1,2,3,4];
+          minorityOptions=[0,1,2,3];
         }
         else{
           minorityOptions=[0];
@@ -151,7 +151,7 @@ class SetConstraints extends Component {
                         getAriaValueText={this.props.valuetext}
                         aria-labelledby="discrete-slider"
                         valueLabelDisplay="auto"
-                        step={0.1}
+                        step={0.01}
                         marks
                         min={0}
                         max={1}

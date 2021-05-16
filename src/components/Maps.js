@@ -784,14 +784,17 @@ class Maps extends Component {
   
   setActiveSteps(prev_active_step, direction) {
     if (direction == "forward" && prev_active_step < 5) {
+      this.setState({ districtingDataBox: "visible" })
         if(prev_active_step==0){
           //selected state
+          
           console.log(this.state.current_state);
           axios.post(REST_URL+'/api/state',this.state.current_state)
            .then(response =>{
              console.log(response.data);
              this.setState({ mgggPrams: response.data })
            }).finally(()=>{
+            this.setState({ districtingDataBox: "hidden" })
             this.setState({ activeStep: prev_active_step + 1 })
              });
   
@@ -799,8 +802,17 @@ class Maps extends Component {
         else if(prev_active_step==1){
           //selected jobs
           console.log(this.state.jobChecked);
-          axios.post(REST_URL+'/api/job',this.state.jobChecked);
-          this.setState({ activeStep: prev_active_step + 1 });
+          axios.post(REST_URL+'/api/job',this.state.jobChecked)
+          .then(response =>{
+            console.log(response.data);
+            //this.setState({ mgggPrams: response.data })
+          }).finally(()=>{
+            this.setState({ districtingDataBox: "hidden" })
+           this.setState({ activeStep: prev_active_step + 1 })
+            }) ;
+
+
+          //this.setState({ activeStep: prev_active_step + 1 });
         }
         else if(prev_active_step==2){
           //selected constraints
@@ -823,6 +835,7 @@ class Maps extends Component {
             this.setState({ constraintsResults: response.data })
           }).finally(()=>{
             console.log("ran next page")
+            this.setState({ districtingDataBox: "hidden" })
            this.setState({ activeStep: prev_active_step + 1 })
             });
           //axios.post(REST_URL+'/api/test',incumbent);
@@ -857,6 +870,7 @@ class Maps extends Component {
             this.setState({ pairDeviation: response.data[3] })
            
           }).finally(()=>{
+            this.setState({ districtingDataBox: "hidden" })
             console.log("ran next page")
             this.setState({ selectedDistricting: this.state.sortByObjScore[0] })
            this.setState({  current_district: this.state.selectedDistricting.districts[0]})
@@ -1143,8 +1157,10 @@ class Maps extends Component {
       <div>
         <div id="map1" style={{ width: '350px', height: '300px', top: '220px', left: '600px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap }}></div>
         <div id="map2" style={{ width: '350px', height: '300px', top: '220px', left: '1000px', position: 'absolute', zIndex: 573, visibility: this.state.secondaryMap }}></div>
-        <div id="map" style={{ width: '100vw', height: '100vh' }}>
-        </div>
+        <div id="map" style={{ width: '100vw', height: '100vh' }}></div>
+        {/* <div class="spinner-border" role="status" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501,  visibility: this.state.districtingDataBox }}>
+                    <span class="sr-only">Loading...</span>
+                </div> */}
         {/* <DistrictingSummary districtingDataBox={this.state.districtingDataBox} closeDataBox={() => this.setState({ districtingDataBox: "hidden" })}
          POPULATIONFATNESS_COMPACTNESS= {this.state.PopFatCompactness} GRAPH_COMPACTNESS= {this.state.GCompactness}
          POPULATION_EQUALITY= {this.state.PopulationEquality} DEVIATION_FROM_ENACTEDAREA= {this.state.DeviationFromEnacted}
@@ -1193,8 +1209,11 @@ class Maps extends Component {
           <h3>
             {this.getStepContent(this.state.activeStep)}
           </h3>
-
+          <div class="spinner-border" role="status" style={{ position: 'absolute', textAlign: 'center', margin: 0, zIndex: 501,  visibility: this.state.districtingDataBox }}>
+                    <span class="sr-only">Loading...</span>
+                </div>
           <div className="bottomButtons" style={{ position: 'absolute', textAlign: 'center', margin: 0, left: '100px', top: "915px" }}>
+          
             <Button variant="outlined" class="btn btn-primary" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               ⠀⠀⠀⠀
                 {nextStepButton}
