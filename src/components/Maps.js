@@ -386,9 +386,9 @@ class Maps extends Component {
 
 
     function onEachPrecinctFeature(feature, layer) {
-      layer.bindPopup("Precinct ID:" + feature.properties.NAMELSAD10 + "\n total Population:" + feature.properties.TOTPOP
-      + "\n total African American Population:" + feature.properties.AFAPOP +
-      "\n total Asian Population:" + feature.properties.APOP + 
+      layer.bindPopup("Precinct ID:" + feature.properties.NAME10 + "\n total Population:" + feature.properties.TOTPOP
+      + "\n total African American Population:" + feature.properties.NH_BLACK +
+      "\n total Asian Population:" + feature.properties.NH_ASIAN + 
       "\n total Voting Age Population:" + feature.properties.VAP)
       layer.on('mouseover', function (e) {
         if (feature.properties) {
