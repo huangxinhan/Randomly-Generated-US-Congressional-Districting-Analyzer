@@ -73,7 +73,7 @@ class AnalyzeDistrictings extends Component {
                 <div class="tab-content">
                   <div role="tabpanel" class="tab-pane" id="districtingdata" style={{ fontSize: "20px" }}>
                     <div><br></br></div>
-       Objective Function Score: {selectedDistricting.objectiveFunctionScore}
+       Objective Function Score: {selectedDistricting.objectiveFunctionScore.toFixed(3)}
        <div><br></br></div>
 
                     <table class="table table-striped">
@@ -443,7 +443,7 @@ class AnalyzeDistrictings extends Component {
 
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 1 - Score: {districtingsSum[0].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 1 - Score: {districtingsSum[0].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("1")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("1")}> Analyze</button>⠀
@@ -452,7 +452,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 2 - Score: {districtingsSum[1].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 2 - Score: {districtingsSum[1].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("2")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("2")}> Analyze</button>⠀
@@ -461,7 +461,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 3 - Score: {districtingsSum[2].objectiveFunctionScore}   {} 
+            <p class="card-text">Districting 3 - Score: {districtingsSum[2].objectiveFunctionScore.toFixed(3)}   {} 
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("3")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("3")}> Analyze</button>⠀
@@ -470,7 +470,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 4 - Score: {districtingsSum[3].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 4 - Score: {districtingsSum[3].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("4")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("4")}> Analyze</button>⠀
@@ -479,7 +479,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 5 - Score: {districtingsSum[4].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 5 - Score: {districtingsSum[4].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("5")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("5")}> Analyze</button>⠀
@@ -488,7 +488,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 6 - Score: {districtingsSum[5].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 6 - Score: {districtingsSum[5].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("6")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("6")}> Analyze</button>⠀
@@ -497,7 +497,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 7 - Score: {districtingsSum[6].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 7 - Score: {districtingsSum[6].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("7")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("7")}> Analyze</button>⠀
@@ -506,7 +506,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 8 - Score: {districtingsSum[7].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 8 - Score: {districtingsSum[7].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("8")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("8")}> Analyze</button>⠀
@@ -515,7 +515,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 9 - Score: {districtingsSum[8].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 9 - Score: {districtingsSum[8].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("9")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("9")}> Analyze</button>⠀
@@ -524,7 +524,7 @@ class AnalyzeDistrictings extends Component {
         </div>
         <div class="card bg-light mb-3" style={{ width: "550px", height: "50px", fontSize: "15px", left: "13px", textAlign: "center" }}>
           <div class="card-body align-items-center d-flex justify-content-center">
-            <p class="card-text">Districting 10 - Score: {districtingsSum[9].objectiveFunctionScore}  {}
+            <p class="card-text">Districting 10 - Score: {districtingsSum[9].objectiveFunctionScore.toFixed(3)}  {}
                   <button type="button" class="btn btn-primary btn-sm" onClick={this.props.getDistrictingJson("10")}>Load Districting</button>⠀
                  {/* <button type="button" class="btn btn-success btn-sm" >Show Data</button>⠀ */}
                  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"onClick={this.props.showDistrictingData("10")}> Analyze</button>⠀

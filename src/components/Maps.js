@@ -565,7 +565,7 @@ class Maps extends Component {
 
     if (event.target.value === "graph compactness") {
       this.setState({ CompactnessTypeSliderValue: this.state.GraphCompactness })
-      console.log(this.state.CompactnessTypeSliderValue)
+      console.log(this.state.CompactnessTypeSliderValue*3+16)
     }
     else if (event.target.value === "population fatness") {
       this.setState({ CompactnessTypeSliderValue: this.state.PopulationFatness })
@@ -583,10 +583,11 @@ class Maps extends Component {
   handleChangeCompactnessTypeSliderValue = (event, value) => {
     this.setState({ CompactnessTypeSliderValue: value })
 
-    if (this.state.CompactnessType === "graph compactness") {
+    if (this.state.CompactnessType === "GRAPH_COMPACTNESS") {
       this.setState({ GraphCompactness: value })
+      
       //this.setState({ FinalCompactVal: value })
-      // console.log(this.state.GraphCompactness)
+       console.log(this.state.GraphCompactness*3+16)
     }
     else if (this.state.CompactnessType === "population fatness") {
       this.setState({ PopulationFatness: value })
@@ -606,42 +607,42 @@ class Maps extends Component {
   handleConstrainTypeChange = (event) => {
     this.setState({ ConstrainType: event.target.value })
 
-    if (event.target.value === "total population") {
+    if (event.target.value === "TOTAL") {
       this.setState({ ConstrainTypeSliderValue: this.state.TotalPopulation })
       console.log(this.state.ConstrainTypeSliderValue)
     }
-    else if (event.target.value === "voting age population (TVAP)") {
+    else if (event.target.value === "VAP") {
       this.setState({ ConstrainTypeSliderValue: this.state.VotingAgePopulation })
       console.log(this.state.ConstrainTypeSliderValue)
     }
-    else if (event.target.value === "citizen voting age population (CVAP)") {
-      this.setState({ ConstrainTypeSliderValue: this.state.CitizenVotingAgePopulation })
-      console.log(this.state.ConstrainTypeSliderValue)
-    }
-    else {
-      this.setState({ ConstrainTypeSliderValue: 0 })
-    }
+    // else if (event.target.value === "citizen voting age population (CVAP)") {
+    //   this.setState({ ConstrainTypeSliderValue: this.state.CitizenVotingAgePopulation })
+    //   console.log(this.state.ConstrainTypeSliderValue)
+    // }
+    // else {
+    //   this.setState({ ConstrainTypeSliderValue: 0 })
+    // }
 
   }
   handleChangeConstrainTypeSliderValue = (event, value) => {
     this.setState({ ConstrainTypeSliderValue: value })
 
-    if (this.state.ConstrainType === "total population") {
+    if (this.state.ConstrainType === "TOTAL") {
       this.setState({ TotalPopulation: value })
       console.log(this.state.TotalPopulation)
 
     }
-    else if (this.state.ConstrainType === "voting age population (TVAP)") {
+    else if (this.state.ConstrainType === "VAP") {
       this.setState({ VotingAgePopulation: value })
       console.log(this.state.VotingAgePopulation)
     }
-    else if (this.state.ConstrainType === "citizen voting age population (CVAP)") {
-      this.setState({ CitizenVotingAgePopulation: value })
-      console.log(this.state.CitizenVotingAgePopulation)
-    }
-    else {
+    // else if (this.state.ConstrainType === "citizen voting age population (CVAP)") {
+    //   this.setState({ CitizenVotingAgePopulation: value })
+    //   console.log(this.state.CitizenVotingAgePopulation)
+    // }
+    // else {
 
-    }
+    // }
   }
   handleChangeMajorMinorThres = (event, value) => {
     this.setState({ MajorMinorThres: value })
@@ -1230,12 +1231,12 @@ class Maps extends Component {
   render() {
 
 
-    let nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveSteps(this.state.activeStep, "forward")}>Next Step</Button>
+    let nextStepButton = <Button  variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveSteps(this.state.activeStep, "forward")}>Next Step</Button>
     if (this.state.activeStep == 5) {
       nextStepButton = "⠀⠀⠀⠀⠀⠀⠀⠀⠀"
     }
     else {
-      nextStepButton = <Button variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveSteps(this.state.activeStep, "forward")}>Next Step</Button>
+      nextStepButton = <Button disabled={this.state.current_state==="None"?true :false} variant="outlined" color="primary" class="btn btn-primary" onClick={() => this.setActiveSteps(this.state.activeStep, "forward")}>Next Step</Button>
     }
     let OptionPage = "PageDisable";
 
