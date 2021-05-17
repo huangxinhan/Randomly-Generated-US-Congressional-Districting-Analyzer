@@ -565,7 +565,7 @@ class Maps extends Component {
 
     if (event.target.value === "graph compactness") {
       this.setState({ CompactnessTypeSliderValue: this.state.GraphCompactness })
-      console.log(this.state.CompactnessTypeSliderValue*3+16)
+      console.log(this.state.CompactnessTypeSliderValue*0.04+0.17)
     }
     else if (event.target.value === "population fatness") {
       this.setState({ CompactnessTypeSliderValue: this.state.PopulationFatness })
@@ -587,7 +587,7 @@ class Maps extends Component {
       this.setState({ GraphCompactness: value })
       
       //this.setState({ FinalCompactVal: value })
-       console.log(this.state.GraphCompactness*3+16)
+       console.log(this.state.GraphCompactness*0.04+0.17)
     }
     else if (this.state.CompactnessType === "population fatness") {
       this.setState({ PopulationFatness: value })
@@ -829,7 +829,7 @@ class Maps extends Component {
           const constraintsObj={
             compactnessType: this.state.CompactnessType,
             populationType: this.state.ConstrainType,
-            compactnessValue: this.state.CompactnessTypeSliderValue*0.03+0.16,
+            compactnessValue: this.state.CompactnessTypeSliderValue*0.04+0.17,
             minorityType: this.state.MinorityGroup,
             majorMinorThres: this.state.MajorMinorThres,
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
@@ -892,6 +892,7 @@ class Maps extends Component {
     
 
     else if (direction == "reset") {
+      
       this.setState({ activeStep: 0,
         current_state: "None",
           jobChecked: 1,
@@ -930,6 +931,9 @@ class Maps extends Component {
       
       
       })
+      if (this.state.districtLayer != null){
+        this.hidegeoJson(this.state.districtLayer, this.state.Map);
+      }
       console.log(this.state.current_state,this.state.GraphCompactness);
       
 
@@ -1057,110 +1061,113 @@ class Maps extends Component {
   //this method unhides a popup that shows districting data
   showDistrictingData = (index) =>()=> {
     var i =index-1
-    this.setState({ selectedDistricting: this.state.districtingsSum[i] })
-    const id = this.state.selectedDistricting.districtingID
-    //this.setState({ districtingDataBox: "visible" })
-    console.log(id)
-    axios.post(REST_URL+'/api/boxWhisker',id).then(response =>{
-      console.log(response.data);
-      this.setState({ boxWhisker: response.data })
-      this.setState({ boxAndWhiskerPercentages: response.data.boxAndWhiskerPercentages })
-      this.setState({ currentDistrictingData: response.data.currentDistrictingData })
-      this.setState({ enactedDistrictingData: response.data.enactedDistrictingData })
-    }).finally(()=>{
-      var xbar = []
-      for (var i = 0; i < this.state.currentDistrictingData.length; i++){
-        xbar.push(("District " + (i + 1)))
-      }
-      console.log("box whisker loaded")
-      var data = [];
-      var trace1 = {
-        y: this.state.currentDistrictingData,
-        x: xbar,
-        type: "scatter",
-        mode: 'markers',
-        name: "Current District" 
-      };
+    this.setState({ selectedDistricting: this.state.districtingsSum[i] }, ()=>{
+      const id = this.state.selectedDistricting.districtingID
+      //this.setState({ districtingDataBox: "visible" })
+      console.log(id)
+      axios.post(REST_URL+'/api/boxWhisker',id).then(response =>{
+        console.log(response.data);
+        this.setState({ boxWhisker: response.data })
+        this.setState({ boxAndWhiskerPercentages: response.data.boxAndWhiskerPercentages })
+        this.setState({ currentDistrictingData: response.data.currentDistrictingData })
+        this.setState({ enactedDistrictingData: response.data.enactedDistrictingData })
+      }).finally(()=>{
+        var xbar = []
+        for (var i = 0; i < this.state.currentDistrictingData.length; i++){
+          xbar.push(("District " + (i + 1)))
+        }
+        console.log("box whisker loaded")
+        var data = [];
+        var trace1 = {
+          y: this.state.currentDistrictingData,
+          x: xbar,
+          type: "scatter",
+          mode: 'markers',
+          name: "Current District" 
+        };
+  
+        var trace2 = {
+          y: this.state.enactedDistrictingData,
+          x: xbar,
+          type: "scatter",
+          mode: 'markers',
+          name: "Enacted District"
+        };
+        data.push(trace1);
+        data.push(trace2);
+        
+        for (var i = 0; i < this.state.enactedDistrictingData.length; i++){
+          var plotObject = {y: null, type: 'box', name: "District " + (i+1)}
+          plotObject.y = this.state.boxAndWhiskerPercentages[i];
+  
+  
+          data.push(plotObject); 
+  
+        }
+        this.setState({BoxAndWhiskerData: data})
+        console.log(this.state.BoxAndWhiskerData);
+       //this.setState({ activeStep: prev_active_step + 1 })
+        });
+    })
 
-      var trace2 = {
-        y: this.state.enactedDistrictingData,
-        x: xbar,
-        type: "scatter",
-        mode: 'markers',
-        name: "Enacted District"
-      };
-      data.push(trace1);
-      data.push(trace2);
-      
-      for (var i = 0; i < this.state.enactedDistrictingData.length; i++){
-        var plotObject = {y: null, type: 'box', name: "District " + (i+1)}
-        plotObject.y = this.state.boxAndWhiskerPercentages[i];
-
-
-        data.push(plotObject); 
-
-      }
-      this.setState({BoxAndWhiskerData: data})
-      console.log(this.state.BoxAndWhiskerData);
-     //this.setState({ activeStep: prev_active_step + 1 })
-      });
   }
 
   getDistrictingJson = (index)  =>()=> {
     var i =index-1
-    this.setState({ selectedDistricting: this.state.districtingsSum[i] })
-    const id = this.state.selectedDistricting.districtingID
-    console.log("id is ", id)
-    axios.post(REST_URL+"/api/getJson",id).then(response =>{
-      console.log(response.data);
-      this.setState({currentDistrictingGEOJSON: response.data})
-    }).finally(()=> {
-      if (this.state.districtLayer != null){
-        this.hidegeoJson(this.state.districtLayer, this.state.Map);
-      }
-      var districtLayer = L.geoJson(this.state.currentDistrictingGEOJSON, {
-        weight: 2,
-        style: function (feature) {
-          if (feature.properties) {
-            return { color: 'black', fillColor: getRandomColor(feature), fillOpacity: 0.75 }
-          }
-        },
-        onEachFeature: onEachDistrictFeature
-      });
-
-      this.setState({districtLayer: districtLayer})
-
-      function onEachDistrictFeature(feature, layer) {
-        layer.bindPopup("District ID:" + feature.properties.NAME +
-        "\n Total Population:" + feature.properties.TOTPOP +
-        "\n Voting Age Population:" + feature.properties.VAP)
-        layer.on('mouseover', function (e) {
-          if (feature.properties) {
-            this.openPopup();
-          }
+    this.setState({ selectedDistricting: this.state.districtingsSum[i] }, ()=>{
+      const id = this.state.selectedDistricting.districtingID
+      console.log("id is ", id)
+      axios.post(REST_URL+"/api/getJson",id).then(response =>{
+        console.log(response.data);
+        this.setState({currentDistrictingGEOJSON: response.data})
+      }).finally(()=> {
+        if (this.state.districtLayer != null){
+          this.hidegeoJson(this.state.districtLayer, this.state.Map);
         }
-        )
-        layer.on('mouseout', function (e) {
-          this.closePopup();
-        })
-      }
-      function getRandomColor(feature) {
-        var precinct_color = new Map()
-        var keyString = feature.properties.NAME10 + feature.properties.COUNTY_NAM;
-        if (precinct_color.has(keyString)) {
-          return precinct_color.get(keyString)
+        var districtLayer = L.geoJson(this.state.currentDistrictingGEOJSON, {
+          weight: 2,
+          style: function (feature) {
+            if (feature.properties) {
+              return { color: 'black', fillColor: getRandomColor(feature), fillOpacity: 0.75 }
+            }
+          },
+          onEachFeature: onEachDistrictFeature
+        });
+  
+        this.setState({districtLayer: districtLayer})
+  
+        function onEachDistrictFeature(feature, layer) {
+          layer.bindPopup("District ID:" + feature.properties.NAME +
+          "\n Total Population:" + feature.properties.TOTPOP +
+          "\n Voting Age Population:" + feature.properties.VAP)
+          layer.on('mouseover', function (e) {
+            if (feature.properties) {
+              this.openPopup();
+            }
+          }
+          )
+          layer.on('mouseout', function (e) {
+            this.closePopup();
+          })
+        }
+        function getRandomColor(feature) {
+          var precinct_color = new Map()
+          var keyString = feature.properties.NAME10 + feature.properties.COUNTY_NAM;
+          if (precinct_color.has(keyString)) {
+            return precinct_color.get(keyString)
+          }
+    
+          var letters = "0123456789ABCDEF"
+          var color = "#"
+          for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          precinct_color.set(keyString, color)
+          return color
         }
   
-        var letters = "0123456789ABCDEF"
-        var color = "#"
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        precinct_color.set(keyString, color)
-        return color
-      }
-
-      this.showgeoJson(districtLayer, this.state.Map)
+        this.showgeoJson(districtLayer, this.state.Map)
+    })
     })
   }
 
