@@ -829,7 +829,7 @@ class Maps extends Component {
           const constraintsObj={
             compactnessType: this.state.CompactnessType,
             populationType: this.state.ConstrainType,
-            compactnessValue: this.state.CompactnessTypeSliderValue,
+            compactnessValue: this.state.CompactnessTypeSliderValue*3+16,
             minorityType: this.state.MinorityGroup,
             majorMinorThres: this.state.MajorMinorThres,
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
@@ -1316,7 +1316,7 @@ class Maps extends Component {
                 </div>
           <div className="bottomButtons" style={{ position: 'absolute', textAlign: 'center', margin: 0, left: '100px', top: "915px" }}>
           
-            <Button variant="outlined" class="btn btn-primary" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
+            <Button disabled={this.state.activeStep==0?true :false} variant="outlined" class="btn btn-primary" color="primary" onClick={() => this.setActiveStep(this.state.activeStep, "backward")}> Previous Step</Button>
               ⠀⠀⠀⠀
                 {nextStepButton}
               ⠀⠀⠀⠀
