@@ -829,7 +829,7 @@ class Maps extends Component {
           const constraintsObj={
             compactnessType: this.state.CompactnessType,
             populationType: this.state.ConstrainType,
-            compactnessValue: this.state.CompactnessTypeSliderValue*3+16,
+            compactnessValue: this.state.CompactnessTypeSliderValue*0.03+0.16,
             minorityType: this.state.MinorityGroup,
             majorMinorThres: this.state.MajorMinorThres,
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
