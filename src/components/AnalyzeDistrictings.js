@@ -267,6 +267,12 @@ class AnalyzeDistrictings extends Component {
                     <h3>Minority Popularity Box and Whisker Plot</h3>
                     <Plot
                       data={this.props.BoxAndWhiskerData}
+                      layout={{
+                        yaxis: {
+                          title: 'Minority Population By Percentage',
+                        }
+                      }
+                    }
                     />
                   </div>
 

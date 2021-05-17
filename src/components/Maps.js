@@ -148,27 +148,30 @@ class Maps extends Component {
       //third one is not needed.↓
 
       //Box and Whisker data
-      BoxAndWhiskerData: [
-        {
-          y: [0, 1, 1, 2, 3, 5],
-          type: 'box'
-        },
-        {
-          y: [0, 6, 1, 2, 9, 5],
-          type: 'box'
-        },
-        {
-          y: [10, 6, 1, 12, 9, 5],
-          type: 'box'
-        },
-        {
-          y: [0, 6, 1, 12, 19, 15],
-          type: 'box'
-        }, {
-          y: [10, 16, 11, 12, 19, 5],
-          type: 'box'
-        }
-      ],
+       BoxAndWhiskerData: null,
+       boxAndWhiskerPercentages: null,
+       currentDistrictingData: null,
+       enactedDistrictingData: null,
+      //   {
+      //     y: [0, 1, 1, 2, 3, 5],
+      //     type: 'box'
+      //   },
+      //   {
+      //     y: [0, 6, 1, 2, 9, 5],
+      //     type: 'box'
+      //   },
+      //   {
+      //     y: [10, 6, 1, 12, 9, 5],
+      //     type: 'box'
+      //   },
+      //   {
+      //     y: [0, 6, 1, 12, 19, 15],
+      //     type: 'box'
+      //   }, {
+      //     y: [10, 16, 11, 12, 19, 5],
+      //     type: 'box'
+      //   }
+      // ],
       boxWhisker:null,
       // step3, corresponding slider values to options
       GraphCompactness: 0,
@@ -1060,8 +1063,44 @@ class Maps extends Component {
     axios.post(REST_URL+'/api/boxWhisker',id).then(response =>{
       console.log(response.data);
       this.setState({ boxWhisker: response.data })
+      this.setState({ boxAndWhiskerPercentages: response.data.boxAndWhiskerPercentages })
+      this.setState({ currentDistrictingData: response.data.currentDistrictingData })
+      this.setState({ enactedDistrictingData: response.data.enactedDistrictingData })
     }).finally(()=>{
+      var xbar = []
+      for (var i = 0; i < this.state.currentDistrictingData.length; i++){
+        xbar.push(("District " + (i + 1)))
+      }
       console.log("box whisker loaded")
+      var data = [];
+      var trace1 = {
+        y: this.state.currentDistrictingData,
+        x: xbar,
+        type: "scatter",
+        mode: 'markers',
+        name: "Current District" 
+      };
+
+      var trace2 = {
+        y: this.state.enactedDistrictingData,
+        x: xbar,
+        type: "scatter",
+        mode: 'markers',
+        name: "Enacted District"
+      };
+      data.push(trace1);
+      data.push(trace2);
+      
+      for (var i = 0; i < this.state.enactedDistrictingData.length; i++){
+        var plotObject = {y: null, type: 'box', name: "District " + (i+1)}
+        plotObject.y = this.state.boxAndWhiskerPercentages[i];
+
+
+        data.push(plotObject); 
+
+      }
+      this.setState({BoxAndWhiskerData: data})
+      console.log(this.state.BoxAndWhiskerData);
      //this.setState({ activeStep: prev_active_step + 1 })
       });
   }
