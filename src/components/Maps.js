@@ -312,10 +312,10 @@ class Maps extends Component {
     });
 
     var PAdistrictLayer = L.geoJson(padistricts, {
-      weight: 1,
+      weight: 2,
       style: function (feature) {
         if (feature.properties) {
-          return { color: 'black', fillColor: getRandomColor(feature), opacity: 0.5 }
+          return { color: 'black', fillColor: getRandomColor(feature), fillOpacity: 0.75 }
         }
       },
       onEachFeature: onEachDistrictFeature
@@ -1119,10 +1119,10 @@ class Maps extends Component {
         this.hidegeoJson(this.state.districtLayer, this.state.Map);
       }
       var districtLayer = L.geoJson(this.state.currentDistrictingGEOJSON, {
-        weight: 1,
+        weight: 2,
         style: function (feature) {
           if (feature.properties) {
-            return { color: 'black', fillColor: getRandomColor(feature) }
+            return { color: 'black', fillColor: getRandomColor(feature), fillOpacity: 0.75 }
           }
         },
         onEachFeature: onEachDistrictFeature
