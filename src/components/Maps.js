@@ -565,7 +565,7 @@ class Maps extends Component {
 
     if (event.target.value === "graph compactness") {
       this.setState({ CompactnessTypeSliderValue: this.state.GraphCompactness })
-      console.log(this.state.CompactnessTypeSliderValue*0.04+0.17)
+      console.log(this.state.CompactnessTypeSliderValue)
     }
     else if (event.target.value === "population fatness") {
       this.setState({ CompactnessTypeSliderValue: this.state.PopulationFatness })
@@ -587,7 +587,7 @@ class Maps extends Component {
       this.setState({ GraphCompactness: value })
       
       //this.setState({ FinalCompactVal: value })
-       console.log(this.state.GraphCompactness*0.04+0.17)
+       console.log(this.state.GraphCompactness)
     }
     else if (this.state.CompactnessType === "population fatness") {
       this.setState({ PopulationFatness: value })
@@ -809,7 +809,11 @@ class Maps extends Component {
           //selected jobs
           this.setState({ districtingDataBox: "visible" })
           console.log(this.state.jobChecked);
-          axios.post(REST_URL+'/api/job',this.state.jobChecked)
+          const job_state={
+            jobid: this.state.jobChecked,
+            stateName:this.state.current_state
+          }
+          axios.post(REST_URL+'/api/job',job_state)
           .then(response =>{
             console.log(response.data);
             //this.setState({ mgggPrams: response.data })
@@ -829,7 +833,7 @@ class Maps extends Component {
           const constraintsObj={
             compactnessType: this.state.CompactnessType,
             populationType: this.state.ConstrainType,
-            compactnessValue: this.state.CompactnessTypeSliderValue*0.04+0.17,
+            compactnessValue: this.state.CompactnessTypeSliderValue,
             minorityType: this.state.MinorityGroup,
             majorMinorThres: this.state.MajorMinorThres,
             numberOfMajorityMinorityDistricts: this.state.MajorityMinorityDistricts,
@@ -900,7 +904,7 @@ class Maps extends Component {
           GraphCompactness: 0,
           PopulationFatness: 0,
           PolsbyPopper: 0,
-    
+          MajorMinorThres:0,
           TotalPopulation: 0,
           VotingAgePopulation: 0,
           CitizenVotingAgePopulation: 0,

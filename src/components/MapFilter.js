@@ -29,7 +29,7 @@ class MapFilter extends Component {
 
                   <div>
                     <h5>  &nbsp;&nbsp;&nbsp;Current State: {this.props.current_state}</h5>
-                    <h5>  &nbsp;&nbsp;&nbsp;Current Districting: Default Districting</h5>
+                    <h5>  &nbsp;&nbsp;&nbsp;⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h5>
                   </div>
 
 
